@@ -4,7 +4,7 @@ from marshmallow import ValidationError
 
 from webapp import db
 # from .models import UserModel, RoleModel
-from .schemas import UserCreateSchema
+from .schemas import UserSchema
 
 users_blueprint = Blueprint('users', __name__, url_prefix="/users")
 
@@ -54,7 +54,7 @@ class UserAPI(MethodView):
         if not json_data:
             return {"message": "No input data provided"}, 400
         try:
-            data = UserCreateSchema().load(json_data)
+            data = UserSchema().load(json_data)
         except ValidationError as err:
             return err.messages, 422
         email, role_title = data["email"], data["role"]["title"]
@@ -64,7 +64,7 @@ class UserAPI(MethodView):
             user = UserModel(email=email, is_active=False, role_id=role.id)
             db.session.add(user)
             db.session.commit()
-            result = UserCreateSchema.dump(UserModel.query.get(user.id))
+            result = UserSchema.dump(UserModel.query.get(user.id))
             return {"message": "Created new user.", "user": result}
 
     def delete(self, user_id):
