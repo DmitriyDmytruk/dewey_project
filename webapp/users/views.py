@@ -15,8 +15,8 @@ class UserAPI(MethodView):
             pass
 
     def post(self):
-        # create view
-        pass
+        """
+        """
 
     def delete(self, user_id):
         pass
@@ -24,4 +24,11 @@ class UserAPI(MethodView):
     def put(self, user_id):
         pass
 
-user_view = UserAPI.as_view()
+
+user_view = UserAPI.as_view('users')
+
+users_blueprint.add_url_rule('', defaults={'user_id': None},
+                 view_func=user_view, methods=['GET'])
+users_blueprint.add_url_rule('', view_func=user_view, methods=['POST'])
+users_blueprint.add_url_rule('<int:user_id>', view_func=user_view,
+                 methods=['GET', 'PUT', 'DELETE'])
