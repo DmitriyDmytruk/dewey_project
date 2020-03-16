@@ -6,15 +6,15 @@ class PermissionSchema(Schema):
 
 
 class RoleSchema(Schema):
-    id = fields.Int(dump_only=True)
-    title = fields.String(validate=validate.Length(min=2))
+    id = fields.Int()
+    title = fields.String(validate=validate.Length(min=2), required=True)
     permissions = fields.List(fields.Nested(PermissionSchema))
 
 
 class UserSchema(Schema):
-    id = fields.Int(dump_only=True)
-    email = fields.Email()
-    first_name = fields.String(validate=validate.Length(min=2), dump_only=True)
-    last_name = fields.String(validate=validate.Length(min=2), dump_only=True)
-    created_at = fields.DateTime(dump_only=True)
+    id = fields.Int()
+    email = fields.Email(required=True)
+    first_name = fields.String(validate=validate.Length(min=2))
+    last_name = fields.String(validate=validate.Length(min=2))
+    created_at = fields.DateTime()
     role = fields.Nested(RoleSchema(only=('id', 'title')))
