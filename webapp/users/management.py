@@ -1,5 +1,6 @@
 import psycopg2
 
+
 try:
    connection = psycopg2.connect(user="dewey_user",
                                  password="dditeam",
