@@ -5,6 +5,7 @@ from marshmallow import ValidationError
 from webapp import db
 # from .models import UserModel, RoleModel
 from .schemas import UserSchema
+from webapp.utils.mailing import sengrid_send_mail
 
 users_blueprint = Blueprint('users', __name__, url_prefix="/users")
 
@@ -64,6 +65,12 @@ class UserAPI(MethodView):
             user = UserModel(email=email, is_active=False, role_id=role.id)
             db.session.add(user)
             db.session.commit()
+
+            content = "Hi there"
+            content_type = "text/plain"
+            subject = "Sending with SendGrid"
+            sengrid_send_mail(email, subject, content, content_type)
+
             result = UserSchema.dump(UserModel.query.get(user.id))
             return {"message": "Created new user.", "user": result}
 

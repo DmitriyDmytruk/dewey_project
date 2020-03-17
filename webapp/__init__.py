@@ -22,6 +22,8 @@ def create_app(object_name):
     app = Flask(__name__)
     app.config.from_object(object_name)
 
+    from webapp.users import models
+
     db.init_app(app)
     migrate.init_app(app, db)
 
