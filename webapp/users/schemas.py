@@ -1,4 +1,4 @@
-from marshmallow import fields, Schema, validate
+from marshmallow import Schema, fields, validate
 
 
 class PermissionSchema(Schema):

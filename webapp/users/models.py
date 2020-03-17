@@ -1,7 +1,9 @@
-from .. import db, bcrypt
-from ...main import app
 import datetime
+
 import jwt
+
+from ...main import app
+from .. import bcrypt, db
 
 
 class UserModel(db.Model):
