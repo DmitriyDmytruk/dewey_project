@@ -10,10 +10,14 @@ class Config(object):
 
 class ProdConfig(Config):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'database.db')
+    SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(
+        basedir, "database.db"
+    )
 
 
 class DevConfig(Config):
     DEBUG = True
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_DATABASE_URI = 'postgresql://dewey_user:dditeam@localhost/dewey_db'
+    SQLALCHEMY_DATABASE_URI = (
+        "postgresql://dewey_user:dditeam@localhost/dewey_db"
+    )

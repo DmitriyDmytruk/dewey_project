@@ -29,6 +29,7 @@ def create_app(object_name):
 
     from .users.views import users_blueprint
     from .auth.views import auth_blueprint
+
     app.register_blueprint(users_blueprint)
     app.register_blueprint(auth_blueprint)
 

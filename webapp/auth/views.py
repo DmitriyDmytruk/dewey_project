@@ -1,11 +1,8 @@
-import datetime
-
 import jwt
-from flask import Blueprint, jsonify, make_response, request
-from flask.views import MethodView
+from flask import Blueprint
 
 
-auth_blueprint = Blueprint('auth', __name__)
+auth_blueprint = Blueprint("auth", __name__)
 
 # class LoginAPI(MethodView):
 #     """
@@ -36,7 +33,6 @@ auth_blueprint = Blueprint('auth', __name__)
 #             return make_response(jsonify(responseObject)), 500
 
 
-
 def decode_auth_token(auth_token):
     """
     Decodes the auth token
@@ -44,9 +40,9 @@ def decode_auth_token(auth_token):
     :return: integer|string
     """
     try:
-        payload = jwt.decode(auth_token, app.config.get('SECRET_KEY'))
-        return payload['sub']
+        payload = jwt.decode(auth_token, app.config.get("SECRET_KEY"))
+        return payload["sub"]
     except jwt.ExpiredSignatureError:
-        return 'Signature expired. Please log in again.'
+        return "Signature expired. Please log in again."
     except jwt.InvalidTokenError:
-        return 'Invalid token. Please log in again.'
+        return "Invalid token. Please log in again."
