@@ -1,0 +1,41 @@
+# This is a sample build configuration for Python.
+# Check our guides at https://confluence.atlassian.com/x/14UWN for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+
+image: python:3.7
+
+definitions:
+  services:
+    postgres:
+      image: postgres
+      variables:
+        POSTGRES_DB: 'dewey_db'
+        POSTGRES_USER: 'dewey_user'
+        POSTGRES_PASSWORD: 'dditeam'
+
+  steps:
+    - step: &RunTest
+        name: Run tests
+        caches:
+          - pip
+        script:
+          - apt-get update
+          - export FLASK_APP=main.py
+          - export FLASK_ENV=development
+          - pip install -r requirements.txt
+          - pip install ansible==2.8  # Do this for cache
+          - isort
+          - black .
+          - pylint --load-plugins pylint_flask_sqlalchemy webapp/
+          - flask db init
+          - flask db migrate
+          - flask db upgrade
+        services:
+          - postgres
+
+pipelines:
+  pull-requests:
+    '**':
+      - step: *RunTest
