@@ -34,3 +34,5 @@ def create_app(object_name):
     app.register_blueprint(auth_blueprint)
 
     return app
+
+from .users import models
