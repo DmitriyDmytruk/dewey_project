@@ -3,10 +3,10 @@ from flask.views import MethodView
 from marshmallow import ValidationError
 
 from webapp import db
+from webapp.utils.mailing import sengrid_send_mail
 
 # from .models import UserModel, RoleModel
 from .schemas import UserSchema
-from webapp.utils.mailing import sengrid_send_mail
 
 
 users_blueprint = Blueprint("users", __name__, url_prefix="/users")
