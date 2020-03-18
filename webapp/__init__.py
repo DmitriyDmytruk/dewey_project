@@ -1,9 +1,9 @@
-from flask import Flask
-
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
-from flask_bcrypt import Bcrypt
 from flasgger import Swagger
+from flask import Flask
+from flask_bcrypt import Bcrypt
+from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
+
 
 db = SQLAlchemy()
 migrate = Migrate()
@@ -31,6 +31,7 @@ def create_app(object_name):
 
     from .users.views import users_blueprint
     from .auth.views import auth_blueprint
+
     app.register_blueprint(users_blueprint)
     app.register_blueprint(auth_blueprint)
 
