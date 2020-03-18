@@ -3,7 +3,7 @@ from flask.views import MethodView
 from marshmallow import ValidationError
 
 from webapp import db
-# from .models import UserModel, RoleModel
+from .models import UserModel, RoleModel
 from .schemas import UserSchema
 
 users_blueprint = Blueprint('users', __name__, url_prefix="/users")

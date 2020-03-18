@@ -1,5 +1,4 @@
 from .. import db, bcrypt
-from ...main import app
 import datetime
 import jwt
 
@@ -32,24 +31,24 @@ class UserModel(db.Model):
         for key, item in data.items():
             setattr(self, key, item)
 
-    def encode_auth_token(self):
-        """
-        Generates the Auth Token
-        :return: string
-        """
-        try:
-            payload = {
-                'exp': datetime.datetime.utcnow() + datetime.timedelta(days=0, seconds=5),
-                'iat': datetime.datetime.utcnow(),
-                'sub': self.email
-            }
-            return jwt.encode(
-                payload,
-                app.config.get('SECRET_KEY'),
-                algorithm='HS256'
-            )
-        except Exception as e:
-            return e
+    # def encode_auth_token(self):
+    #     """
+    #     Generates the Auth Token
+    #     :return: string
+    #     """
+    #     try:
+    #         payload = {
+    #             'exp': datetime.datetime.utcnow() + datetime.timedelta(days=0, seconds=5),
+    #             'iat': datetime.datetime.utcnow(),
+    #             'sub': self.email
+    #         }
+    #         return jwt.encode(
+    #             payload,
+    #             app.config.get('SECRET_KEY'),
+    #             algorithm='HS256'
+    #         )
+    #     except Exception as e:
+    #         return e
 
 
     def __hash_password(self, password):
