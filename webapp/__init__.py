@@ -35,4 +35,5 @@ def create_app(object_name):
 
     return app
 
-from .users import models
+
+from .users import models  # pylint: disable=wrong-import-position

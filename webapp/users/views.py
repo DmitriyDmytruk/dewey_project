@@ -4,7 +4,7 @@ from marshmallow import ValidationError
 
 from webapp import db
 
-# from .models import UserModel, RoleModel
+from .models import RoleModel, UserModel
 from .schemas import UserSchema
 
 
@@ -67,7 +67,7 @@ class UserAPI(MethodView):
         except ValidationError as err:
             return err.messages, 422
         email, role_title = data["email"], data["role"]["title"]
-        role = RoleModel.query.get(title=role_title)
+        role = RoleModel.query.filter_by(title=role_title).first()
         user = UserModel.query.filter_by(email=email).first()
         if user is None:
             user = UserModel(email=email, is_active=False, role_id=role.id)

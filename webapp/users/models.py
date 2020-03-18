@@ -22,11 +22,11 @@ class UserModel(db.Model):
     is_active = db.Column(db.Boolean, default=True, nullable=False)
     role_id = db.Column(db.Integer, db.ForeignKey("roles.id"), nullable=True)
 
-    def __init__(self, data):
-        self.email = data.get("email")
-        self.first_name = data.get("first_name")
-        self.last_name = data.get("last_name")
-        self.created_at = datetime.datetime.utcnow()
+    # def __init__(self, data):
+    #     self.email = data.get("email")
+    #     self.first_name = data.get("first_name")
+    #     self.last_name = data.get("last_name")
+    #     self.created_at = datetime.datetime.utcnow()
 
     def __repr__(self):
         return "<User {}>".format(self.username)
