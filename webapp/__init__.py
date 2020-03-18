@@ -22,7 +22,7 @@ def create_app(object_name):
     app = Flask(__name__)
     app.config.from_object(object_name)
 
-    from webapp.users import models
+    from webapp.users import models  # pylint: disable=unused-import
 
     db.init_app(app)
     migrate.init_app(app, db)

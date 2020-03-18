@@ -147,7 +147,9 @@ disable=print-statement,
         E0402, # relative-beyond-top-level
         E1120, # no-value-for-parameter
         R0401, # cyclic-import
-        E0602  # disable=undefined-variable
+        E0602, # disable=undefined-variable
+        C0330, # add 4 spaces
+        E0401  # import-error
 
 
 # Enable the message, report, category or checker with the given id(s). You can
