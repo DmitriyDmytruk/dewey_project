@@ -4,7 +4,7 @@ from marshmallow import ValidationError
 
 from webapp import db
 
-from .models import UserModel, RoleModel
+from .models import RoleModel, UserModel
 from .schemas import UserSchema
 
 

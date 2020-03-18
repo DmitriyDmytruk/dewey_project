@@ -148,6 +148,7 @@ disable=print-statement,
         E1120, # no-value-for-parameter
         R0401, # cyclic-import
         E0602  # disable=undefined-variable
+        W0703, # broad-except
 
 
 # Enable the message, report, category or checker with the given id(s). You can
