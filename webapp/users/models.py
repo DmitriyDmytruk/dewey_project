@@ -1,8 +1,8 @@
 import datetime
 
 import jwt
+from flask import current_app
 
-from ...main import app
 from .. import bcrypt, db
 
 
@@ -54,7 +54,9 @@ class UserModel(db.Model):
                 "sub": self.email,
             }
             return jwt.encode(
-                payload, app.config.get("SECRET_KEY"), algorithm="HS256"
+                payload,
+                current_app.config.get("SECRET_KEY"),
+                algorithm="HS256",
             )
         except Exception as err:  # pylint: disable=broad-except
             return err
