@@ -51,9 +51,7 @@ class RoleModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(128), unique=True, nullable=False)
-    permissions = db.relationship(
-        PermissionModel, secondary=role_permissions
-    )
+    permissions = db.relationship(PermissionModel, secondary=role_permissions)
 
 
 class UserModel(db.Model):
@@ -95,7 +93,7 @@ class UserModel(db.Model):
         :return: string
         """
         try:
-            api_user_role = RoleModel.query.filter_by(title='API User').one()
+            api_user_role = RoleModel.query.filter_by(title="API User").one()
             if self.role_id and api_user_role.id == self.role_id:
                 payload = {
                     "iat": datetime.datetime.utcnow(),
