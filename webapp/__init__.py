@@ -3,12 +3,14 @@ from flask import Flask
 from flask_bcrypt import Bcrypt
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
+from elasticsearch import Elasticsearch
 
 
 db = SQLAlchemy()
 migrate = Migrate()
 bcrypt = Bcrypt()
 swagger = Swagger()
+es = Elasticsearch()
 
 
 def create_app(object_name):
