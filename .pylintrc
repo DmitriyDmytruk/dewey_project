@@ -147,7 +147,7 @@ disable=print-statement,
         E0402, # relative-beyond-top-level
         E1120, # no-value-for-parameter
         R0401, # cyclic-import
-        E0602, # disable=undefined-variable
+        E0602, # undefined-variable
         W0703, # broad-except
         C0330, # add 4 spaces
         E0401  # import-error

@@ -8,6 +8,7 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 migrate = Migrate()
 bcrypt = Bcrypt()
+swagger = Swagger()
 
 
 def create_app(object_name):
@@ -24,8 +25,7 @@ def create_app(object_name):
 
     db.init_app(app)
     migrate.init_app(app, db)
-
-    Swagger(app)
+    swagger.init_app(app)
 
     from .users.views import users_blueprint
     from .auth.views import auth_blueprint

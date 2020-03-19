@@ -1,5 +1,5 @@
 import jwt
-from flask import Blueprint
+from flask import Blueprint, current_app
 
 
 auth_blueprint = Blueprint("auth", __name__)
@@ -40,7 +40,7 @@ def decode_auth_token(auth_token):
     :return: integer|string
     """
     try:
-        payload = jwt.decode(auth_token, app.config.get("SECRET_KEY"))
+        payload = jwt.decode(auth_token, current_app.config.get("SECRET_KEY"))
         return payload["sub"]
     except jwt.ExpiredSignatureError:
         return "Signature expired. Please log in again."
