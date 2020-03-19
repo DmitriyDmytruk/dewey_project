@@ -31,11 +31,14 @@ def create_app(object_name):
 
     from .users.views import users_blueprint
     from .auth.views import auth_blueprint
+    from .articles.views import articles_blueprint
 
     app.register_blueprint(users_blueprint)
     app.register_blueprint(auth_blueprint)
+    app.register_blueprint(articles_blueprint)
 
     return app
 
 
 from .users import models  # pylint: disable=wrong-import-position
+from .articles import models # pylint: disable=wrong-import-position
