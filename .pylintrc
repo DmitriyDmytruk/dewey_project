@@ -150,7 +150,8 @@ disable=print-statement,
         E0602, # undefined-variable
         W0703, # broad-except
         C0330, # add 4 spaces
-        E0401  # import-error
+        E0401, # import-error
+        W0404, # reimported
 
 
 # Enable the message, report, category or checker with the given id(s). You can
