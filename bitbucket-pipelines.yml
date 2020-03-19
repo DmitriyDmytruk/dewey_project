@@ -27,7 +27,7 @@ definitions:
           - pip install -r requirements.txt
           - pip install ansible==2.8  # Do this for cache
           - isort
-          - black .
+          - black . --check --diff
           - pylint --load-plugins pylint_flask_sqlalchemy webapp/
           - flask db init
           - flask db migrate
