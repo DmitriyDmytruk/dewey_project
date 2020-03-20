@@ -145,3 +145,4 @@ static
 # IDE
 .idea
 
+/migrations/
