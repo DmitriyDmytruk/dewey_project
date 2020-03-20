@@ -152,6 +152,7 @@ disable=print-statement,
         C0330, # add 4 spaces
         E0401, # import-error
         W0404, # reimported
+        W0621, # redefined-outer-name
 
 
 # Enable the message, report, category or checker with the given id(s). You can

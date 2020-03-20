@@ -3,7 +3,7 @@ import datetime
 import jwt
 from flask import current_app
 
-from .. import bcrypt, db
+from webapp import bcrypt, db
 
 
 class PermissionModel(db.Model):
