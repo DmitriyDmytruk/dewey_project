@@ -22,6 +22,8 @@ def login_required(f):
                 user = UserModel.query.filter_by(email=email).one_or_none()
                 if user:
                     return f(*args, **kwargs)
+                else:
+                    flask.abort(400)
             else:
                 flask.abort(401)
         else:
