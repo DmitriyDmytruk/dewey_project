@@ -154,6 +154,7 @@ disable=print-statement,
         W0404, # reimported
         W0621, # redefined-outer-name
         C0103, # invalid-name
+        C0301  # line-too-long
 
 
 # Enable the message, report, category or checker with the given id(s). You can
