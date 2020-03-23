@@ -11,7 +11,7 @@ class LocationModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     state = db.Column(db.String(128))
     city = db.Column(db.String(128))
-    country = db.Column(db.String(128))
+    county = db.Column(db.String(128))
     zip_code = db.Column(db.String(20))
 
     def __repr__(self):
