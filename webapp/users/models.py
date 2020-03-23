@@ -82,7 +82,7 @@ class UserModel(db.Model):
     def update(self, data):
         """
         :param data:
-        :return: key.item
+        :return:
         """
         for key, item in data.items():
             setattr(self, key, item)

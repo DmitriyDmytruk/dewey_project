@@ -2,7 +2,7 @@ from webapp.users.models import RoleModel, UserModel
 from webapp.users.schemas import RoleSchema, UserSchema
 
 
-def test_role_shema():
+def test_role_shema(session):
     """
     Testing [de]serialization with RoleSchema
     """
@@ -15,7 +15,7 @@ def test_role_shema():
     assert data.get("title") == role.title
 
 
-def test_user_shema():
+def test_user_shema(session):
     """
     Testing [de]serialization with UserSchema
     """
