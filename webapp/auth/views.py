@@ -35,7 +35,7 @@ auth_blueprint = Blueprint("auth", __name__)
 
 def decode_auth_token(auth_token):
     """
-    Decodes the auth token
+    Validates the auth token
     :param auth_token:
     :return: integer|string
     """

@@ -4,7 +4,6 @@ from flask_bcrypt import Bcrypt
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from elasticsearch import Elasticsearch
-from flask_login import LoginManager
 
 
 db = SQLAlchemy()
@@ -12,7 +11,6 @@ migrate = Migrate()
 bcrypt = Bcrypt()
 swagger = Swagger()
 es = Elasticsearch()
-login_manager = LoginManager()
 
 
 def create_app(object_name):
@@ -30,7 +28,6 @@ def create_app(object_name):
     db.init_app(app)
     migrate.init_app(app, db)
     swagger.init_app(app)
-    login_manager.init_app(app)
 
     from .users.views import users_blueprint
     from .auth.views import auth_blueprint
