@@ -44,17 +44,10 @@ def test_new_user(session):
     assert not user.is_active
     assert user.role_id == role.id
 
-    token = user.encode_auth_token()
+    user.encode_auth_token()
 
     check_password = user.check_password(password)
     assert check_password
 
-    check_password = user.check_password('some_password')
+    check_password = user.check_password("some_password")
     assert not check_password
-
-
-# def test_hash_password()
-#
-#     bcrypt.generate_password_hash(password, rounds=10).decode(
-#         "utf-8"
-#     )

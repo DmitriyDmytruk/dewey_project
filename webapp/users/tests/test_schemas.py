@@ -2,7 +2,7 @@ from webapp.users.models import RoleModel, UserModel
 from webapp.users.schemas import RoleSchema, UserSchema
 
 
-def test_role_shema(session):
+def test_role_shema(session):  # pylint: disable=unused-argument
     """
     Testing [de]serialization with RoleSchema
     """
@@ -15,7 +15,7 @@ def test_role_shema(session):
     assert data.get("title") == role.title
 
 
-def test_user_shema(session):
+def test_user_shema(session):  # pylint: disable=unused-argument
     """
     Testing [de]serialization with UserSchema
     """
