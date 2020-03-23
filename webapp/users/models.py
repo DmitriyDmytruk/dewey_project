@@ -3,7 +3,7 @@ import datetime
 import jwt
 from flask import current_app
 
-from .. import bcrypt, db
+from webapp import bcrypt, db
 
 
 class PermissionModel(db.Model):
@@ -82,7 +82,7 @@ class UserModel(db.Model):
     def update(self, data):
         """
         :param data:
-        :return: key.item
+        :return:
         """
         for key, item in data.items():
             setattr(self, key, item)

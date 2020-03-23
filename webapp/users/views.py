@@ -68,8 +68,9 @@ class UserAPI(MethodView):
         except ValidationError as err:
             return err.messages, 422
         email, role_title = data["email"], data["role"]["title"]
-        role = RoleModel.query.filter_by(title=role_title).first()
-        user = UserModel.query.filter_by(email=email).first()
+        role = RoleModel.query.filter_by(title=role_title).one()
+        # TODO: If role not exists?
+        user = UserModel.query.filter_by(email=email).one_or_none()
         if user is None:
             user = UserModel(email=email, is_active=False, role_id=role.id)
             db.session.add(user)

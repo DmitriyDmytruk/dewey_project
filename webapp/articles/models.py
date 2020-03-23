@@ -1,4 +1,4 @@
-from .. import db
+from webapp import db
 
 
 class LocationModel(db.Model):
@@ -59,7 +59,7 @@ class ArticleModel(db.Model):
     abstract = db.Column(db.Text)
     effective_date = db.Column(db.Date)
     updated_date = db.Column(db.Date)
-    tags = db.relationship("TagModel", secondary=article_tags)
+    tags = db.relationship(TagModel, secondary=article_tags)
 
     def __repr__(self):
         return "<Article {}>".format(self.title)
