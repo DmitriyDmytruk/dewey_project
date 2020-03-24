@@ -1,3 +1,5 @@
+from typing import Dict
+
 import jwt
 from flask import Blueprint, current_app
 
@@ -33,16 +35,22 @@ auth_blueprint = Blueprint("auth", __name__)
 #             return make_response(jsonify(responseObject)), 500
 
 
-def decode_auth_token(auth_token):
+def decode_auth_token(auth_token: str) -> Dict:
     """
     Validates the auth token
     :param auth_token:
-    :return: integer|string
+    :return: dict
     """
     try:
         payload = jwt.decode(auth_token, current_app.config.get("SECRET_KEY"))
-        return payload["sub"]
+        return {"status": "success", "email": payload["sub"]}
     except jwt.ExpiredSignatureError:
-        return "Signature expired. Please log in again."
+        return {
+            "status": "fail",
+            "message": "Signature expired. Please log in again.",
+        }
     except jwt.InvalidTokenError:
-        return "Invalid token. Please log in again."
+        return {
+            "status": "fail",
+            "message": "Invalid token. Please log in again.",
+        }
