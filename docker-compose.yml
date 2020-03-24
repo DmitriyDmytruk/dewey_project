@@ -1,0 +1,26 @@
+version: "3.7"
+
+services:
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: dewey_user
+      POSTGRES_PASSWORD: dditeam
+      POSTGRES_DB: dewey_db
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+  elasticsearch:
+    image: elasticsearch:7.6.1
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      - bootstrap.memory_lock=true
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+      - cluster.routing.allocation.disk.threshold_enabled=false
+    volumes:
+      - ./Elasticsearch/data:/etc/elasticsearch/data
+      - ./Elasticsearch/config/elasticsearch.yml:/etc/elasticsearch/config/elasticsearch.yml
