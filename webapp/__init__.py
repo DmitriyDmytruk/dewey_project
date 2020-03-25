@@ -26,7 +26,7 @@ def create_app(object_name):
     """
     app = Flask(__name__)
     app.config.from_object(object_name)
-    app.secret_key = app.config['SECRET_KEY']
+    app.secret_key = app.config["SECRET_KEY"]
     app.config["SESSION_TYPE"] = "filesystem"
 
     db.init_app(app)
