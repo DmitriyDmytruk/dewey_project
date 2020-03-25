@@ -10,18 +10,12 @@ from webapp.users.models import PermissionModel, RoleModel, UserModel
 
 TESTDB = "test.db"
 TESTDB_PATH = os.path.join(basedir, TESTDB)
-TEST_DATABASE_URI = "sqlite:///" + TESTDB_PATH
 
 
 @pytest.fixture(scope="session")
 def app(request):
     """Session-wide test `Flask` application."""
-    settings_override = {
-        "TESTING": True,
-        "SQLALCHEMY_DATABASE_URI": TEST_DATABASE_URI,
-    }
-    app = create_app(settings_override)
-
+    app = create_app("config.TestConfig")
     # Establish an application context before running the tests.
     ctx = app.app_context()
     ctx.push()
