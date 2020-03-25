@@ -2,25 +2,25 @@ version: "3.7"
 
 services:
   db:
-    image: postgres
+    image: ${PG_IMAGE}
     ports:
-      - "5432:5432"
+      - "${PG_PORT}"
     environment:
-      POSTGRES_USER: dewey_user
-      POSTGRES_PASSWORD: dditeam
-      POSTGRES_DB: dewey_db
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: ${PG_DB}
     volumes:
-      - ./postgres-data:/var/lib/postgresql/data
+      - ${PG_VOLUME}:/var/lib/postgresql/data
   elasticsearch:
-    image: elasticsearch:7.6.1
+    image: elasticsearch:${ES_TAG}
     ports:
-      - "9200:9200"
-      - "9300:9300"
+      - "${ES_REST_PORT}"
+      - "${ES_NODE_PORT}"
     environment:
-      - bootstrap.memory_lock=true
-      - discovery.type=single-node
-      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
-      - cluster.routing.allocation.disk.threshold_enabled=false
+      - bootstrap.memory_lock=${ES_MEMORY_LOCK}
+      - discovery.type=${ES_DISCOVERY_TYPE}
+      - "ES_JAVA_OPTS=${ES_JAVA_OPTS}"
+      - cluster.routing.allocation.disk.threshold_enabled=${ES_TRESHOLD_ENABLED}
     volumes:
-      - ./Elasticsearch/data:/etc/elasticsearch/data
-      - ./Elasticsearch/config/elasticsearch.yml:/etc/elasticsearch/config/elasticsearch.yml
+      - ${ES_VOLUME_DATA}:/etc/elasticsearch/data
+      - ${ES_VOLUME_CONFIG}:/etc/elasticsearch/config/elasticsearch.yml

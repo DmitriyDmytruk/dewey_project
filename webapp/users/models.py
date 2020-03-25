@@ -77,7 +77,7 @@ class UserModel(db.Model):
     #     self.created_at = datetime.datetime.utcnow()
 
     def __repr__(self):
-        return "<User {}>".format(self.username)
+        return "<User {}>".format(self.username or self.email)
 
     def update(self, data):
         """
@@ -95,8 +95,9 @@ class UserModel(db.Model):
         try:
             api_user_role = RoleModel.query.filter_by(title="API User").one()
             payload = {
-                "exp": datetime.datetime.utcnow()
-                + datetime.timedelta(minutes=30),
+                "exp": (
+                    datetime.datetime.utcnow() + datetime.timedelta(minutes=30)
+                ),
                 "iat": datetime.datetime.utcnow(),
                 "sub": self.email,
             }

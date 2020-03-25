@@ -1,7 +1,7 @@
 from flasgger import SwaggerView
 from flask import Blueprint
 
-from webapp.utils.decorators import login_required
+from webapp.utils.decorators import login_required, permissions
 
 from .models import ArticleModel
 from .schemas import ArticleSchema
@@ -20,6 +20,7 @@ class ArticleAPI(SwaggerView):
     }
 
     @login_required
+    @permissions(["can_search_articles"])
     def get(self, article_id):
         """
         Retrieve Articles list

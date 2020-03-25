@@ -17,6 +17,7 @@ class ProdConfig(Config):
 
 class DevConfig(Config):
     DEBUG = True
+    SECRET_KEY = 'SECRET-KEY'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_DATABASE_URI = (
         "postgresql://dewey_user:dditeam@localhost/dewey_db"
