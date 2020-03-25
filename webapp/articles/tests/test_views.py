@@ -2,6 +2,12 @@ from webapp.users.models import UserModel
 
 
 def test_retrieve_articles(client, db):
+    """
+    Test articles retrieve api view (with decorators)
+    :param client:
+    :param db:
+    :return:
+    """
     response = client.get("/articles")
     assert response.json.get("message") == "Provide a valid auth token."
     assert response.json.get("status") == 401
