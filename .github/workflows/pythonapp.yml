@@ -35,4 +35,5 @@ jobs:
       run: |
         export FLASK_APP=main.py
         export FLASK_ENV=development
-        pytest
+        pytest webapp/articles
+        pytest webapp/users
