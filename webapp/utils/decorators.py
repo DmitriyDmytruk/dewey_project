@@ -4,7 +4,7 @@ from typing import Dict, List, Optional, Union
 from flask import request, session
 
 from webapp.auth.views import decode_auth_token
-from webapp.users.models import RoleModel, UserModel
+from webapp.users.models import UserModel
 
 
 def get_fail_response(status: int, response: dict) -> Dict:
@@ -50,7 +50,7 @@ def check_user_permissions(permissions: List[str]) -> bool:
     res = False
     user = session.get("user")
     if user:
-        user_role = RoleModel.query.filter_by(id=user.role_id).one_or_none()
+        user_role = user.role
         if user_role:
             check_perm = any(
                 p.title in permissions for p in user_role.permissions
