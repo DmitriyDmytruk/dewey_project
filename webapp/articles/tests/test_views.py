@@ -1,11 +1,11 @@
 from webapp.users.models import UserModel
 
 
-def test_retrieve_articles(client, db):
+def test_retrieve_articles(client, session):
     """
     Test articles retrieve api view (with decorators)
     :param client:
-    :param db:
+    :param session:
     :return:
     """
     response = client.get("/articles")
@@ -20,9 +20,7 @@ def test_retrieve_articles(client, db):
     )
     assert response.json.get("status") == 401
 
-    user2 = (
-        db.session.query(UserModel).filter_by(email="test2@gmail.com").one()
-    )
+    user2 = session.query(UserModel).filter_by(email="test2@gmail.com").one()
     jwt_token = user2.encode_auth_token().decode("utf-8")
     response = client.get(
         "/articles", headers={"Authorization": f"Token {jwt_token}"}
@@ -30,7 +28,7 @@ def test_retrieve_articles(client, db):
     assert response.json.get("message") == "Access denied."
     assert response.json.get("status") == 403
 
-    user1 = db.session.query(UserModel).filter_by(email="test@gmail.com").one()
+    user1 = session.query(UserModel).filter_by(email="test@gmail.com").one()
     jwt_token = user1.encode_auth_token().decode("utf-8")
     response = client.get(
         "/articles", headers={"Authorization": f"Token {jwt_token}"}

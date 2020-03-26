@@ -5,6 +5,7 @@ import pytest
 from config import basedir
 from webapp import create_app
 from webapp import db as _db
+from webapp.articles.models import ArticleModel, TagModel
 from webapp.users.models import PermissionModel, RoleModel, UserModel
 
 
@@ -45,7 +46,15 @@ def db(app, request):
 
     permission = PermissionModel(title="can_search_articles")
     role = RoleModel(title="API User", permissions=[permission])
-    _db.session.add_all([role, permission])
+    tag = TagModel(name="Test tag")
+    article = ArticleModel(
+        title="Test article",
+        legal_language="en",
+        abstract="",
+        state="Alaska",
+        tags=[tag],
+    )
+    _db.session.add_all([role, permission, tag, article])
     _db.session.commit()
 
     user1 = UserModel(email="test@gmail.com", role_id=role.id)
