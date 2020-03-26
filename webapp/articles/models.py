@@ -21,6 +21,7 @@ class TagModel(db.Model):
     """
 
     __tablename__ = "tags"
+    __indexable__ = "name"
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False, unique=True)
@@ -35,6 +36,7 @@ class ArticleModel(db.Model):
     """
 
     __tablename__ = "articles"
+    __searchable__ = ["abstract", "state", "county", "tags"]
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(500), nullable=False)
