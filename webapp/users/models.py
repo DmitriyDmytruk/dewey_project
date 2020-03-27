@@ -69,6 +69,7 @@ class UserModel(db.Model):
     created_at = db.Column(db.DateTime)
     is_active = db.Column(db.Boolean, default=True, nullable=False)
     role_id = db.Column(db.Integer, db.ForeignKey("roles.id"), nullable=True)
+    role = db.relationship(RoleModel, backref="users")
 
     # def __init__(self, data):
     #     self.email = data.get("email")
@@ -101,7 +102,7 @@ class UserModel(db.Model):
                 "iat": datetime.datetime.utcnow(),
                 "sub": self.email,
             }
-            if self.role_id and api_user_role.id == self.role_id:
+            if self.role_id and api_user_role == self.role:
                 del payload["exp"]
 
             return jwt.encode(
