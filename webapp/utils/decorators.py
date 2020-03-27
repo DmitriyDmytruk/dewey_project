@@ -50,9 +50,7 @@ def check_user_permissions(permissions: List[str]) -> bool:
     res = False
     user = session.get("user")
     if user and getattr(user, "role"):
-        check_perm = any(
-            p.title in permissions for p in user.role.permissions
-        )
+        check_perm = any(p.title in permissions for p in user.role.permissions)
         if check_perm:
             res = True
     return res
