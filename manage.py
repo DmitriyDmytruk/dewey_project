@@ -19,7 +19,6 @@ class RolePermissionCreate(Command):
     """
 
     def run(self):
-        print(777)
         try:
             f = open("webapp/utils/fixtures/role_permission.json")
             data = json.loads(f.read())
@@ -28,17 +27,15 @@ class RolePermissionCreate(Command):
                 permission = PermissionModel(title=permission_data)
                 db.session.add(permission)
 
-            role_data = data["role"]
             can_search_article_permission = (
-                db.session.query(PermissionModel)
-                .filter_by(title="can_search_articles")
-                .first()
+                db.session.query(PermissionModel).filter_by(title="can_search_articles").first()
             )
-            role = RoleModel(
-                **role_data, **{"permissions": [can_search_article_permission]}
-            )
+            for role_data in data["roles"]:
+                role = RoleModel(title=role_data)
+                if role_data == 'API User':
+                    role.permissions = [can_search_article_permission]
+                db.session.add(role)
 
-            db.session.add(role)
             db.session.commit()
             sys.__stdout__.write("\033[32mRole and permission created\n")
         except Exception as error:
