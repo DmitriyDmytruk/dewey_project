@@ -29,8 +29,14 @@ class RolePermissionCreate(Command):
                 db.session.add(permission)
 
             role_data = data["role"]
-            can_search_article_permission = db.session.query(ArticleModel).get(title="can_search_articles")
-            role = RoleModel(**role_data, **{"permissions": [can_search_article_permission]})
+            can_search_article_permission = (
+                db.session.query(ArticleModel)
+                .filter_by(title="can_search_articles")
+                .first()
+            )
+            role = RoleModel(
+                **role_data, **{"permissions": [can_search_article_permission]}
+            )
 
             db.session.add(role)
             db.session.commit()
