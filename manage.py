@@ -5,7 +5,6 @@ import sys
 from flask_script import Command, Manager
 
 from webapp import create_app, db
-from webapp.articles.models import ArticleModel
 from webapp.users.models import PermissionModel, RoleModel, UserModel
 
 
@@ -20,6 +19,7 @@ class RolePermissionCreate(Command):
     """
 
     def run(self):
+        print(777)
         try:
             f = open("webapp/utils/fixtures/role_permission.json")
             data = json.loads(f.read())
@@ -30,7 +30,7 @@ class RolePermissionCreate(Command):
 
             role_data = data["role"]
             can_search_article_permission = (
-                db.session.query(ArticleModel)
+                db.session.query(PermissionModel)
                 .filter_by(title="can_search_articles")
                 .first()
             )
