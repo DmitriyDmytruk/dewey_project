@@ -27,15 +27,21 @@ class RolePermissionCreate(Command):
                 permission = PermissionModel(title=permission_data)
                 db.session.add(permission)
 
-            can_search_article_permission = (
-                db.session.query(PermissionModel)
-                .filter_by(title="can_search_articles")
-                .first()
-            )
             for role_data in data["roles"]:
-                role = RoleModel(title=role_data)
-                if role_data == "API User":
-                    role.permissions = [can_search_article_permission]
+                role = RoleModel(**role_data)
+                db.session.add(role)
+
+            for role, permissions in data["role_permissions"].items():
+                role = db.session.query(RoleModel).filter_by(title=role).one()
+                permissions_list = []
+                for permission in permissions:
+                    permission_item = (
+                        db.session.query(PermissionModel)
+                        .filter_by(title=permission)
+                        .one()
+                    )
+                    permissions_list.append(permission_item)
+                role.permissions = permissions_list
                 db.session.add(role)
 
             db.session.commit()
