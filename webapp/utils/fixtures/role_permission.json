@@ -19,7 +19,8 @@
   ],
   "roles": [
     {
-      "title": "API User"
+      "title": "API User",
+      "role_permissions": ["can_search_articles"]
     },
     {
       "title": "User"
@@ -30,10 +31,5 @@
     {
       "title": "Creator"
     }
-  ],
-  "role_permissions": {
-    "API User": [
-      "can_search_articles"
-    ]
-  }
+  ]
 }

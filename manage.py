@@ -26,24 +26,22 @@ class RolePermissionCreate(Command):
             for permission_data in data["permissions"]:
                 permission = PermissionModel(title=permission_data)
                 db.session.add(permission)
+                db.session.commit()
 
             for role_data in data["roles"]:
-                role = RoleModel(**role_data)
+                role = RoleModel(title=role_data["title"])
+                if role_data.get("role_permissions"):
+                    permissions = []
+                    for permission in role_data["role_permissions"]:
+                        permission_instance = (
+                            db.session.query(PermissionModel)
+                            .filter_by(title=permission)
+                            .one()
+                        )
+                        permissions.append(permission_instance)
+                    role.permissions = permissions
                 db.session.add(role)
             db.session.commit()
-
-            for role, permissions in data["role_permissions"].items():
-                role = db.session.query(RoleModel).filter_by(title=role).one()
-                permissions_list = []
-                for permission in permissions:
-                    permission_item = (
-                        db.session.query(PermissionModel)
-                        .filter_by(title=permission)
-                        .one()
-                    )
-                    permissions_list.append(permission_item)
-                role.permissions = permissions_list
-                db.session.add(role)
 
             db.session.commit()
             sys.__stdout__.write("\033[32mRole and permission created\n")
