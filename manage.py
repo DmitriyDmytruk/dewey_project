@@ -64,7 +64,7 @@ class UserCreate(Command):
             user_data = data["user"]
 
             role_id = None
-            role = RoleModel.query.filter_by(title="API User").first()
+            role = RoleModel.query.filter_by(title=data["role_title"]).first()
             if role:
                 role_id = role.id
 

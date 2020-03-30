@@ -6,5 +6,6 @@
     "password": "",
     "created_at": "2020-03-18T12:06:08.590Z",
     "is_active": false
-  }
+  },
+  "role_title": "API User"
 }
