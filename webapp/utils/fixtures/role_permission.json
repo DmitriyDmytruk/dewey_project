@@ -1,0 +1,11 @@
+{
+  "permissions": [
+    "can_search_articles", "can_add_articles", "can_change_articles", "can_delete_articles", "can_view_articles",
+    "can_add_tags", "can_change_tags", "can_delete_tags", "can_view_tags",
+    "can_add_users", "can_change_users", "can_delete_users", "can_view_users",
+    "can_add_roles", "can_change_roles", "can_delete_roles", "can_view_roles"
+  ],
+  "role": {
+    "title": "API User"
+  }
+}

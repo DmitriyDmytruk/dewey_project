@@ -4,7 +4,8 @@ import sys
 
 from flask_script import Command, Manager
 
-from webapp import create_app, db, migrate
+from webapp import create_app, db
+from webapp.articles.models import ArticleModel
 from webapp.users.models import PermissionModel, RoleModel, UserModel
 
 
@@ -20,16 +21,18 @@ class RolePermissionCreate(Command):
 
     def run(self):
         try:
-            f = open("webapp/users/fixtures/role_permission.json")
+            f = open("webapp/utils/fixtures/role_permission.json")
             data = json.loads(f.read())
 
-            permission_data = data["permission"]
-            permission = PermissionModel(**permission_data)
+            for permission_data in data["permissions"]:
+                permission = PermissionModel(title=permission_data)
+                db.session.add(permission)
 
             role_data = data["role"]
-            role = RoleModel(**role_data, **{"permissions": [permission]})
+            can_search_article_permission = db.session.query(ArticleModel).get(title="can_search_articles")
+            role = RoleModel(**role_data, **{"permissions": [can_search_article_permission]})
 
-            db.session.add_all([permission, role])
+            db.session.add(role)
             db.session.commit()
             sys.__stdout__.write("\033[32mRole and permission created\n")
         except Exception as error:
@@ -44,7 +47,7 @@ class UserCreate(Command):
 
     def run(self):
         try:
-            f = open("webapp/users/fixtures/initial_user.json")
+            f = open("webapp/utils/fixtures/initial_user.json")
             data = json.loads(f.read())
 
             user_data = data["user"]
