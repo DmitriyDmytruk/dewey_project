@@ -28,11 +28,13 @@ class RolePermissionCreate(Command):
                 db.session.add(permission)
 
             can_search_article_permission = (
-                db.session.query(PermissionModel).filter_by(title="can_search_articles").first()
+                db.session.query(PermissionModel)
+                .filter_by(title="can_search_articles")
+                .first()
             )
             for role_data in data["roles"]:
                 role = RoleModel(title=role_data)
-                if role_data == 'API User':
+                if role_data == "API User":
                     role.permissions = [can_search_article_permission]
                 db.session.add(role)
 
