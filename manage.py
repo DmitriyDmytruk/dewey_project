@@ -30,6 +30,7 @@ class RolePermissionCreate(Command):
             for role_data in data["roles"]:
                 role = RoleModel(**role_data)
                 db.session.add(role)
+            db.session.commit()
 
             for role, permissions in data["role_permissions"].items():
                 role = db.session.query(RoleModel).filter_by(title=role).one()
