@@ -31,15 +31,12 @@ class RolePermissionCreate(Command):
             for role_data in data["roles"]:
                 role = RoleModel(title=role_data["title"])
                 if role_data.get("role_permissions"):
-                    permissions = []
-                    for permission in role_data["role_permissions"]:
-                        permission_instance = (
-                            db.session.query(PermissionModel)
-                            .filter_by(title=permission)
-                            .one()
+                    permissions = db.session.query(PermissionModel).filter(
+                        PermissionModel.title.in_(
+                            role_data.get("role_permissions")
                         )
-                        permissions.append(permission_instance)
-                    role.permissions = permissions
+                    )
+                    role.permissions = permissions.all()
                 db.session.add(role)
             db.session.commit()
             sys.__stdout__.write("\033[32mRole and permission created\n")
