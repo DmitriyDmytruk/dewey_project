@@ -42,8 +42,6 @@ class RolePermissionCreate(Command):
                     role.permissions = permissions
                 db.session.add(role)
             db.session.commit()
-
-            db.session.commit()
             sys.__stdout__.write("\033[32mRole and permission created\n")
         except Exception as error:
             sys.__stdout__.write("\033[31mNot created: " + str(error) + "\n")
