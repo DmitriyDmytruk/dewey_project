@@ -24,3 +24,9 @@ services:
     volumes:
       - ${ES_VOLUME_DATA}:/etc/elasticsearch/data
       - ${ES_VOLUME_CONFIG}:/etc/elasticsearch/config/elasticsearch.yml
+  app:
+    build: .
+    volumes:
+      - .:/home/dewey_project
+    depends_on:
+      - db
