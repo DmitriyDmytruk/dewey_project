@@ -1,8 +1,0 @@
-{
-  "permission": {
-    "title": "can_search_articles"
-  },
-  "role": {
-    "title": "API User"
-  }
-}
