@@ -3,8 +3,8 @@ version: "3.7"
 services:
   db:
     image: ${PG_IMAGE}
-    ports:
-      - "${PG_PORT}"
+    expose:
+      - ${PG_EXPOSE}
     environment:
       POSTGRES_USER: ${PG_USER}
       POSTGRES_PASSWORD: ${PG_PASSWORD}
@@ -26,7 +26,8 @@ services:
       - ${ES_VOLUME_CONFIG}:/etc/elasticsearch/config/elasticsearch.yml
   app:
     build: .
+    restart: always
     volumes:
-      - .:/home/dewey_project
+      - .:/home/dewey
     depends_on:
       - db
