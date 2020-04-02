@@ -1,4 +1,5 @@
 from webapp import db
+from .mixins import SearchableMixin
 
 
 article_tags = db.Table(
@@ -30,13 +31,14 @@ class TagModel(db.Model):
         return "<Tag {}>".format(self.name)
 
 
-class ArticleModel(db.Model):
+class ArticleModel(db.Model, SearchableMixin):
     """
     Article model
     """
 
     __tablename__ = "articles"
-    __searchable__ = ["abstract", "state", "county", "tags"]
+    __searchable__ = ["id", "title", "legal_language", "abstract", "effective_date", "updated_date", "state", "city",
+                      "county", "zip_code", "tags"]
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(500), nullable=False)
