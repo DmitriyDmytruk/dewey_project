@@ -18,8 +18,10 @@ class ProdConfig(Config):
 class DevConfig(Config):
     DEBUG = True
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    PG_HOST = "db"
+    PG_PORT = 5432
     SQLALCHEMY_DATABASE_URI = (
-        "postgresql://dewey_user:dditeam@localhost/dewey_db"
+        f"postgresql://dewey_user:dditeam@{PG_HOST}:{PG_PORT}/dewey_db"
     )
 
 
