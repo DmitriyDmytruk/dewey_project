@@ -3,8 +3,7 @@ import os
 import pytest
 
 from config import basedir
-from webapp import create_app
-from webapp import db as _db
+from webapp import create_app, db
 from webapp.articles.models import ArticleModel, TagModel
 from webapp.users.models import PermissionModel, RoleModel, UserModel
 
@@ -13,37 +12,7 @@ TESTDB = "test.db"
 TESTDB_PATH = os.path.join(basedir, TESTDB)
 
 
-@pytest.fixture(scope="session")
-def app(request):
-    """Session-wide test `Flask` application."""
-    app = create_app("config.TestConfig")
-    # Establish an application context before running the tests.
-    ctx = app.app_context()
-    ctx.push()
-
-    def teardown():
-        ctx.pop()
-
-    request.addfinalizer(teardown)
-    return app
-
-
-@pytest.fixture(scope="session")
-def db(app, request):
-    """Session-wide test database."""
-    if os.path.exists(TESTDB_PATH):
-        os.unlink(TESTDB_PATH)
-
-    def teardown():
-        _db.drop_all()
-        try:
-            os.unlink(TESTDB_PATH)
-        except FileNotFoundError:
-            pass
-
-    _db.app = app
-    _db.create_all()
-
+def prepare_data(session):
     permission = PermissionModel(title="can_search_articles")
     role = RoleModel(title="API User", permissions=[permission])
     tag = TagModel(name="Test tag")
@@ -54,44 +23,54 @@ def db(app, request):
         state="Alaska",
         tags=[tag],
     )
-    _db.session.add_all([role, permission, tag, article])
-    _db.session.commit()
+    session.add_all([role, permission, tag, article])
+    session.commit()
 
     user1 = UserModel(email="test@gmail.com", role_id=role.id)
     user2 = UserModel(email="test2@gmail.com")
-    _db.session.add_all([user1, user2])
+    session.add_all([user1, user2])
 
     # Commit the changes for the users
-    _db.session.commit()
-
-    request.addfinalizer(teardown)
-    return _db
+    session.commit()
 
 
-@pytest.fixture(scope="function")
-def session(db, request):
-    """Creates a new database session for a test."""
-    connection = db.engine.connect()
-    transaction = connection.begin()
-
-    options = dict(bind=connection, binds={})
-    session = db.create_scoped_session(options=options)
-
-    db.session = session
+@pytest.fixture(scope="session")
+def app(request):
+    """Session-wide test `Flask` application."""
+    app = create_app("config.TestConfig")
+    with app.app_context() as ctx:
+        ctx.push()
 
     def teardown():
-        transaction.rollback()
-        connection.close()
-        session.remove()
+        ctx.pop()
 
     request.addfinalizer(teardown)
-    return session
+    return app
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture
+def session(app):
+    """Creates a new database session for a test."""
+    db.app = app
+    db.create_all()
+
+    with db.engine.connect() as connection:
+        with connection.begin() as transaction:
+            options = dict(bind=connection, binds={})
+            session = db.create_scoped_session(options=options)
+            db.session = session
+            prepare_data(session)
+
+        yield session
+
+        transaction.rollback()
+        db.drop_all()
+
+
+@pytest.fixture
 def client(app):
-    client = app.test_client()
-    ctx = app.app_context()
-    ctx.push()
-    yield client
+    with app.test_client() as client:
+        with app.app_context() as ctx:
+            ctx.push()
+        yield client
     ctx.pop()
