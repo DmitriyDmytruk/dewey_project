@@ -4,7 +4,7 @@ import sys
 
 from flask_script import Command, Manager
 
-from webapp import create_app, db, migrate
+from webapp import create_app, db
 from webapp.users.models import PermissionModel, RoleModel, UserModel
 
 
@@ -20,21 +20,28 @@ class RolePermissionCreate(Command):
 
     def run(self):
         try:
-            f = open("webapp/users/fixtures/role_permission.json")
+            f = open("webapp/utils/fixtures/role_permission.json")
             data = json.loads(f.read())
 
-            permission_data = data["permission"]
-            permission = PermissionModel(**permission_data)
+            for permission_data in data["permissions"]:
+                permission = PermissionModel(title=permission_data)
+                db.session.add(permission)
+                db.session.commit()
 
-            role_data = data["role"]
-            role = RoleModel(**role_data, **{"permissions": [permission]})
-
-            db.session.add_all([permission, role])
+            for role_data in data["roles"]:
+                role = RoleModel(title=role_data["title"])
+                if role_data.get("role_permissions"):
+                    permissions = db.session.query(PermissionModel).filter(
+                        PermissionModel.title.in_(
+                            role_data.get("role_permissions")
+                        )
+                    )
+                    role.permissions = permissions.all()
+                db.session.add(role)
             db.session.commit()
             sys.__stdout__.write("\033[32mRole and permission created\n")
         except Exception as error:
             sys.__stdout__.write("\033[31mNot created: " + str(error) + "\n")
-            pass
 
 
 class UserCreate(Command):
@@ -44,13 +51,13 @@ class UserCreate(Command):
 
     def run(self):
         try:
-            f = open("webapp/users/fixtures/initial_user.json")
+            f = open("webapp/utils/fixtures/initial_user.json")
             data = json.loads(f.read())
 
             user_data = data["user"]
 
             role_id = None
-            role = RoleModel.query.filter_by(title="API User").first()
+            role = RoleModel.query.filter_by(title=data["role_title"]).first()
             if role:
                 role_id = role.id
 

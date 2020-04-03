@@ -18,6 +18,18 @@ class ProdConfig(Config):
 class DevConfig(Config):
     DEBUG = True
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    PG_HOST = "db"
+    PG_PORT = 5432
     SQLALCHEMY_DATABASE_URI = (
-        "postgresql://dewey_user:dditeam@localhost/dewey_db"
+        f"postgresql://dewey_user:dditeam@{PG_HOST}:{PG_PORT}/dewey_db"
     )
+
+
+class TestConfig(Config):
+    TESTDB = "test.db"
+    TESTDB_PATH = os.path.join(basedir, TESTDB)
+    TEST_DATABASE_URI = "sqlite:///" + TESTDB_PATH
+    SECRET_KEY = "SECRET-KEY"
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    TESTING = True
+    SQLALCHEMY_DATABASE_URI = TEST_DATABASE_URI

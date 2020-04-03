@@ -2,7 +2,7 @@ from webapp.users.models import RoleModel, UserModel
 from webapp.users.schemas import RoleSchema, UserSchema
 
 
-def test_role_shema(session):  # pylint: disable=unused-argument
+def test_role_shema(session):
     """
     Testing [de]serialization with RoleSchema
     """
@@ -10,23 +10,24 @@ def test_role_shema(session):  # pylint: disable=unused-argument
     data = RoleSchema().load(role_data)
     assert data.get("title") == role_data.get("title")
 
-    role = RoleModel(title="API User", permissions=[])
+    role = session.query(RoleModel).filter_by(title="API User").one()
     data = RoleSchema().dump(role)
     assert data.get("title") == role.title
 
 
-def test_user_shema(session):  # pylint: disable=unused-argument
+def test_user_shema(session):
     """
     Testing [de]serialization with UserSchema
     """
+    role = session.query(RoleModel).filter_by(title="API User").one()
     user_data = {
         "email": "test@mail.com",
-        "role": RoleSchema().load({"title": "API User", "id": 1}),
+        "role": RoleSchema(only=["id", "title"]).dump(role),
     }
     data = UserSchema().load(user_data)
     assert data.get("email") == user_data.get("email")
     assert data["role"].get("title") == "API User"
 
-    user = UserModel(email="test@mail.com")
+    user = session.query(UserModel).filter_by(email="test@gmail.com").one()
     data = UserSchema().dump(user)
     assert data.get("email") == user.email

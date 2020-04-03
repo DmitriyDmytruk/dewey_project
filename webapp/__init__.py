@@ -4,6 +4,7 @@ from flask_bcrypt import Bcrypt
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from elasticsearch import Elasticsearch
+from flask_session import Session
 
 
 db = SQLAlchemy()
@@ -11,6 +12,7 @@ migrate = Migrate()
 bcrypt = Bcrypt()
 swagger = Swagger()
 es = Elasticsearch()
+session = Session()
 
 
 def create_app(object_name):
@@ -24,10 +26,13 @@ def create_app(object_name):
     """
     app = Flask(__name__)
     app.config.from_object(object_name)
+    app.secret_key = app.config["SECRET_KEY"]
+    app.config["SESSION_TYPE"] = "filesystem"
 
     db.init_app(app)
     migrate.init_app(app, db)
     swagger.init_app(app)
+    session.init_app(app)
 
     from .users.views import users_blueprint
     from .auth.views import auth_blueprint

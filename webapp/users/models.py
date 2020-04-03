@@ -69,6 +69,7 @@ class UserModel(db.Model):
     created_at = db.Column(db.DateTime)
     is_active = db.Column(db.Boolean, default=True, nullable=False)
     role_id = db.Column(db.Integer, db.ForeignKey("roles.id"), nullable=True)
+    role = db.relationship(RoleModel, backref="users")
 
     # def __init__(self, data):
     #     self.email = data.get("email")
@@ -77,7 +78,7 @@ class UserModel(db.Model):
     #     self.created_at = datetime.datetime.utcnow()
 
     def __repr__(self):
-        return "<User {}>".format(self.username)
+        return "<User {}>".format(self.email)
 
     def update(self, data):
         """
@@ -94,16 +95,21 @@ class UserModel(db.Model):
         """
         try:
             api_user_role = RoleModel.query.filter_by(title="API User").one()
-            if self.role_id and api_user_role.id == self.role_id:
-                payload = {
-                    "iat": datetime.datetime.utcnow(),
-                    "sub": self.email,
-                }
-                return jwt.encode(
-                    payload,
-                    current_app.config.get("SECRET_KEY"),
-                    algorithm="HS256",
-                )
+            payload = {
+                "exp": (
+                    datetime.datetime.utcnow() + datetime.timedelta(minutes=30)
+                ),
+                "iat": datetime.datetime.utcnow(),
+                "sub": self.email,
+            }
+            if self.role_id and api_user_role == self.role:
+                del payload["exp"]
+
+            return jwt.encode(
+                payload,
+                current_app.config.get("SECRET_KEY"),
+                algorithm="HS256",
+            )
         except Exception as err:  # pylint: disable=broad-except
             return err
 
