@@ -1,3 +1,5 @@
+import os
+
 import pytest
 from elasticsearch.exceptions import NotFoundError
 
@@ -8,6 +10,7 @@ from webapp.articles.models import ArticleModel
 ARTICLE_INDEX = ArticleModel.__tablename__
 
 
+@pytest.mark.skipif(not os.getenv("test"))
 def test_new_tag(db):
     """
     Test for Article index create
@@ -26,6 +29,7 @@ def test_new_tag(db):
     assert resp.get("_source").get("title") == article_title
 
 
+@pytest.mark.skipif(not os.getenv("test"))
 def test_update_article_index():
     """
     Test for update Article index
@@ -44,6 +48,7 @@ def test_update_article_index():
     assert resp.get("_source").get("title") == new_title
 
 
+@pytest.mark.skipif(not os.getenv("test"))
 def test_delete_article_index():
     """
     Test for delete Article index
@@ -55,6 +60,7 @@ def test_delete_article_index():
     assert e.value.status_code == 404
 
 
+@pytest.mark.skipif(not os.getenv("test"))
 def test_search_article_by_index():
     """
     Test for search Article
