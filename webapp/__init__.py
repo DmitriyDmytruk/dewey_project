@@ -28,6 +28,11 @@ def create_app(object_name):
     app.config.from_object(object_name)
     app.secret_key = app.config["SECRET_KEY"]
     app.config["SESSION_TYPE"] = "filesystem"
+    app.elasticsearch = (
+        Elasticsearch([app.config["ELASTICSEARCH_URL"]])
+        if app.config["ELASTICSEARCH_URL"]
+        else None
+    )
 
     db.init_app(app)
     migrate.init_app(app, db)
