@@ -1,7 +1,7 @@
 import pytest
 from elasticsearch.exceptions import NotFoundError
 
-from webapp import es
+from webapp import db, es
 from webapp.articles.models import ArticleModel
 
 
@@ -9,12 +9,14 @@ ARTICLE_INDEX = ArticleModel.__tablename__
 
 
 @pytest.mark.xfail
-def test_new_tag(db):
+def test_new_tag(app):
     """
     Test for Article index create
     """
     article_title = "ES title"
     new_article = ArticleModel(title=article_title)
+    with app.app_context():
+        db.create_all()
     db.session.add(new_article)
     db.session.commit()
 
@@ -28,34 +30,33 @@ def test_new_tag(db):
 
 
 @pytest.mark.xfail
-def test_update_article_index():
+def test_update_article_index(app):
     """
     Test for update Article index
     """
+    with app.app_context():
+        db.create_all()
     new_title = "Updated title"
     article = ArticleModel.query.first()
-    resp = es.update(
-        index=ARTICLE_INDEX,
-        doc_type="_doc",
-        id=article.id,
-        body={"doc": {"title": new_title}},
-    )
-    assert resp["result"] == "updated"
+    article.title = new_title
+
+    db.session.add(article)
+    db.session.commit()
 
     resp = es.get(ARTICLE_INDEX, article.id)
     assert resp.get("_source").get("title") == new_title
 
 
 @pytest.mark.xfail
-def test_delete_article_index():
+def test_delete_article_index(app):
     """
     Test for delete Article index
     """
+    with app.app_context():
+        db.create_all()
     article = ArticleModel.query.first()
-    es.delete(ARTICLE_INDEX, article.id)
-    with pytest.raises(NotFoundError) as e:
-        es.get(ARTICLE_INDEX, article.id)
-    assert e.value.status_code == 404
+    db.session.delete(article)
+    db.session.commit()
 
 
 @pytest.mark.xfail
