@@ -16,6 +16,7 @@ class ProdConfig(Config):
 
 
 class DevConfig(Config):
+    ELASTICSEARCH_URL = os.environ.get("ELASTICSEARCH_URL")
     DEBUG = True
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     PG_HOST = "db"
@@ -26,6 +27,7 @@ class DevConfig(Config):
 
 
 class TestConfig(Config):
+    ELASTICSEARCH_URL = os.environ.get("ELASTICSEARCH_URL")
     TESTDB = "test.db"
     TESTDB_PATH = os.path.join(basedir, TESTDB)
     TEST_DATABASE_URI = "sqlite:///" + TESTDB_PATH
