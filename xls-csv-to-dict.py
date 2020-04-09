@@ -30,9 +30,7 @@ with open("test.csv") as f:
     rows_list = [rows for rows in reader]
     keys = rows_list[0]
     for row in rows_list[1:]:
-        d = {}
-        for index, value in enumerate(row):
-            d[keys[index]] = value
+        d = {keys[index]: value for index, value in enumerate(row)}
         dict_list.append(d)
 
 print(dict_list)
