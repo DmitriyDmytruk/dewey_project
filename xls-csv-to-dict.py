@@ -25,13 +25,8 @@ print(dict_list)
 # Read csv file
 
 with open("test.csv") as f:
-    reader = csv.reader(f)
-    dict_list = []
-    rows_list = [rows for rows in reader]
-    keys = rows_list[0]
-    for row in rows_list[1:]:
-        d = {keys[index]: value for index, value in enumerate(row)}
-        dict_list.append(d)
+    rows_list = list(csv.reader(f))
+    dict_list = [dict(zip(rows_list[0], row)) for row in rows_list[1:]]
 
 print(dict_list)
 # [{'Column1': '1_value1', 'Column2': '2_value1', 'Column3': '3_value1'}, {'Column1': '1_value2', 'Column2': '2_value2', 'Column3': '3_value2'}, {'Column1': '1_value3', 'Column2': '2_value3', 'Column3': '3_value3'}, {'Column1': '', 'Column2': '2_value4', 'Column3': ''}]
