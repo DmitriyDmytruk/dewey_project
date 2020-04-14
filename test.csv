@@ -1,5 +1,2 @@
-Column1,Column2,Column3
-1_value1,2_value1,3_value1
-1_value2,2_value2,3_value2
-1_value3,2_value3,3_value3
-,2_value4,
+Unique ID,Title,Legal Regulation,Citation,40CFR 280 Part Federal Rule,State,County,City,Categories,Tags,Effective Date,Updated Date,Abstract
+String identifier unique trough the document to handle updates,String value,Text value,String value,Text Value,String value,String value,String value,String value of comma separated categories (you can specify another separator - I just need a symbol to split the data on import),String value of comma separated tags (you can specify another separator - I just need a symbol to split the data on import),Date or string value to fit specific format mm/dd/YY,Date or string value to fit specific format mm/dd/YY,Text value

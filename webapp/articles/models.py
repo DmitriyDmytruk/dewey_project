@@ -49,7 +49,7 @@ class ArticleModel(db.Model, SearchableMixin):
         "city",
         "county",
         "zip_code",
-        # "tags",
+        "tags",
     ]
 
     id = db.Column(db.Integer, primary_key=True)
