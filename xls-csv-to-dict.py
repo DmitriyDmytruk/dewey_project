@@ -5,7 +5,6 @@ from xlrd import open_workbook
 
 
 def columns_mapping(origin_dict: dict) -> Dict:
-    origin_dict["id"] = origin_dict.pop("unique_id")
     origin_dict["legal_language"] = origin_dict.pop("legal_regulation")
     tags = origin_dict["tags"].split(",")
     origin_dict["tags"] = [{"name": tag} for tag in tags]
