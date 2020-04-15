@@ -11,7 +11,7 @@ def add_to_index(index, model):
     payload = {}
     for field in model.__searchable__:
         _attr_value = getattr(model, field)
-        if _attr_value == InstrumentedList:
+        if isinstance(_attr_value, InstrumentedList):
             payload[field] = [
                 getattr(attr_value_item, _attr_value.__indexable__)
                 for attr_value_item in _attr_value

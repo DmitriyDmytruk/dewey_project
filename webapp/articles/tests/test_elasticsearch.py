@@ -14,7 +14,7 @@ def test_new_tag(app):
     Test for Article index create
     """
     article_title = "ES title"
-    new_article = ArticleModel(title=article_title)
+    new_article = ArticleModel(title=article_title, tags=[])
     with app.app_context():
         db.create_all()
     db.session.add(new_article)
@@ -39,6 +39,7 @@ def test_update_article_index(app):
     new_title = "Updated title"
     article = ArticleModel.query.first()
     article.title = new_title
+    article.tags = []
 
     db.session.add(article)
     db.session.commit()
@@ -54,17 +55,11 @@ def test_delete_article_index(app):
     """
     with app.app_context():
         db.create_all()
+    ArticleModel.reindex()
     article = ArticleModel.query.first()
     db.session.delete(article)
     db.session.commit()
-
-
-@pytest.mark.xfail
-def test_search_article_by_index():
-    """
-    Test for search Article
-    """
     resp = es.search(
-        index=ARTICLE_INDEX, body={"query": {"match": {"title": "ES"}}}
+        index=ARTICLE_INDEX, body={"query": {"match": {"id": article.id}}}
     )
-    assert resp["hits"]["hits"][0]["_source"]["title"] == "ES title"
+    assert not resp["hits"]["total"]["value"]
