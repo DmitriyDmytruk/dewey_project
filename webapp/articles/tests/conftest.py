@@ -34,7 +34,7 @@ def prepare_data(session):
     session.commit()
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture
 def app(request):
     """Session-wide test `Flask` application."""
     app = create_app("config.TestConfig")
@@ -61,10 +61,10 @@ def session(app):
             db.session = session
             prepare_data(session)
 
-        yield session
+            yield session
 
-        transaction.rollback()
-        db.drop_all()
+            transaction.rollback()
+            db.drop_all()
 
 
 @pytest.fixture
