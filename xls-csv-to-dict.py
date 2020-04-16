@@ -1,5 +1,5 @@
 import csv
-from typing import Dict, Any, Union
+from typing import Any, Dict, Union
 
 from xlrd import open_workbook
 from xlrd.sheet import Sheet
@@ -7,7 +7,9 @@ from xlrd.sheet import Sheet
 
 def columns_mapping(origin_dict: dict) -> Dict:
     origin_dict["legal_language"] = origin_dict.pop("regulation")
-    origin_dict["cfr40_part280"] = origin_dict.pop("40cfr_280_part_federal_rule")
+    origin_dict["cfr40_part280"] = origin_dict.pop(
+        "40cfr_280_part_federal_rule"
+    )
     tags = origin_dict["tags"].split(",")
     origin_dict["tags"] = [{"name": tag} for tag in tags]
     categories = origin_dict["categories"].split(",")

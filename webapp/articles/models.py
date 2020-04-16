@@ -35,7 +35,10 @@ class TagModel(db.Model):
 article_categories = db.Table(
     "article_categories",
     db.Column(
-        "category_id", db.Integer, db.ForeignKey("categories.id"), primary_key=True
+        "category_id",
+        db.Integer,
+        db.ForeignKey("categories.id"),
+        primary_key=True,
     ),
     db.Column(
         "article_id",
