@@ -1,11 +1,13 @@
 import csv
-from typing import Dict
+from typing import Dict, Any, Union
 
 from xlrd import open_workbook
+from xlrd.sheet import Sheet
 
 
 def columns_mapping(origin_dict: dict) -> Dict:
-    origin_dict["legal_language"] = origin_dict.pop("legal_regulation")
+    origin_dict["legal_language"] = origin_dict.pop("regulation")
+    origin_dict["cfr40_part280"] = origin_dict.pop("40cfr_280_part_federal_rule")
     tags = origin_dict["tags"].split(",")
     origin_dict["tags"] = [{"name": tag} for tag in tags]
     categories = origin_dict["categories"].split(",")
@@ -16,7 +18,7 @@ def columns_mapping(origin_dict: dict) -> Dict:
 
 # Read xls file
 book = open_workbook("test.xls")
-sheet = book.sheet_by_index(0)
+sheet: Union[Sheet, Any] = book.sheet_by_index(0)
 
 keys = [sheet.cell(0, col_index).value for col_index in range(sheet.ncols)]
 
