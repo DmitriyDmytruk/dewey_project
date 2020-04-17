@@ -17,8 +17,11 @@ def prepare_data(session):
     role = RoleModel(title="API User", permissions=[permission])
     tag = TagModel(name="Test tag")
     article = ArticleModel(
+        unique_id="unique_id",
         title="Test article",
         legal_language="en",
+        citation="citation",
+        cfr40_part280="cfr40_part280",
         abstract="",
         state="Alaska",
         tags=[tag],
