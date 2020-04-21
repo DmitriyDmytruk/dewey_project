@@ -14,7 +14,15 @@ def test_new_tag(app):
     Test for Article index create
     """
     article_title = "ES title"
-    new_article = ArticleModel(title=article_title, tags=[])
+    new_article = ArticleModel(
+        title=article_title,
+        tags=[],
+        categories=[],
+        unique_id="unique_id2",
+        citation="citation",
+        cfr40_part280="cfr40_part280",
+        legal_language="en",
+    )
     with app.app_context():
         db.create_all()
     db.session.add(new_article)
@@ -40,6 +48,7 @@ def test_update_article_index(app):
     article = ArticleModel.query.first()
     article.title = new_title
     article.tags = []
+    article.categories = []
 
     db.session.add(article)
     db.session.commit()

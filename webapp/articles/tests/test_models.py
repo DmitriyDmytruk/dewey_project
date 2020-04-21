@@ -28,7 +28,12 @@ def test_new_article(session):
     """
     article_title = "Test article"
     new_article = ArticleModel(
-        title=article_title, legal_language="en", abstract=""
+        title=article_title,
+        legal_language="en",
+        abstract="",
+        unique_id="unique_id1",
+        citation="citation",
+        cfr40_part280="cfr40_part280",
     )
     session.add(new_article)
     session.commit()
