@@ -22,7 +22,4 @@ class ArticleSchema(Schema):
     effective_date = fields.DateTime()
     updated_date = fields.DateTime()
     state = fields.String()
-    city = fields.String()
-    county = fields.String()
-    zip_code = fields.String()
     tags = fields.List(fields.Nested(TagSchema))
