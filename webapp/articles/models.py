@@ -85,8 +85,6 @@ class ArticleModel(db.Model, SearchableMixin):
         "effective_date",
         "updated_date",
         "state",
-        "city",
-        "county",
         "tags",
     ]
 
@@ -103,11 +101,7 @@ class ArticleModel(db.Model, SearchableMixin):
     effective_date = db.Column(db.Date)
     updated_date = db.Column(db.Date)
     tags = db.relationship(TagModel, secondary=article_tags)
-
-    # Location fields
     state = db.Column(db.String(128))
-    city = db.Column(db.String(128))
-    county = db.Column(db.String(128))
 
     def __repr__(self):
         return "<Article {}>".format(self.title)
