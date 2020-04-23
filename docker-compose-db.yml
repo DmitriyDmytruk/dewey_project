@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  db:
+    image: ${PG_IMAGE}
+    expose:
+      - ${PG_EXPOSE}
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: ${PG_DB}
+    volumes:
+      - ${PG_VOLUME}:/var/lib/postgresql/data
+    networks:
+      - dewey_project
+networks:
+  dewey_project:
