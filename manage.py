@@ -100,8 +100,9 @@ class ArticlesCreate(Command):
             sys.__stdout__.write("\033[31mNot created: " + str(error) + "\n")
 
 
-manager.add_command("createrolepermission", RolePermissionCreate())
-manager.add_command("createuser", UserCreate())
+manager.add_command("create_role_permission", RolePermissionCreate())
+manager.add_command("create_user", UserCreate())
+manager.add_command("create_articles", ArticlesCreate())
 
 
 if __name__ == "__main__":
