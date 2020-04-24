@@ -93,8 +93,8 @@ class ArticlesCreate(Command):
                 new_article = ArticleModel(**article)
                 new_article.categories = article_categories.all()
                 db.session.add(new_article)
+                db.session.commit()
 
-            db.session.commit()
             sys.__stdout__.write("\033[32mArticles created\n")
         except Exception as error:
             sys.__stdout__.write("\033[31mNot created: " + str(error) + "\n")
