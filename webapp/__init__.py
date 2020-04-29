@@ -39,10 +39,12 @@ def create_app(object_name):
     swagger.init_app(app)
     session.init_app(app)
 
+    from .core.views import base_blueprint
     from .users.views import users_blueprint
     from .auth.views import auth_blueprint
     from .articles.views import articles_blueprint
 
+    app.register_blueprint(base_blueprint)
     app.register_blueprint(users_blueprint)
     app.register_blueprint(auth_blueprint)
     app.register_blueprint(articles_blueprint)
