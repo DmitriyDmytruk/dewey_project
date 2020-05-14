@@ -13,7 +13,7 @@ def test_retrieve_articles(client, session):
     assert response.json.get("status") == 401
 
     response = client.get(
-        "/articles", headers={"Authorization": f"Token WrongToken"}
+        "/articles", headers={"Authorization": "Token WrongToken"}
     )
     assert (
         response.json.get("message") == "Invalid token. Please log in again."

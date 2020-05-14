@@ -55,3 +55,12 @@ def session(app):
 
         transaction.rollback()
         db.drop_all()
+
+
+@pytest.fixture
+def client(app):
+    with app.test_client() as client:
+        with app.app_context() as ctx:
+            ctx.push()
+        yield client
+    ctx.pop()

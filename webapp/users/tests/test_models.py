@@ -33,7 +33,6 @@ def test_new_user(session):
     role = session.query(RoleModel).filter_by(title="API User").one()
 
     password = "test_password"
-
     password_hash = flask_bcrypt.generate_password_hash(password).decode(
         "utf8"
     )
