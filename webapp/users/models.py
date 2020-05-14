@@ -114,7 +114,7 @@ class UserModel(db.Model):
             return err
 
     @staticmethod
-    def __hash_password(password):
+    def _hash_password(password):
         return bcrypt.generate_password_hash(password, rounds=10).decode(
             "utf-8"
         )
