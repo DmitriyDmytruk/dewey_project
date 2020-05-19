@@ -13,7 +13,7 @@ def add_to_index(index, model):
         _attr_value = getattr(model, field)
         if isinstance(_attr_value, InstrumentedList):
             payload[field] = [
-                getattr(attr_value_item, _attr_value.__indexable__)
+                getattr(attr_value_item, attr_value_item.__indexable__)
                 for attr_value_item in _attr_value
             ]
         else:

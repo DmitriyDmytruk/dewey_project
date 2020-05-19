@@ -1,3 +1,5 @@
+from sqlalchemy_utils import ScalarListType
+
 from webapp import db
 
 from .mixins import SearchableMixin
@@ -79,11 +81,10 @@ class ArticleModel(db.Model, SearchableMixin):
         "local_regulation",
         "abstract",
         "categories",
+        "reference_images",
         "effective_date",
         "updated_date",
         "state",
-        "city",
-        "county",
         "tags",
     ]
 
@@ -96,14 +97,11 @@ class ArticleModel(db.Model, SearchableMixin):
     local_regulation = db.Column(db.Text)
     abstract = db.Column(db.Text)
     categories = db.relationship(CategoryModel, secondary=article_categories)
+    reference_images = db.Column(ScalarListType())
     effective_date = db.Column(db.Date)
     updated_date = db.Column(db.Date)
     tags = db.relationship(TagModel, secondary=article_tags)
-
-    # Location fields
     state = db.Column(db.String(128))
-    city = db.Column(db.String(128))
-    county = db.Column(db.String(128))
 
     def __repr__(self):
         return "<Article {}>".format(self.title)

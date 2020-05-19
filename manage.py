@@ -5,6 +5,7 @@ import sys
 from flask_script import Command, Manager
 
 from webapp import create_app, db
+from webapp.articles.models import ArticleModel, CategoryModel
 from webapp.users.models import PermissionModel, RoleModel, UserModel
 
 
@@ -26,7 +27,6 @@ class RolePermissionCreate(Command):
             for permission_data in data["permissions"]:
                 permission = PermissionModel(title=permission_data)
                 db.session.add(permission)
-                db.session.commit()
 
             for role_data in data["roles"]:
                 role = RoleModel(title=role_data["title"])
@@ -38,6 +38,7 @@ class RolePermissionCreate(Command):
                     )
                     role.permissions = permissions.all()
                 db.session.add(role)
+
             db.session.commit()
             sys.__stdout__.write("\033[32mRole and permission created\n")
         except Exception as error:
@@ -66,13 +67,42 @@ class UserCreate(Command):
             db.session.add(user)
             db.session.commit()
             sys.__stdout__.write("\033[32mUser created\n")
-
         except Exception as error:
             sys.__stdout__.write("\033[31mNot created: " + str(error) + "\n")
 
 
-manager.add_command("createrolepermission", RolePermissionCreate())
-manager.add_command("createuser", UserCreate())
+class ArticlesCreate(Command):
+    """
+    Creates default articles
+    """
+
+    def run(self):
+        try:
+            f = open("webapp/utils/fixtures/initial_articles.json")
+            data = json.loads(f.read())
+
+            categories_data = data["categories"]
+            for category in categories_data:
+                db.session.add(CategoryModel(name=category))
+
+            articles_data = data["articles"]
+            for article in articles_data:
+                article_categories = db.session.query(CategoryModel).filter(
+                    CategoryModel.name.in_(article["categories"])
+                )
+                new_article = ArticleModel(**article)
+                new_article.categories = article_categories.all()
+                db.session.add(new_article)
+                db.session.commit()
+
+            sys.__stdout__.write("\033[32mArticles created\n")
+        except Exception as error:
+            sys.__stdout__.write("\033[31mNot created: " + str(error) + "\n")
+
+
+manager.add_command("create_role_permission", RolePermissionCreate())
+manager.add_command("create_user", UserCreate())
+manager.add_command("create_articles", ArticlesCreate())
 
 
 if __name__ == "__main__":
