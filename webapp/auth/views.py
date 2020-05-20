@@ -1,10 +1,8 @@
 from typing import Dict
 
 import jwt
-from flask import Blueprint, current_app
+from flask import current_app
 
-
-auth_blueprint = Blueprint("auth", __name__)
 
 # class LoginAPI(MethodView):
 #     """

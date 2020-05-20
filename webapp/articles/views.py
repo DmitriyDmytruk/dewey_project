@@ -1,13 +1,9 @@
 from flasgger import SwaggerView
-from flask import Blueprint
 
 from webapp.utils.decorators import login_required, permissions
 
 from .models import ArticleModel
 from .schemas import ArticleSchema
-
-
-articles_blueprint = Blueprint("articles", __name__, url_prefix="/articles")
 
 
 class ArticleAPI(SwaggerView):
@@ -18,6 +14,7 @@ class ArticleAPI(SwaggerView):
     responses = {
         200: {"description": "Article retrieved", "schema": ArticleSchema}
     }
+    tags = ["articles"]
 
     @login_required
     @permissions(["can_search_articles"])
@@ -32,10 +29,3 @@ class ArticleAPI(SwaggerView):
             articles = ArticleModel.query.all()
             result = articles_schema.dump(articles)
             return {"articles": result}
-
-
-article_view = ArticleAPI.as_view("articles")
-
-articles_blueprint.add_url_rule(
-    "", defaults={"article_id": None}, view_func=article_view, methods=["GET"]
-)

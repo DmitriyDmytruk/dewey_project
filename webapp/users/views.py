@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, make_response, request
+from flask import jsonify, make_response, request
 from flask.views import MethodView
 from marshmallow import ValidationError
 
@@ -8,9 +8,6 @@ from webapp.utils.mailing import sengrid_send_mail
 from .models import RoleModel, UserModel
 from .schemas import UserSchema
 from .swagger_docstrings import login_docstring, user_create_docstring
-
-
-users_blueprint = Blueprint("users", __name__, url_prefix="/users")
 
 
 class LoginAPI(MethodView):
@@ -72,7 +69,7 @@ class UserAPI(MethodView):
         # TODO: If role not exists?
         user = UserModel.query.filter_by(email=email).one_or_none()
         if user is None:
-            user = UserModel(email=email, is_active=False, role_id=role.id)
+            user = UserModel(email=email, role_id=role.id)
             db.session.add(user)
             db.session.commit()
 
@@ -96,19 +93,6 @@ class UserAPI(MethodView):
         """
         ...
 
-
-login_view = LoginAPI.as_view("login")
-users_blueprint.add_url_rule("login", view_func=login_view, methods=["POST"])
-
-user_view = UserAPI.as_view("users")
-
-users_blueprint.add_url_rule(
-    "", defaults={"user_id": None}, view_func=user_view, methods=["GET"]
-)
-users_blueprint.add_url_rule("", view_func=user_view, methods=["POST"])
-users_blueprint.add_url_rule(
-    "<int:user_id>", view_func=user_view, methods=["GET", "PUT", "DELETE"]
-)
 
 LoginAPI.post.__doc__ = login_docstring
 UserAPI.post.__doc__ = user_create_docstring
