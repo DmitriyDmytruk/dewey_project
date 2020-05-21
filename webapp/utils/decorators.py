@@ -1,5 +1,5 @@
 import functools
-from typing import Dict, List, Optional, Union
+from typing import Dict, List, Union
 
 from flask import request, session
 
@@ -7,7 +7,7 @@ from webapp.auth.views import decode_auth_token
 from webapp.users.models import UserModel
 
 
-def get_fail_response(status: int, response: dict) -> Dict:
+def get_fail_response(status: int, response: dict) -> Dict[str, str]:
     """
     Generate response for login_required function
     :param status:int
@@ -17,10 +17,10 @@ def get_fail_response(status: int, response: dict) -> Dict:
     return {"status": status, "message": response.get("message")}
 
 
-def get_user_by_token() -> Optional[Dict[str, Union[int, str]]]:
+def get_user_by_token() -> Dict[str, Union[int, str]]:
     """
     Get user from jwt token
-    :return: dict|None
+    :return: dict
     """
     auth_header = request.headers.get("Authorization")
     session["user"] = None
@@ -44,7 +44,7 @@ def get_user_by_token() -> Optional[Dict[str, Union[int, str]]]:
 def check_user_permissions(permissions: List[str]) -> bool:
     """
     Check user permissions
-    :param permissions:
+    :param permissions:list
     :return: bool
     """
     res = False

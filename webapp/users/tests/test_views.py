@@ -7,11 +7,11 @@ from webapp.users.models import UserModel
 
 def test_non_registered_user_login(session, client):
     """ Test for login of user """
-    password = "test_password"
+    password: str = "test_password"
     password_hash = flask_bcrypt.generate_password_hash(password).decode(
         "utf8"
     )
-    user = UserModel(
+    user: UserModel = UserModel(
         email="patkennedy79@gmail.com",
         is_active=False,
         password=password_hash,

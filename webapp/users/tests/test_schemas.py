@@ -1,3 +1,5 @@
+from typing import Dict, Union
+
 from webapp.users.models import RoleModel, UserModel
 from webapp.users.schemas import RoleSchema, UserSchema
 
@@ -6,7 +8,11 @@ def test_role_shema(session):
     """
     Testing [de]serialization with RoleSchema
     """
-    role_data = {"title": "API User", "permissions": [], "id": 1}
+    role_data: Dict[str, Union[str, list, int]] = {
+        "title": "API User",
+        "permissions": [],
+        "id": 1,
+    }
     data = RoleSchema().load(role_data)
     assert data.get("title") == role_data.get("title")
 
@@ -19,8 +25,10 @@ def test_user_shema(session):
     """
     Testing [de]serialization with UserSchema
     """
-    role = session.query(RoleModel).filter_by(title="API User").one()
-    user_data = {
+    role: RoleModel = session.query(RoleModel).filter_by(
+        title="API User"
+    ).one()
+    user_data: Dict[str, Union[str, dict]] = {
         "email": "test@mail.com",
         "role": RoleSchema(only=["id", "title"]).dump(role),
     }
@@ -28,6 +36,8 @@ def test_user_shema(session):
     assert data.get("email") == user_data.get("email")
     assert data["role"].get("title") == "API User"
 
-    user = session.query(UserModel).filter_by(email="test@gmail.com").one()
+    user: UserModel = session.query(UserModel).filter_by(
+        email="test@gmail.com"
+    ).one()
     data = UserSchema().dump(user)
     assert data.get("email") == user.email

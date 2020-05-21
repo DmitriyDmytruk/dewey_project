@@ -1,3 +1,5 @@
+from typing import Dict, Union
+
 from webapp.articles.models import ArticleModel, TagModel
 from webapp.articles.schemas import ArticleSchema, TagSchema
 
@@ -6,11 +8,11 @@ def test_tag_shema(session):
     """
     Testing [de]serialization with TagSchema
     """
-    tag_data = {"name": "Tag", "id": 1}
+    tag_data: Dict[str, Union[str, int]] = {"name": "Tag", "id": 1}
     data = TagSchema().load(tag_data)
     assert data.get("name") == tag_data.get("name")
 
-    tag = session.query(TagModel).filter_by(name="Test tag").one()
+    tag: TagModel = session.query(TagModel).filter_by(name="Test tag").one()
     data = TagSchema().dump(tag)
     assert data.get("name") == tag.name
 
@@ -19,8 +21,8 @@ def test_article_shema(session):
     """
     Testing [de]serialization with ArticleSchema
     """
-    tag = session.query(TagModel).filter_by(name="Test tag")
-    article_data = {
+    tag: TagModel = session.query(TagModel).filter_by(name="Test tag")
+    article_data: Dict[str, Union[str, list]] = {
         "title": "Test title",
         "tags": TagSchema().dump(tag, many=True),
     }
@@ -29,7 +31,9 @@ def test_article_shema(session):
     assert data["title"] == article_data["title"]
     assert data["tags"][0]["name"] == "Test tag"
 
-    article = session.query(ArticleModel).filter_by(title="Test article")
+    article: ArticleModel = session.query(ArticleModel).filter_by(
+        title="Test article"
+    )
     data = ArticleSchema().dump(article, many=True)
     assert "title" in data[0] and "tags" in data[0]
     assert data[0]["title"] == "Test article"

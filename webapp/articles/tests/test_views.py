@@ -20,16 +20,20 @@ def test_retrieve_articles(client, session):
     )
     assert response.json.get("status") == 401
 
-    user2 = session.query(UserModel).filter_by(email="test2@gmail.com").one()
-    jwt_token = user2.encode_auth_token().decode("utf-8")
+    user2: UserModel = session.query(UserModel).filter_by(
+        email="test2@gmail.com"
+    ).one()
+    jwt_token: str = user2.encode_auth_token().decode("utf-8")
     response = client.get(
         "/articles", headers={"Authorization": f"Token {jwt_token}"}
     )
     assert response.json.get("message") == "Access denied."
     assert response.json.get("status") == 403
 
-    user1 = session.query(UserModel).filter_by(email="test@gmail.com").one()
-    jwt_token = user1.encode_auth_token().decode("utf-8")
+    user1: UserModel = session.query(UserModel).filter_by(
+        email="test@gmail.com"
+    ).one()
+    jwt_token: str = user1.encode_auth_token().decode("utf-8")
     response = client.get(
         "/articles", headers={"Authorization": f"Token {jwt_token}"}
     )

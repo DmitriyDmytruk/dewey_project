@@ -5,7 +5,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 
 def get_google_sheet(
-    link="https://docs.google.com/spreadsheets/d/1euoRKgl3ojqXL5xVZzBo3kSZ1SK-xVHbOy3llHzLRyY",
+    link: str = "https://docs.google.com/spreadsheets/d/1euoRKgl3ojqXL5xVZzBo3kSZ1SK-xVHbOy3llHzLRyY",
 ):
     """
     Opens Google Sheet document by link

@@ -1,3 +1,5 @@
+from typing import Any, Dict
+
 from flasgger import SwaggerView
 
 from webapp.utils.decorators import login_required, permissions
@@ -18,10 +20,10 @@ class ArticleAPI(SwaggerView):
 
     @login_required
     @permissions(["can_search_articles"])
-    def get(self, article_id):
+    def get(self, article_id: str) -> Dict[str, Any]:
         """
         Retrieve Articles list
-        :param article_id:
+        :param article_id:str
         :return: ArticleSchema
         """
         if article_id is None:

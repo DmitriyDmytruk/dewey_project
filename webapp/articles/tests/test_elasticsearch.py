@@ -13,7 +13,7 @@ def test_new_tag(app):
     """
     Test for Article index create
     """
-    article_title = "ES title"
+    article_title: str = "ES title"
     new_article = ArticleModel(
         title=article_title,
         tags=[],
@@ -44,7 +44,7 @@ def test_update_article_index(app):
     """
     with app.app_context():
         db.create_all()
-    new_title = "Updated title"
+    new_title: str = "Updated title"
     article = ArticleModel.query.first()
     article.title = new_title
     article.tags = []

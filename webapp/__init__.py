@@ -15,7 +15,7 @@ es = Elasticsearch()
 session = Session()
 
 
-def create_app(object_name):
+def create_app(object_name: str):
     """
     An flask application factory, as explained here:
     http://flask.pocoo.org/docs/patterns/appfactories/

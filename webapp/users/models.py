@@ -1,4 +1,5 @@
 import datetime
+from typing import Optional
 
 import jwt
 from flask import current_app
@@ -80,15 +81,15 @@ class UserModel(db.Model):
     def __repr__(self):
         return "<User {}>".format(self.email)
 
-    def update(self, data):
+    def update(self, data: dict) -> None:
         """
-        :param data:
+        :param data: dict
         :return:
         """
         for key, item in data.items():
             setattr(self, key, item)
 
-    def encode_auth_token(self):
+    def encode_auth_token(self) -> str:
         """
         Generates the Auth Token
         :return: string
@@ -114,15 +115,15 @@ class UserModel(db.Model):
             return err
 
     @staticmethod
-    def _hash_password(password):
+    def _hash_password(password: str):
         return bcrypt.generate_password_hash(password, rounds=10).decode(
             "utf-8"
         )
 
-    def check_password(self, password):
+    def check_password(self, password: str) -> Optional[bool]:
         """
         Check user password
-        :param password:
+        :param password: str
         :return: boolean | None
         """
         return bcrypt.check_password_hash(self.password, password)
