@@ -19,6 +19,7 @@ def test_non_registered_user_login(session, client):
     session.add(user)
     session.commit()
 
+    # User does not exist, wrong email.
     response = client.post(
         "/users/login",
         data=json.dumps(
@@ -32,6 +33,7 @@ def test_non_registered_user_login(session, client):
     assert response.content_type == "application/json"
     assert response.status_code == 404
 
+    # Try again, login must be by email, not username
     response = client.post(
         "/users/login",
         data=json.dumps(
@@ -45,6 +47,20 @@ def test_non_registered_user_login(session, client):
     assert response.content_type == "application/json"
     assert response.status_code == 500
 
+    # Fail, is_active == false
+    response = client.post(
+        "/users/login",
+        data=json.dumps(
+            dict(email="patkennedy79@gmail.com", password="test_password")
+        ),
+        content_type="application/json",
+    )
+    data = json.loads(response.data.decode())
+    assert data["status"] == "fail"
+
+    # Successful login
+    user.is_active = True
+    session.commit()
     response = client.post(
         "/users/login",
         data=json.dumps(

@@ -31,7 +31,7 @@ def get_user_by_token() -> Dict[str, Union[int, str]]:
             user = UserModel.query.filter_by(
                 email=response.get("email")
             ).one_or_none()
-            if user:
+            if user and user.is_active:
                 session["user"] = user
         else:
             return get_fail_response(401, response)
