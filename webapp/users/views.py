@@ -1,3 +1,5 @@
+from typing import Dict, Optional
+
 from flask import jsonify, make_response, request
 from flask.views import MethodView
 from marshmallow import ValidationError
@@ -18,24 +20,29 @@ class LoginAPI(MethodView):
     def post(self):  # pylint: disable=C0116
         post_data = request.get_json()
         try:
-            user = UserModel.query.filter_by(email=post_data["email"]).first()
+            user: UserModel = UserModel.query.filter_by(
+                email=post_data["email"]
+            ).first()
             if user and user.check_password(post_data["password"]):
-                auth_token = user.encode_auth_token()
+                auth_token: str = user.encode_auth_token()
                 if auth_token:
-                    responseObject = {
+                    responseObject: Dict[str, str] = {
                         "status": "success",
                         "message": "Successfully logged in.",
                         "auth_token": auth_token.decode(),
                     }
                     return make_response(jsonify(responseObject)), 200
             else:
-                responseObject = {
+                responseObject: Dict[str, str] = {
                     "status": "fail",
                     "message": "User does not exist.",
                 }
                 return make_response(jsonify(responseObject)), 404
         except Exception:
-            responseObject = {"status": "fail", "message": "Try again"}
+            responseObject: Dict[str, str] = {
+                "status": "fail",
+                "message": "Try again",
+            }
             return make_response(jsonify(responseObject)), 500
 
 
@@ -65,17 +72,19 @@ class UserAPI(MethodView):
         except ValidationError as err:
             return err.messages, 422
         email, role_title = data["email"], data["role"]["title"]
-        role = RoleModel.query.filter_by(title=role_title).one()
+        role: RoleModel = RoleModel.query.filter_by(title=role_title).one()
         # TODO: If role not exists?
-        user = UserModel.query.filter_by(email=email).one_or_none()
+        user: Optional[UserModel] = UserModel.query.filter_by(
+            email=email
+        ).one_or_none()
         if user is None:
-            user = UserModel(email=email, role_id=role.id)
+            user: UserModel = UserModel(email=email, role_id=role.id)
             db.session.add(user)
             db.session.commit()
 
-            content = "Hi there"
-            content_type = "text/plain"
-            subject = "Sending with SendGrid"
+            content: str = "Hi there"
+            content_type: str = "text/plain"
+            subject: str = "Sending with SendGrid"
             sengrid_send_mail(email, subject, content, content_type)
 
             result = UserSchema.dump(UserModel.query.get(user.id))

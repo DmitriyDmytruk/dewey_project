@@ -1,4 +1,4 @@
-from typing import Any, Dict
+from typing import Any, Dict, List
 
 from flasgger import SwaggerView
 
@@ -28,6 +28,6 @@ class ArticleAPI(SwaggerView):
         """
         if article_id is None:
             articles_schema = ArticleSchema(many=True)
-            articles = ArticleModel.query.all()
+            articles: List[ArticleModel] = ArticleModel.query.all()
             result = articles_schema.dump(articles)
             return {"articles": result}
