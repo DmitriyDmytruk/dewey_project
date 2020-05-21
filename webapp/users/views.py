@@ -23,7 +23,11 @@ class LoginAPI(MethodView):
             user: UserModel = UserModel.query.filter_by(
                 email=post_data["email"]
             ).first()
-            if user and user.is_active and user.check_password(post_data["password"]):
+            if (
+                user
+                and user.is_active
+                and user.check_password(post_data["password"])
+            ):
                 auth_token: str = user.encode_auth_token()
                 if auth_token:
                     responseObject: Dict[str, str] = {
