@@ -1,6 +1,6 @@
 import codecs
 import csv
-from typing import IO, Any, Dict, List, Union, Tuple
+from typing import IO, Any, Dict, List, Tuple, Union
 
 from xlrd import Book, open_workbook
 from xlrd.sheet import Sheet
@@ -29,6 +29,7 @@ class XLSReader:
     """
     Read .xls file and convert it to dict
     """
+
     def __init__(self) -> None:
         self.keys = []
         self.sheet = Sheet
@@ -76,6 +77,7 @@ class CSVReader:
     """
     Read .csv file and convert it to dict
     """
+
     def __init__(self) -> None:
         self.keys = []
         self.sheet = Sheet
@@ -116,6 +118,10 @@ class CSVReader:
 
 
 class ArticleDiff:
+    """
+    Checks articles changes
+    """
+
     def __init__(self) -> None:
         self.imported_data = {}
         self.exist_articles_list = []
@@ -126,6 +132,9 @@ class ArticleDiff:
         self.sheet = Sheet
 
     def get_differences(self) -> None:
+        """
+        Checks articles changes
+        """
         unique_id = self.imported_data["unique_id"]
         article = ArticleModel.query.filter_by(
             unique_id=unique_id
@@ -136,16 +145,16 @@ class ArticleDiff:
             for column in article.__table__.columns:
                 model_data[column.name] = str(getattr(article, column.name))
             imported_categories = set(
-                [cat["name"] for cat in self.imported_data["categories"]]
+                cat["name"] for cat in self.imported_data["categories"]
             )
-            categories = set([r.name for r in article.categories])
+            categories = set(r.name for r in article.categories)
             if imported_categories != categories:
                 new_categories = imported_categories - categories
                 self.diff[unique_id] = {"categories": new_categories}
             imported_tags = set(
-                [tag["name"] for tag in self.imported_data["tags"]]
+                tag["name"] for tag in self.imported_data["tags"]
             )
-            tags = set([r.name for r in article.tags])
+            tags = set(r.name for r in article.tags)
             if imported_tags != tags:
                 new_tags = imported_tags - tags
                 self.diff[unique_id].update(tags=new_tags)
