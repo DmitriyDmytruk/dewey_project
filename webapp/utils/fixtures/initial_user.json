@@ -3,9 +3,8 @@
     "email": "test@mail.com",
     "first_name": "",
     "last_name": "",
-    "password": "",
-    "created_at": "2020-03-18T12:06:08.590Z",
-    "is_active": false
+    "password": "txqKbYVQ",
+    "created_at": "2020-03-18T12:06:08.590Z"
   },
   "role_title": "API User"
 }

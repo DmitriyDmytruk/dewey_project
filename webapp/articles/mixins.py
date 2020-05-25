@@ -9,7 +9,7 @@ class SearchableMixin:
     """
 
     @classmethod
-    def before_commit(cls, session):
+    def before_commit(cls, session) -> None:
         """
         Adds ``_changes`` dict to session object
         """
@@ -20,7 +20,7 @@ class SearchableMixin:
         }
 
     @classmethod
-    def after_commit(cls, session):
+    def after_commit(cls, session) -> None:
         """
         Updates indexes
         """
@@ -38,7 +38,7 @@ class SearchableMixin:
         # fmt: on
 
     @classmethod
-    def reindex(cls):
+    def reindex(cls) -> None:
         """
         Reindex
         """

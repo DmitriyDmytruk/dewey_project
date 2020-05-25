@@ -63,6 +63,7 @@ class UserCreate(Command):
                 role_id = role.id
 
             user = UserModel(**user_data, **{"role_id": role_id})
+            user.password = user._hash_password(user.password)
 
             db.session.add(user)
             db.session.commit()

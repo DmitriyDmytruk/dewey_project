@@ -9,11 +9,11 @@ def sengrid_send_mail(
 ) -> None:
     """
     Send mail through sendgrid
-    :param email:
-    :param subject:
-    :param content:
-    :param content_type:
-    :return:
+    :param email:str
+    :param subject:str
+    :param content:str
+    :param content_type:str
+    :return:None
     """
     sendgrid_client = sendgrid.SendGridAPIClient(
         api_key=os.environ.get("SENGRID_API_KEY")

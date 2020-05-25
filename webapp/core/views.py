@@ -1,10 +1,6 @@
-from flask import Blueprint, render_template
+from flask import render_template
 
 
-base_blueprint = Blueprint("base", __name__, template_folder="templates")
-
-
-@base_blueprint.route("/")
 def index():
     """Base endpoint
     ---

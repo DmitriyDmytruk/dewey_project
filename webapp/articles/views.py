@@ -1,13 +1,11 @@
+from typing import Any, Dict, List
+
 from flasgger import SwaggerView
-from flask import Blueprint
 
 from webapp.utils.decorators import login_required, permissions
 
 from .models import ArticleModel
 from .schemas import ArticleSchema
-
-
-articles_blueprint = Blueprint("articles", __name__, url_prefix="/articles")
 
 
 class ArticleAPI(SwaggerView):
@@ -18,24 +16,18 @@ class ArticleAPI(SwaggerView):
     responses = {
         200: {"description": "Article retrieved", "schema": ArticleSchema}
     }
+    tags = ["articles"]
 
     @login_required
     @permissions(["can_search_articles"])
-    def get(self, article_id):
+    def get(self, article_id: str) -> Dict[str, Any]:
         """
         Retrieve Articles list
-        :param article_id:
+        :param article_id:str
         :return: ArticleSchema
         """
         if article_id is None:
             articles_schema = ArticleSchema(many=True)
-            articles = ArticleModel.query.all()
+            articles: List[ArticleModel] = ArticleModel.query.all()
             result = articles_schema.dump(articles)
             return {"articles": result}
-
-
-article_view = ArticleAPI.as_view("articles")
-
-articles_blueprint.add_url_rule(
-    "", defaults={"article_id": None}, view_func=article_view, methods=["GET"]
-)
