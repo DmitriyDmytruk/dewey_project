@@ -2,7 +2,7 @@ from flask import current_app
 from sqlalchemy.orm.collections import InstrumentedList
 
 
-def add_to_index(index, model):
+def add_to_index(index, model) -> None:
     """
     Add data to index
     """
@@ -21,7 +21,7 @@ def add_to_index(index, model):
     current_app.elasticsearch.index(index=index, id=model.id, body=payload)
 
 
-def remove_from_index(index, model):
+def remove_from_index(index, model) -> None:
     """
     Remove data from index
     """
