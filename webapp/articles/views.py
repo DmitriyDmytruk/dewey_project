@@ -1,11 +1,11 @@
 from typing import Any, Dict, List
 
 from flasgger import SwaggerView
-from flask import Blueprint, jsonify, make_response, request
+from flask import jsonify, make_response, request
 
 from webapp.utils.decorators import login_required, permissions
 
-from .helpers.xls_csv_to_dict import csv_read, xls_read
+from .helpers.xls_csv_to_dict import CSVReader, XLSReader
 from .models import ArticleModel
 from .schemas import ArticleSchema
 from .swagger_docstrings import file_upload_docstring
@@ -55,9 +55,9 @@ class UploadFileAPI(SwaggerView):
             }
             return make_response(jsonify(responseObject)), 400
         elif file_extension == "csv":
-            csv_read(file)
+            CSVReader().to_dict(file)
             return make_response(jsonify(responseObject)), 200
-        xls_read(file)
+        XLSReader().to_dict(file)
         return make_response(jsonify(responseObject)), 200
 
 
