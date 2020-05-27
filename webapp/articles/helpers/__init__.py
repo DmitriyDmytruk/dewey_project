@@ -1,4 +1,4 @@
-from .xls_csv_to_dict import ArticleDiff, XLSReader
+from .xls_csv_to_dict import CSVReader, XLSReader
 
 
-__all__ = ["XLSReader"]
+__all__ = ["XLSReader", "CSVReader"]
