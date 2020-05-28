@@ -6,7 +6,7 @@ class TagSchema(Schema):
     Tag schema
     """
 
-    id = fields.Int()
+    id = fields.Int(dump_only=True)
     name = fields.String()
 
 
@@ -24,7 +24,8 @@ class ArticleSchema(Schema):
     Article schema
     """
 
-    id = fields.Int()
+    id = fields.Int(dump_only=True)
+    unique_id = fields.String()
     title = fields.String()
     legal_language = fields.String()
     citation = fields.String()
@@ -37,3 +38,12 @@ class ArticleSchema(Schema):
     updated_date = fields.Date()
     tags = fields.List(fields.Nested(TagSchema))
     state = fields.String()
+
+
+class ArticlePutPostSchema(ArticleSchema):
+    """
+    Article schema for put/post methods
+    """
+
+    categories = fields.Pluck(CategorySchema, "id", many=True)
+    tags = fields.List(fields.String())
