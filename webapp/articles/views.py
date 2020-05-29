@@ -6,7 +6,7 @@ from flask import jsonify, request
 from webapp import db
 from webapp.utils.decorators import login_required, permissions
 
-from .models import ArticleModel, CategoryModel, TagModel
+from .models import ArticleModel
 from .schemas import ArticlePutPostSchema, ArticleSchema
 
 
@@ -15,7 +15,6 @@ class ArticleAPI(SwaggerView):
     Articles endpoints
     """
 
-    # schemes = [ArticleSchema]
     responses = {
         200: {"description": "Article retrieved", "schema": ArticleSchema}
     }
@@ -25,8 +24,8 @@ class ArticleAPI(SwaggerView):
         "ArticlePutPostSchema": ArticlePutPostSchema,
     }
 
-    # @login_required
-    # @permissions(["can_search_articles"])
+    @login_required
+    @permissions(["can_search_articles"])
     def get(self, article_id: str = None) -> Dict[str, Any]:
         """
         Retrieve Articles list
@@ -39,8 +38,8 @@ class ArticleAPI(SwaggerView):
             result = articles_schema.dump(articles)
             return {"articles": result}
 
-    # @login_required
-    # @permissions(["can_edit_articles"])
+    @login_required
+    @permissions(["can_change_articles"])
     def put(self, article_id: str):
         """
         Update article
@@ -67,26 +66,19 @@ class ArticleAPI(SwaggerView):
         json_data = request.get_json()
         if not json_data:
             return jsonify({"message": "Invalid request"}), 400
-        data = ArticlePutPostSchema().load(data=json_data, partial=True)
-        data["categories"] = list(
-            CategoryModel.query.filter(
-                CategoryModel.id.in_(data["categories"])
-            )
+        ArticlePutPostSchema().load(
+            data=json_data,
+            instance=ArticleModel.query.filter(
+                ArticleModel.id == article_id
+            ).first_or_404(),
+            partial=True,
+            session=db.session,
         )
-        data["tags"] = list(
-            TagModel.query.filter(TagModel.id.in_(data["tags"]))
-        )
-
-        article = ArticleModel.query.filter(
-            ArticleModel.id == article_id
-        ).first_or_404()
-        for k, v in data.items():
-            setattr(article, k, v)
         db.session.commit()
         return jsonify(), 200
 
     @login_required
-    @permissions(["can_create_articles"])
+    @permissions(["can_add_articles"])
     def post(self):
         """
         Create article
@@ -107,18 +99,12 @@ class ArticleAPI(SwaggerView):
                   default: Article created.
         """
         json_data = request.get_json()
+        print(json_data)
         if not json_data:
             return jsonify({"message": "Invalid request"}), 400
-        data = ArticlePutPostSchema().load(data=json_data, partial=True)
-        data["categories"] = list(
-            CategoryModel.query.filter(
-                CategoryModel.id.in_(data["categories"])
-            )
+        article = ArticlePutPostSchema().load(
+            data=json_data, partial=True, session=db.session
         )
-        data["tags"] = list(
-            TagModel.query.filter(TagModel.id.in_(data["tags"]))
-        )
-        article = ArticleModel(**data)
         db.session.add(article)
         db.session.commit()
 
