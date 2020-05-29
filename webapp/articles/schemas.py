@@ -14,7 +14,8 @@ class TagSchema(ModelSchema):
         """
         MetaClass for Tag Schema
         """
-        model = TagModel
+
+        model: TagModel = TagModel
 
 
 class CategorySchema(ModelSchema):
@@ -26,13 +27,15 @@ class CategorySchema(ModelSchema):
         """
         MetaClass for Category Schema
         """
-        model = CategoryModel
+
+        model: CategoryModel = CategoryModel
 
 
 class ArticleSchema(ModelSchema):
     """
     ArticleModel BaseSchema
     """
+
     id = fields.Int(dump_only=True)
     tags = sqlalchemy_fields.Nested(TagSchema, many=True)
     categories = sqlalchemy_fields.Nested(CategorySchema, many=True)
@@ -41,6 +44,7 @@ class ArticleSchema(ModelSchema):
         """
         MetaClass for Article Schema
         """
+
         model = ArticleModel
 
 
@@ -48,6 +52,7 @@ class ArticlePutPostSchema(ArticleSchema):
     """
     Schema for put/post methods for Article Model
     """
+
     tags = sqlalchemy_fields.Nested(TagSchema, many=True, only=["id"])
     categories = sqlalchemy_fields.Nested(
         CategorySchema, many=True, only=["id"]

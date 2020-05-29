@@ -15,9 +15,6 @@ class ArticleAPI(SwaggerView):
     Articles endpoints
     """
 
-    responses = {
-        200: {"description": "Article retrieved", "schema": ArticleSchema}
-    }
     tags = ["articles"]
     definitions = {
         "ArticleSchema": ArticleSchema,
@@ -61,21 +58,50 @@ class ArticleAPI(SwaggerView):
               properties:
                 message:
                   type: string
-                  default: Article updated.
+                  default: Article updated
+          400:
+            description: Invalid request
+            schema:
+              id: Invalid
+              properties:
+                message:
+                  type: string
+                  default: Invalid request
+          404:
+            description: Not exist
+            schema:
+              id: NotExist
+              properties:
+                message:
+                  type: string
+                  default: Article does not exist.
+          500:
+            description: Fail
+            schema:
+              id: Fail
+              properties:
+                message:
+                  type: string
         """
-        json_data = request.get_json()
+        json_data: dict = request.get_json()
         if not json_data:
             return jsonify({"message": "Invalid request"}), 400
-        ArticlePutPostSchema().load(
-            data=json_data,
-            instance=ArticleModel.query.filter(
-                ArticleModel.id == article_id
-            ).first_or_404(),
-            partial=True,
-            session=db.session,
+        article: ArticleModel = ArticleModel.query.filter(
+            ArticleModel.id == article_id
         )
-        db.session.commit()
-        return jsonify(), 200
+        if not article:
+            return jsonify({"message": "Article does not exist."}), 404
+        try:
+            ArticlePutPostSchema().load(
+                data=json_data,
+                instance=article.first(),
+                partial=True,
+                session=db.session,
+            )
+            db.session.commit()
+        except Exception as e:
+            return jsonify({"message": str(e)}), 500
+        return jsonify({"message": "Article updated"}), 200
 
     @login_required
     @permissions(["can_add_articles"])
@@ -92,20 +118,38 @@ class ArticleAPI(SwaggerView):
           200:
             description: Article created
             schema:
-              id: Successful
+              id: Successful created
               properties:
                 message:
                   type: string
                   default: Article created.
+                id:
+                  type: integer
+          400:
+            description: Invalid request
+            schema:
+              id: Invalid
+              properties:
+                message:
+                  type: string
+                  default: Invalid request
+          500:
+            description: Fail
+            schema:
+              id: Fail
+              properties:
+                message:
+                  type: string
         """
-        json_data = request.get_json()
-        print(json_data)
+        json_data: dict = request.get_json()
         if not json_data:
             return jsonify({"message": "Invalid request"}), 400
-        article = ArticlePutPostSchema().load(
-            data=json_data, partial=True, session=db.session
-        )
-        db.session.add(article)
-        db.session.commit()
-
-        return jsonify(), 200
+        try:
+            article: ArticleModel = ArticlePutPostSchema().load(
+                data=json_data, partial=True, session=db.session
+            )
+            db.session.add(article)
+            db.session.commit()
+        except Exception as e:
+            return jsonify({"message": str(e)}), 500
+        return jsonify({"message": "Article created", "id": article.id}), 200

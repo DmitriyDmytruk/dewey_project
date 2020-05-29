@@ -67,7 +67,7 @@ class UserAPI(MethodView):
             # detail view
             pass
 
-    def post(self):  # pylint: disable=C0116
+    def post(self):
         json_data = request.get_json()
         if not json_data:
             return {"message": "No input data provided"}, 400
