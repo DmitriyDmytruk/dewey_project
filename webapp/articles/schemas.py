@@ -1,6 +1,5 @@
 from marshmallow import fields
-from marshmallow_sqlalchemy import ModelSchema
-from marshmallow_sqlalchemy import fields as sqlalchemy_fields
+from marshmallow_sqlalchemy import ModelSchema, fields as sqlalchemy_fields
 
 from .models import ArticleModel, CategoryModel, TagModel
 

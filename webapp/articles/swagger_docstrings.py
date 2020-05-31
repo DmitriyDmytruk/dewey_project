@@ -1,3 +1,37 @@
+articles_retrieve_docstring = """
+        Retrieve articles
+        ---
+        responses:
+          200:
+            description: Articles retrieved
+            schema:
+              $ref: '#/definitions/ArticleSchema'
+          400:
+            description: Invalid request
+            schema:
+              id: Invalid
+              properties:
+                message:
+                  type: string
+                  default: Invalid request
+          404:
+            description: Not exist
+            schema:
+              id: NotExist
+              properties:
+                message:
+                  type: string
+                  default: Article does not exist.
+          500:
+            description: Fail
+            schema:
+              id: Fail
+              properties:
+                message:
+                  type: string
+        """
+
+
 article_update_docstring = """
         Update article
         ---

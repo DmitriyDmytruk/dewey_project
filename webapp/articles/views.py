@@ -5,12 +5,17 @@ from flask import jsonify, request
 
 from webapp import db
 from webapp.utils.decorators import login_required, permissions
+from webapp.utils.error_responses import (
+    acces_denied_response,
+    login_failed_response,
+)
 
 from .models import ArticleModel
 from .schemas import ArticlePutPostSchema, ArticleSchema
 from .swagger_docstrings import (
     article_create_docstring,
     article_update_docstring,
+    articles_retrieve_docstring,
 )
 
 
@@ -24,15 +29,11 @@ class ArticleAPI(SwaggerView):
         "ArticleSchema": ArticleSchema,
         "ArticlePutPostSchema": ArticlePutPostSchema,
     }
+    responses = {401: login_failed_response, 403: acces_denied_response}
 
     @login_required
     @permissions(["can_search_articles"])
     def get(self, article_id: str = None) -> Dict[str, Any]:
-        """
-        Retrieve Articles list
-        :param article_id:str
-        :return: ArticleSchema
-        """
         if article_id is None:
             articles_schema = ArticleSchema(many=True)
             articles: List[ArticleModel] = ArticleModel.query.all()
@@ -79,5 +80,6 @@ class ArticleAPI(SwaggerView):
         return jsonify({"message": "Article created", "id": article.id}), 200
 
 
+ArticleAPI.get.__doc__ = articles_retrieve_docstring
 ArticleAPI.put.__doc__ = article_update_docstring
 ArticleAPI.post.__doc__ = article_create_docstring
