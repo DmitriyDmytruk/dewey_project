@@ -1,5 +1,3 @@
-from typing import Callable
-
 from openpyxl import Workbook
 from openpyxl.styles import Alignment
 from openpyxl.utils import get_column_letter
@@ -8,7 +6,7 @@ from openpyxl.writer.excel import save_virtual_workbook
 from webapp.articles.models import ArticleModel
 
 
-def convert_to_xls(article: ArticleModel) -> Callable[[Workbook], bytes]:
+def convert_to_xls(article: ArticleModel) -> bytes:
     """
     Converts Article model to xls book
     """

@@ -1,8 +1,7 @@
 from typing import IO, Any, Dict, List, Optional, Tuple, Union
 
 from flasgger import SwaggerView
-from flask import jsonify, request
-from flask import Response, jsonify
+from flask import Response, jsonify, request
 
 from webapp import db
 from webapp.utils.decorators import login_required, permissions
@@ -16,6 +15,7 @@ from .models import ArticleModel
 from .schemas import ArticlePutPostSchema, ArticleSchema
 from .swagger_docstrings import (
     article_create_docstring,
+    article_download_docstring,
     article_update_docstring,
     articles_retrieve_docstring,
 )
@@ -34,7 +34,7 @@ class ArticleAPI(SwaggerView):
     responses = {401: login_failed_response, 403: acces_denied_response}
 
     @login_required
-    @permissions(["can_search_articles"])
+    @permissions(["can_view_articles"])
     def get(self, article_id: str = None) -> Dict[str, Any]:
         if article_id is None:
             articles_schema = ArticleSchema(many=True)
@@ -82,52 +82,21 @@ class ArticleAPI(SwaggerView):
         return jsonify({"message": "Article created", "id": article.id}), 200
 
 
-ArticleAPI.get.__doc__ = articles_retrieve_docstring
-ArticleAPI.put.__doc__ = article_update_docstring
-ArticleAPI.post.__doc__ = article_create_docstring
-
-
 class DownloadArticleXLS(SwaggerView):
     """
     Download article from database
     """
 
-    responses = {200: {"download_link": ""}}
     tags = ["articles"]
 
+    @login_required
+    @permissions(["can_view_articles"])
     def get(self, article_id: int) -> Union[Tuple[Dict[str, str], int], IO]:
-        """
-        Download article
-        ---
-        parameters:
-          - in: path
-            name: article_id
-            type: string
-            required: true
-        responses:
-          200:
-            description: Download file
-            schema:
-              id: Successful
-              properties:
-                file:
-                  type: file
-                  description: .xls file
-          404:
-            description: Not exist
-            schema:
-              id: NotExist
-              properties:
-                message:
-                  type: string
-                  default: Article does not exist.
-        """
         article: Optional[ArticleModel] = ArticleModel.query.filter_by(
             id=article_id
         ).one_or_none()
         if article:
             book = convert_to_xls(article)
-            print(type(book))
             return Response(
                 book,
                 mimetype="application/vnd.ms-excel",
@@ -137,3 +106,9 @@ class DownloadArticleXLS(SwaggerView):
             )
         else:
             return jsonify({"message": "Article does not exist."}), 404
+
+
+ArticleAPI.get.__doc__ = articles_retrieve_docstring
+ArticleAPI.put.__doc__ = article_update_docstring
+ArticleAPI.post.__doc__ = article_create_docstring
+DownloadArticleXLS.get.__doc__ = article_download_docstring

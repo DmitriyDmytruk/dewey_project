@@ -1,8 +1,7 @@
 import datetime
-
-from sqlalchemy.schema import UniqueConstraint
 from typing import List
 
+from sqlalchemy.schema import UniqueConstraint
 from sqlalchemy_utils import ScalarListType
 
 from webapp import db
