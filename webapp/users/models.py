@@ -95,7 +95,9 @@ class UserModel(db.Model):
         :return: string
         """
         try:
-            api_user_role = RoleModel.query.filter_by(title="API User").one()
+            api_user_role: Optional[RoleModel] = RoleModel.query.filter_by(
+                title="API User"
+            ).one_or_none()
             payload = {
                 "exp": (
                     datetime.datetime.utcnow() + datetime.timedelta(minutes=30)
@@ -103,9 +105,8 @@ class UserModel(db.Model):
                 "iat": datetime.datetime.utcnow(),
                 "sub": self.email,
             }
-            if self.role_id and api_user_role == self.role:
+            if self.role_id and api_user_role and api_user_role == self.role:
                 del payload["exp"]
-
             return jwt.encode(
                 payload,
                 current_app.config.get("SECRET_KEY"),
