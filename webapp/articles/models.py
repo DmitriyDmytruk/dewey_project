@@ -1,5 +1,6 @@
 import datetime
 
+from sqlalchemy.schema import UniqueConstraint
 from sqlalchemy_utils import ScalarListType
 
 from webapp import db
@@ -74,6 +75,7 @@ class ArticleModel(db.Model, SearchableMixin):
     """
 
     __tablename__ = "articles"
+    __table_args__ = (UniqueConstraint("title", "state"),)
     __searchable__ = [
         "id",
         "title",
@@ -92,7 +94,7 @@ class ArticleModel(db.Model, SearchableMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     unique_id = db.Column(db.String(30), nullable=False, unique=True)
-    title = db.Column(db.String(500), nullable=False, unique=True)
+    title = db.Column(db.String(500), nullable=False)
     legal_language = db.Column(db.Text, nullable=False)
     citation = db.Column(db.String(255), nullable=False)
     cfr40_part280 = db.Column(db.Text, nullable=False)
@@ -102,7 +104,7 @@ class ArticleModel(db.Model, SearchableMixin):
     reference_images = db.Column(ScalarListType())
     effective_date = db.Column(db.Date)
     updated_date = db.Column(db.Date)
-    update_at = db.Column(db.DateTime, onupdate=datetime.datetime.now)
+    updated_at = db.Column(db.DateTime, onupdate=datetime.datetime.now)
     tags = db.relationship(TagModel, secondary=article_tags)
     state = db.Column(db.String(128))
 
