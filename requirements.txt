@@ -32,6 +32,7 @@ lazy-object-proxy==1.4.3
 Mako==1.1.1
 MarkupSafe==1.1.1
 marshmallow==3.5.0
+marshmallow-sqlalchemy==0.23.0
 mccabe==0.6.1
 mistune==0.8.4
 more-itertools==8.2.0
