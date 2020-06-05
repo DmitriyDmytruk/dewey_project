@@ -87,7 +87,8 @@ class ArticleSearchAPI(SwaggerView):
     Search articles using ElasticSearch
     """
 
-    def _filter_create(self, queries: List[Q]) -> Q:
+    @staticmethod
+    def filter_create(queries: List[Q]) -> Q:
         """
         Creates Q.OR filter
         """
@@ -96,6 +97,21 @@ class ArticleSearchAPI(SwaggerView):
             query |= item
         return query
 
+    @staticmethod
+    def usable_items(found: list, items: str) -> List[str]:
+        """
+        Generates list of usable items
+        """
+        return sorted(
+            list(
+                set(
+                    item
+                    for article in found
+                    for item in article["_source"][items]
+                )
+            )
+        )
+
     @login_required
     @permissions(["can_view_articles"])
     def get(self) -> dict:
@@ -103,6 +119,22 @@ class ArticleSearchAPI(SwaggerView):
         categories = data.get("categories")
         tags = data.get("tags")
         state = data.get("state")
+        result = "Articles not found."
+
+        search = Search(using=es, index=ArticleModel.__tablename__)
+
+        if not categories and not tags and not state:
+            found = search.execute().to_dict()["hits"].get("hits")
+            if found:
+                result = [article["_source"] for article in found]
+                usable_categories = self.usable_items(found, "categories")
+                usable_tags = self.usable_items(found, "tags")
+                return {
+                    "response": result,
+                    "categories": usable_categories,
+                    "tags": usable_tags,
+                }
+            return {"response": result}
 
         state_filter = categories_filter = tags_filter = Q()
 
@@ -111,19 +143,20 @@ class ArticleSearchAPI(SwaggerView):
 
         if categories:
             queries = [Q("match", categories=value) for value in categories]
-            categories_filter = self._filter_create(queries)
+            categories_filter = self.filter_create(queries)
 
         if tags:
             queries = [Q("match", tags=value) for value in tags]
-            tags_filter = categories_filter = self._filter_create(queries)
+            tags_filter = categories_filter = self.filter_create(queries)
 
-        search = Search(using=es, index=ArticleModel.__tablename__)
         combined_filter = state_filter & categories_filter & tags_filter
-        s = search.filter(combined_filter)
-        res = s.execute()
-        found = res.to_dict()["hits"].get("hits")
+        found = (
+            search.filter(combined_filter)
+            .execute()
+            .to_dict()["hits"]
+            .get("hits")
+        )
 
-        result = "Articles not found."
         if found:
             result = [article["_source"] for article in found]
         return {"response": result}
