@@ -113,3 +113,30 @@ article_create_docstring = """
                 message:
                   type: string
         """
+
+articles_search_docstring = """
+        Articles search
+        ---
+        tags: ['articles']
+        description: in ``body`` - ``{"state" - "string", "tags" - ["Tag name 1", "Tag name 2"], "categories" - ["Category name 1", "Category name 2"]}``
+        responses:
+          200:
+            description: Articles found
+            schema:
+              $ref: '#/definitions/ArticleSchema'
+          400:
+            description: Invalid request
+            schema:
+              id: Invalid
+              properties:
+                message:
+                  type: string
+                  default: Invalid request
+          500:
+            description: Fail
+            schema:
+              id: Fail
+              properties:
+                message:
+                  type: string
+        """

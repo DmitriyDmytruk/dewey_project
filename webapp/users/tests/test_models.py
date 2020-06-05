@@ -11,7 +11,7 @@ def test_create_new_role_permission(session):
     """
     Test for Role create
     """
-    permission_title: str = "can_search_articles"
+    permission_title: str = "can_view_articles"
     role_title: str = "API User"
     permission: PermissionModel = PermissionModel(permission_title)
     role: RoleModel = RoleModel(title=role_title, permissions=[permission])

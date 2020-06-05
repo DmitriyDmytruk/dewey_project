@@ -1,9 +1,10 @@
 from typing import Any, Dict, List
 
+from elasticsearch_dsl import Q, Search
 from flasgger import SwaggerView
 from flask import jsonify, request
 
-from webapp import db
+from webapp import db, es
 from webapp.utils.decorators import login_required, permissions
 from webapp.utils.error_responses import (
     acces_denied_response,
@@ -16,6 +17,7 @@ from .swagger_docstrings import (
     article_create_docstring,
     article_update_docstring,
     articles_retrieve_docstring,
+    articles_search_docstring,
 )
 
 
@@ -32,7 +34,7 @@ class ArticleAPI(SwaggerView):
     responses = {401: login_failed_response, 403: acces_denied_response}
 
     @login_required
-    @permissions(["can_search_articles"])
+    @permissions(["can_view_articles"])
     def get(self, article_id: str = None) -> Dict[str, Any]:
         if article_id is None:
             articles_schema = ArticleSchema(many=True)
@@ -80,6 +82,54 @@ class ArticleAPI(SwaggerView):
         return jsonify({"message": "Article created", "id": article.id}), 200
 
 
+class ArticleSearchAPI(SwaggerView):
+    """
+    Search articles using ElasticSearch
+    """
+
+    def _filter_create(self, queries: List[Q]) -> Q:
+        """
+        Creates Q.OR filter
+        """
+        query = queries.pop()
+        for item in queries:
+            query |= item
+        return query
+
+    @login_required
+    @permissions(["can_view_articles"])
+    def get(self) -> dict:
+        data = request.get_json()
+        categories = data.get("categories")
+        tags = data.get("tags")
+        state = data.get("state")
+
+        state_filter = categories_filter = tags_filter = Q()
+
+        if state:
+            state_filter = Q("match", state=state)
+
+        if categories:
+            queries = [Q("match", categories=value) for value in categories]
+            categories_filter = self._filter_create(queries)
+
+        if tags:
+            queries = [Q("match", tags=value) for value in tags]
+            tags_filter = categories_filter = self._filter_create(queries)
+
+        search = Search(using=es, index=ArticleModel.__tablename__)
+        combined_filter = state_filter & categories_filter & tags_filter
+        s = search.filter(combined_filter)
+        res = s.execute()
+        found = res.to_dict()["hits"].get("hits")
+
+        result = "Articles not found."
+        if found:
+            result = [article["_source"] for article in found]
+        return {"response": result}
+
+
 ArticleAPI.get.__doc__ = articles_retrieve_docstring
 ArticleAPI.put.__doc__ = article_update_docstring
 ArticleAPI.post.__doc__ = article_create_docstring
+ArticleSearchAPI.get.__doc__ = articles_search_docstring
