@@ -1,7 +1,7 @@
 import pytest
 from sqlalchemy.exc import IntegrityError
 
-from webapp.articles.models import ArticleModel, TagModel
+from webapp.articles.models import ArticleModel, CategoryModel, TagModel
 
 
 def test_new_tag(session):
@@ -17,6 +17,24 @@ def test_new_tag(session):
     tag_name: str = "Test tag"
     new_tag: TagModel = TagModel(name=tag_name)
     session.add(new_tag)
+    with pytest.raises(IntegrityError) as e:
+        session.commit()
+    assert e.typename == "IntegrityError"
+
+
+def test_new_category(session):
+    """
+    Test for Category create
+    """
+    category_name: str = "Category"
+    new_category: CategoryModel = CategoryModel(name=category_name)
+    session.add(new_category)
+    session.commit()
+    assert new_category.name == category_name
+
+    category_name: str = "Test category"
+    new_category: CategoryModel = CategoryModel(name=category_name)
+    session.add(new_category)
     with pytest.raises(IntegrityError) as e:
         session.commit()
     assert e.typename == "IntegrityError"
@@ -50,6 +68,17 @@ def test_delete_tag(session):
     assert start_count == TagModel.query.count() + 1
 
 
+def test_delete_category(session):
+    """
+    Test for Category delete
+    """
+    start_count: int = session.query(CategoryModel).count()
+    category: CategoryModel = session.query(CategoryModel).first()
+    session.delete(category)
+    session.commit()
+    assert start_count == CategoryModel.query.count() + 1
+
+
 def test_delete_article(session):
     """
     Test for Article delete
@@ -71,6 +100,18 @@ def test_update_tag(session):
     session.add(tag)
     session.commit()
     assert tag.name == "New name"
+
+
+def test_update_category(session):
+    """
+    Test for Category update
+    """
+    new_name: str = "New name"
+    category: CategoryModel = session.query(CategoryModel).first()
+    category.name = new_name
+    session.add(category)
+    session.commit()
+    assert category.name == "New name"
 
 
 def test_update_article(session):

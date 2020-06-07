@@ -48,13 +48,13 @@ class ArticleAPI(SwaggerView):
             return jsonify({"message": "Invalid request"}), 400
         article: ArticleModel = ArticleModel.query.filter(
             ArticleModel.id == article_id
-        )
+        ).first()
         if not article:
             return jsonify({"message": "Article does not exist."}), 404
         try:
             ArticlePutPostSchema().load(
                 data=json_data,
-                instance=article.first(),
+                instance=article,
                 partial=True,
                 session=db.session,
             )
