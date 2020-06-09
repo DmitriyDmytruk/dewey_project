@@ -13,7 +13,11 @@ from webapp.utils.error_responses import (
 
 from .helpers.export_to_xls import convert_to_xls
 from .models import ArticleModel
-from .schemas import ArticlePutPostSchema, ArticleSchema
+from .schemas import (
+    ArticleFirstRequestSchema,
+    ArticlePutPostSchema,
+    ArticleSchema,
+)
 from .swagger_docstrings import (
     article_create_docstring,
     article_download_docstring,
@@ -89,6 +93,11 @@ class ArticleSearchAPI(SwaggerView):
     Search articles using ElasticSearch
     """
 
+    definitions = {
+        "ArticleFirstRequestSchema": ArticleFirstRequestSchema,
+        "ArticleSchema": ArticleSchema,
+    }
+
     @staticmethod
     def filter_create(queries: List[Q]) -> Q:
         """
@@ -136,7 +145,12 @@ class ArticleSearchAPI(SwaggerView):
                     "categories": usable_categories,
                     "tags": usable_tags,
                     "states": sorted(
-                        list(set(article["state"] for article in found))
+                        list(
+                            set(
+                                article["_source"]["state"]
+                                for article in found
+                            )
+                        )
                     ),
                 }
             return {"response": result}

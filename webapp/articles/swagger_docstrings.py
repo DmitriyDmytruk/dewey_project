@@ -123,7 +123,7 @@ articles_search_docstring = """
           200:
             description: Articles found
             schema:
-              $ref: '#/definitions/ArticleSchema'
+              $ref: '#/definitions/ArticleFirstRequestSchema'
           400:
             description: Invalid request
             schema:
