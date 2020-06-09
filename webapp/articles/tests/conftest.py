@@ -41,11 +41,15 @@ def prepare_data(session):
 def app(request):
     """Session-wide test `Flask` application."""
     app = create_app("config.TestConfig")
+    db.app = app
+
     with app.app_context() as ctx:
         ctx.push()
 
     def teardown():
         ctx.pop()
+        db.drop_all()
+        pass
 
     request.addfinalizer(teardown)
     return app
