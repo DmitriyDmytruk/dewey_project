@@ -87,11 +87,6 @@ class ArticleAPI(SwaggerView):
         return jsonify({"message": "Article created", "id": article.id}), 200
 
 
-ArticleAPI.get.__doc__ = articles_retrieve_docstring
-ArticleAPI.put.__doc__ = article_update_docstring
-ArticleAPI.post.__doc__ = article_create_docstring
-
-
 class UploadFileAPI(SwaggerView):
     """
     Read xls/csv file
@@ -122,4 +117,7 @@ class UploadFileAPI(SwaggerView):
         return make_response(jsonify(response)), 200
 
 
+ArticleAPI.get.__doc__ = articles_retrieve_docstring
+ArticleAPI.put.__doc__ = article_update_docstring
+ArticleAPI.post.__doc__ = article_create_docstring
 UploadFileAPI.post.__doc__ = file_upload_docstring
