@@ -22,7 +22,7 @@ class ArticleAPI(SwaggerView):
     tags = ["articles"]
 
     @login_required
-    @permissions(["can_search_articles"])
+    @permissions(["can_view_articles"])
     def get(self, article_id: str) -> Dict[str, Any]:
         """
         Retrieve Articles list
@@ -43,22 +43,27 @@ class UploadFileAPI(SwaggerView):
 
     ALLOWED_EXTENSIONS = ["xls", "csv"]
 
-    def post(self):  # pylint: disable=C0116
+    @login_required
+    @permissions(["can_view_articles"])
+    def post(self):
+        """
+        xls/csv file upload
+        """
         file = request.files["file"]
         request.form.get("data")
         file_extension = file.filename.split(".")[-1]
-        responseObject = {"status": "success", "message": "File uploaded."}
+        response = {"status": "success", "message": "File uploaded."}
         if file_extension not in self.ALLOWED_EXTENSIONS:
-            responseObject = {
+            response = {
                 "status": "fail",
                 "message": "Extension of file not allowed",
             }
-            return make_response(jsonify(responseObject)), 400
+            return make_response(jsonify(response)), 400
         elif file_extension == "csv":
             CSVReader().to_dict(file)
-            return make_response(jsonify(responseObject)), 200
+            return make_response(jsonify(response)), 200
         XLSReader().to_dict(file)
-        return make_response(jsonify(responseObject)), 200
+        return make_response(jsonify(response)), 200
 
 
 UploadFileAPI.post.__doc__ = file_upload_docstring

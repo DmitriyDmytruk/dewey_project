@@ -2,7 +2,7 @@ file_upload_docstring = """
         Read xls/csv file
         ---
         tags:
-          - File upload
+          - articles
         consumes:
           - multipart/form-data
         parameters:

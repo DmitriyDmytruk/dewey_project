@@ -32,6 +32,7 @@ class TestConfig(Config):
     TESTDB_PATH = os.path.join(basedir, TESTDB)
     TEST_DATABASE_URI = "sqlite:///" + TESTDB_PATH
     SECRET_KEY = "SECRET-KEY"
+    SERVER_NAME = "localhost"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     TESTING = True
     SQLALCHEMY_DATABASE_URI = TEST_DATABASE_URI
