@@ -135,6 +135,9 @@ class ArticleSearchAPI(SwaggerView):
                     "response": result,
                     "categories": usable_categories,
                     "tags": usable_tags,
+                    "states": sorted(
+                        list(set(article["state"] for article in found))
+                    ),
                 }
             return {"response": result}
 
