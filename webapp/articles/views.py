@@ -1,8 +1,8 @@
-from typing import Any, Dict, List
+from typing import IO, Any, Dict, List, Optional, Tuple, Union
 
 from elasticsearch_dsl import Q, Search
 from flasgger import SwaggerView
-from flask import jsonify, request
+from flask import Response, jsonify, request
 
 from webapp import db, es
 from webapp.utils.decorators import login_required, permissions
@@ -11,10 +11,12 @@ from webapp.utils.error_responses import (
     login_failed_response,
 )
 
+from .helpers.export_to_xls import convert_to_xls
 from .models import ArticleModel
 from .schemas import ArticlePutPostSchema, ArticleSchema
 from .swagger_docstrings import (
     article_create_docstring,
+    article_download_docstring,
     article_update_docstring,
     articles_retrieve_docstring,
     articles_search_docstring,
@@ -162,7 +164,34 @@ class ArticleSearchAPI(SwaggerView):
         return {"response": result}
 
 
+class DownloadArticleXLS(SwaggerView):
+    """
+    Download article from database
+    """
+
+    tags = ["articles"]
+
+    @login_required
+    @permissions(["can_view_articles"])
+    def get(self, article_id: int) -> Union[Tuple[Dict[str, str], int], IO]:
+        article: Optional[ArticleModel] = ArticleModel.query.filter_by(
+            id=article_id
+        ).one_or_none()
+        if article:
+            book = convert_to_xls(article)
+            return Response(
+                book,
+                mimetype="application/vnd.ms-excel",
+                headers={
+                    "Content-disposition": f"attachment; filename={article.title}.xls"
+                },
+            )
+        else:
+            return jsonify({"message": "Article does not exist."}), 404
+
+
 ArticleAPI.get.__doc__ = articles_retrieve_docstring
 ArticleAPI.put.__doc__ = article_update_docstring
 ArticleAPI.post.__doc__ = article_create_docstring
 ArticleSearchAPI.get.__doc__ = articles_search_docstring
+DownloadArticleXLS.get.__doc__ = article_download_docstring
