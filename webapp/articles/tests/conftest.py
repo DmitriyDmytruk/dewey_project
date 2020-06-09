@@ -13,7 +13,7 @@ TESTDB_PATH = os.path.join(basedir, TESTDB)
 
 
 def prepare_data(session):
-    permission: PermissionModel = PermissionModel(title="can_search_articles")
+    permission: PermissionModel = PermissionModel(title="can_view_articles")
     role: RoleModel = RoleModel(title="API User", permissions=[permission])
     tag: TagModel = TagModel(name="Test tag")
     article: ArticleModel = ArticleModel(
