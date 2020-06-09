@@ -157,7 +157,8 @@ disable=print-statement,
         C0301, # line-too-long
         R1705, # no-else-return
         E1101, # disable=no-member,
-        R0801
+        R0801,
+        C0116
 
 
 # Enable the message, report, category or checker with the given id(s). You can

@@ -1,39 +1,58 @@
-from marshmallow import Schema, fields
+from marshmallow import fields
+from marshmallow_sqlalchemy import ModelSchema, fields as sqlalchemy_fields
+
+from .models import ArticleModel, CategoryModel, TagModel
 
 
-class TagSchema(Schema):
+class TagSchema(ModelSchema):
     """
     Tag schema
     """
 
-    id = fields.Int()
-    name = fields.String()
+    class Meta:
+        """
+        MetaClass for Tag Schema
+        """
+
+        model: TagModel = TagModel
 
 
-class CategorySchema(Schema):
+class CategorySchema(ModelSchema):
     """
     Category schema
     """
 
-    id = fields.Int()
-    name = fields.String()
+    class Meta:
+        """
+        MetaClass for Category Schema
+        """
+
+        model: CategoryModel = CategoryModel
 
 
-class ArticleSchema(Schema):
+class ArticleSchema(ModelSchema):
     """
-    Article schema
+    ArticleModel BaseSchema
     """
 
-    id = fields.Int()
-    title = fields.String()
-    legal_language = fields.String()
-    citation = fields.String()
-    cfr40_part280 = fields.String()
-    local_regulation = fields.String()
-    abstract = fields.String()
-    categories = fields.List(fields.Nested(CategorySchema))
-    reference_images = fields.String()
-    effective_date = fields.Date()
-    updated_date = fields.Date()
-    tags = fields.List(fields.Nested(TagSchema))
-    state = fields.String()
+    id = fields.Int(dump_only=True)
+    tags = sqlalchemy_fields.Nested(TagSchema, many=True)
+    categories = sqlalchemy_fields.Nested(CategorySchema, many=True)
+
+    class Meta:
+        """
+        MetaClass for Article Schema
+        """
+
+        model = ArticleModel
+
+
+class ArticlePutPostSchema(ArticleSchema):
+    """
+    Schema for put/post methods for Article Model
+    """
+
+    tags = sqlalchemy_fields.Nested(TagSchema, many=True, only=["id"])
+    categories = sqlalchemy_fields.Nested(
+        CategorySchema, many=True, only=["id"]
+    )
