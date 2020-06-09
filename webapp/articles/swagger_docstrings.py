@@ -4,31 +4,39 @@ articles_retrieve_docstring = """
         responses:
           200:
             description: Articles retrieved
-            schema:
-              $ref: '#/definitions/ArticleSchema'
+            content: 
+              application/json:
+                schema:
+                  $ref: '#/definitions/ArticleSchema'
           400:
             description: Invalid request
-            schema:
-              id: Invalid
-              properties:
-                message:
-                  type: string
-                  default: Invalid request
+            content: 
+              application/json:
+                schema:
+                  id: Invalid
+                  properties:
+                    message:
+                      type: string
+                      default: Invalid request
           404:
             description: Not exist
-            schema:
-              id: NotExist
-              properties:
-                message:
-                  type: string
-                  default: Article does not exist.
+            content: 
+              application/json:
+                schema:
+                  id: NotExist
+                  properties:
+                    message:
+                      type: string
+                      default: Article does not exist.
           500:
             description: Fail
-            schema:
-              id: Fail
-              properties:
-                message:
-                  type: string
+            content: 
+              application/json:
+                schema:
+                  id: Fail
+                  properties:
+                    message:
+                      type: string
         """
 
 
@@ -36,46 +44,55 @@ article_update_docstring = """
         Update article
         ---
         parameters:
-          - in: body
-            name: data
+          - name: data
+            in: body
             schema:
               $ref: '#/definitions/ArticlePutPostSchema'
-          - in: path
-            name: article_id
-            type: string
+          - name: article_id
+            in: path
             required: true
+            schema:
+              type: integer
         responses:
           200:
             description: Article updated
-            schema:
-              id: Successful
-              properties:
-                message:
-                  type: string
-                  default: Article updated
+            content: 
+              application/json:
+                schema:
+                  id: Successful
+                  properties:
+                    message:
+                      type: string
+                      default: Article updated
           400:
             description: Invalid request
-            schema:
-              id: Invalid
-              properties:
-                message:
-                  type: string
-                  default: Invalid request
+            content: 
+              application/json:
+                schema:
+                  id: Invalid
+                  properties:
+                    message:
+                      type: string
+                      default: Invalid request
           404:
             description: Not exist
-            schema:
-              id: NotExist
-              properties:
-                message:
-                  type: string
-                  default: Article does not exist.
+            content: 
+              application/json:
+                schema:
+                  id: NotExist
+                  properties:
+                    message:
+                      type: string
+                      default: Article does not exist.
           500:
             description: Fail
-            schema:
-              id: Fail
-              properties:
-                message:
-                  type: string
+            content: 
+              application/json:
+                schema:
+                  id: Fail
+                  properties:
+                    message:
+                      type: string
         """
 
 article_create_docstring = """
@@ -87,58 +104,75 @@ article_create_docstring = """
             schema:
               $ref: '#/definitions/ArticlePutPostSchema'
         responses:
-          200:
+          '200':
             description: Article created
-            schema:
-              id: Successful created
-              properties:
-                message:
-                  type: string
-                  default: Article created.
-                id:
-                  type: integer
-          400:
+            content: 
+              application/json:
+                schema:
+                  id: Successful created
+                  properties:
+                    message:
+                      type: string
+                      default: Article created.
+                    id:
+                      type: integer
+          '400':
             description: Invalid request
-            schema:
-              id: Invalid
-              properties:
-                message:
-                  type: string
-                  default: Invalid request
-          500:
+            content: 
+              application/json:
+                schema:
+                  id: Invalid
+                  properties:
+                    message:
+                      type: string
+                      default: Invalid request
+          '500':
             description: Fail
-            schema:
-              id: Fail
-              properties:
-                message:
-                  type: string
+            content: 
+              application/json:
+                schema:
+                  id: Fail
+                  properties:
+                    message:
+                      type: string
         """
 
 articles_search_docstring = """
         Articles search
         ---
+        openapi: 3.0.0
         tags: ['articles']
         description: in ``body`` - ``{"state" - "string", "tags" - ["Tag name 1", "Tag name 2"], "categories" - ["Category name 1", "Category name 2"]}``
         responses:
-          200:
+          '200':
             description: Articles found
-            schema:
-              $ref: '#/definitions/ArticleFirstRequestSchema'
-          400:
+            content: 
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    oneOf:
+                      - $ref: '#/definitions/ArticleFirstRequestSchema'
+                      - $ref: '#/definitions/ArticleSchema'
+          '400':
             description: Invalid request
-            schema:
-              id: Invalid
-              properties:
-                message:
-                  type: string
-                  default: Invalid request
-          500:
+            content: 
+              application/json:
+                schema:
+                  id: Invalid
+                  properties:
+                    message:
+                      type: string
+                      default: Invalid request
+          '500':
             description: Fail
-            schema:
-              id: Fail
-              properties:
-                message:
-                  type: string
+            content: 
+              application/json:
+                schema:
+                  id: Fail
+                  properties:
+                    message:
+                      type: string
         """
 
 article_download_docstring = """
@@ -149,21 +183,27 @@ article_download_docstring = """
             name: article_id
             type: string
             required: true
-        responses:
-          200:
-            description: Download file
             schema:
-              id: Successful
-              properties:
-                file:
-                  type: file
-                  description: .xls file
+              type: integer
+        responses:
+          '200':
+            description: Download file
+            content: 
+              application/json:
+                schema:
+                  id: Successful
+                  properties:
+                    file:
+                      type: file
+                      description: .xls file
           404:
             description: Not exist
-            schema:
-              id: NotExist
-              properties:
-                message:
-                  type: string
-                  default: Article does not exist.
+            content: 
+              application/json:
+                schema:
+                  id: NotExist
+                  properties:
+                    message:
+                      type: string
+                      default: Article does not exist.
         """

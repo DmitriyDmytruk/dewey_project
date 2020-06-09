@@ -1,5 +1,6 @@
 from typing import Dict, Optional
 
+from flasgger import SwaggerView
 from flask import jsonify, make_response, request
 from flask.views import MethodView
 from marshmallow import ValidationError
@@ -8,7 +9,7 @@ from webapp import db
 from webapp.utils.mailing import sengrid_send_mail
 
 from .models import RoleModel, UserModel
-from .schemas import UserSchema
+from .schemas import RoleSchema, UserSchema
 from .swagger_docstrings import login_docstring, user_create_docstring
 
 
@@ -50,10 +51,12 @@ class LoginAPI(MethodView):
             return make_response(jsonify(responseObject)), 500
 
 
-class UserAPI(MethodView):
+class UserAPI(SwaggerView):
     """
     Users endpoints
     """
+
+    definitions = {"RoleSchema": RoleSchema, "UserSchema": UserSchema}
 
     def get(self, user_id):
         """
@@ -92,7 +95,7 @@ class UserAPI(MethodView):
             sengrid_send_mail(email, subject, content, content_type)
 
             result = UserSchema.dump(UserModel.query.get(user.id))
-            return {"message": "Created new user.", "user": result}
+            return {"user": result}, 201
 
     def delete(self):
         """
