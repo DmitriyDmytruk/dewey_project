@@ -2,8 +2,6 @@ import json
 
 from webapp.articles.models import ArticleModel
 from webapp.users.models import PermissionModel, UserModel
-from webapp.articles.models import ArticleModel
-from webapp.users.models import PermissionModel, UserModel
 
 
 def test_retrieve_articles(client, session):
