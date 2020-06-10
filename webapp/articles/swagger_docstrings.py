@@ -153,3 +153,30 @@ file_upload_docstring = """
                   type: string
                   default: Extension of file not allowed
         """
+
+article_download_docstring = """
+        Download article
+        ---
+        parameters:
+          - in: path
+            name: article_id
+            type: string
+            required: true
+        responses:
+          200:
+            description: Download file
+            schema:
+              id: Successful
+              properties:
+                file:
+                  type: file
+                  description: .xls file
+          404:
+            description: Not exist
+            schema:
+              id: NotExist
+              properties:
+                message:
+                  type: string
+                  default: Article does not exist.
+        """

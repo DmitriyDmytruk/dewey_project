@@ -1,4 +1,5 @@
 import datetime
+from typing import List
 
 from sqlalchemy.schema import UniqueConstraint
 from sqlalchemy_utils import ScalarListType
@@ -110,3 +111,9 @@ class ArticleModel(db.Model, SearchableMixin):
 
     def __repr__(self):
         return "<Article {}>".format(self.title)
+
+    def get_relations(self, attribute: str) -> List[str]:
+        """
+        Converts query [<Model Name>, ...] to list ['Name', ...]
+        """
+        return [item.name for item in getattr(self, attribute)]

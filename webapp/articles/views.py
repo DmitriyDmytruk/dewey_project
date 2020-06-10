@@ -1,6 +1,7 @@
-from typing import Any, Dict, List
+from typing import IO, Any, Dict, List, Optional, Tuple, Union
 
 from flasgger import SwaggerView
+from flask import Response, jsonify, request
 from flask import jsonify, make_response, request
 
 from webapp import db
@@ -11,10 +12,12 @@ from webapp.utils.error_responses import (
 )
 
 from .helpers.xls_csv_to_dict import CSVReader, XLSReader
+from .helpers.export_to_xls import convert_to_xls
 from .models import ArticleModel
 from .schemas import ArticlePutPostSchema, ArticleSchema
 from .swagger_docstrings import (
     article_create_docstring,
+    article_download_docstring,
     article_update_docstring,
     articles_retrieve_docstring,
     file_upload_docstring,
@@ -35,12 +38,7 @@ class ArticleAPI(SwaggerView):
 
     @login_required
     @permissions(["can_view_articles"])
-    def get(self, article_id: str) -> Dict[str, Any]:
-        """
-        Retrieve Articles list
-        :param article_id:str
-        :return: ArticleSchema
-        """
+    def get(self, article_id: str = None) -> Dict[str, Any]:
         if article_id is None:
             articles_schema = ArticleSchema(many=True)
             articles: List[ArticleModel] = ArticleModel.query.all()
@@ -117,7 +115,34 @@ class UploadFileAPI(SwaggerView):
         return make_response(jsonify(response)), 200
 
 
+class DownloadArticleXLS(SwaggerView):
+    """
+    Download article from database
+    """
+
+    tags = ["articles"]
+
+    @login_required
+    @permissions(["can_view_articles"])
+    def get(self, article_id: int) -> Union[Tuple[Dict[str, str], int], IO]:
+        article: Optional[ArticleModel] = ArticleModel.query.filter_by(
+            id=article_id
+        ).one_or_none()
+        if article:
+            book = convert_to_xls(article)
+            return Response(
+                book,
+                mimetype="application/vnd.ms-excel",
+                headers={
+                    "Content-disposition": f"attachment; filename={article.title}.xls"
+                },
+            )
+        else:
+            return jsonify({"message": "Article does not exist."}), 404
+
+
 ArticleAPI.get.__doc__ = articles_retrieve_docstring
 ArticleAPI.put.__doc__ = article_update_docstring
 ArticleAPI.post.__doc__ = article_create_docstring
 UploadFileAPI.post.__doc__ = file_upload_docstring
+DownloadArticleXLS.get.__doc__ = article_download_docstring
