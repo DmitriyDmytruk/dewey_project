@@ -12,7 +12,7 @@ TESTDB_PATH = os.path.join(basedir, TESTDB)
 
 
 def prepare_data(session):
-    permission: PermissionModel = PermissionModel(title="can_search_articles")
+    permission: PermissionModel = PermissionModel(title="can_view_articles")
     role: RoleModel = RoleModel(title="API User", permissions=[permission])
     session.add_all([role, permission])
     session.commit()
