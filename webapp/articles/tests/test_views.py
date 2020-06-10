@@ -3,7 +3,6 @@ import os
 from flask import Response, url_for
 from werkzeug.datastructures import FileStorage
 
-from webapp.users.models import PermissionModel, UserModel
 from webapp.articles.models import ArticleModel
 from webapp.users.models import PermissionModel, UserModel
 

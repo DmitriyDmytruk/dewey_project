@@ -1,8 +1,7 @@
 from typing import IO, Any, Dict, List, Optional, Tuple, Union
 
 from flasgger import SwaggerView
-from flask import Response, jsonify, request
-from flask import jsonify, make_response, request
+from flask import Response, jsonify, make_response, request
 
 from webapp import db
 from webapp.utils.decorators import login_required, permissions
@@ -11,8 +10,8 @@ from webapp.utils.error_responses import (
     login_failed_response,
 )
 
-from .helpers.xls_csv_to_dict import CSVReader, XLSReader
 from .helpers.export_to_xls import convert_to_xls
+from .helpers.xls_csv_to_dict import CSVReader, XLSReader
 from .models import ArticleModel
 from .schemas import ArticlePutPostSchema, ArticleSchema
 from .swagger_docstrings import (
