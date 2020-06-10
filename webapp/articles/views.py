@@ -127,11 +127,12 @@ class ArticleSearchAPI(SwaggerView):
     @permissions(["can_view_articles"])
     def get(self) -> dict:
         data = request.get_json()
-        categories = data.get("categories")
-        tags = data.get("tags")
-        state = data.get("state")
+        categories = tags = state = None
         result = "Articles not found."
-
+        if data:
+            categories = data.get("categories")
+            tags = data.get("tags")
+            state = data.get("state")
         search = Search(using=es, index=ArticleModel.__tablename__)
 
         if not categories and not tags and not state:
