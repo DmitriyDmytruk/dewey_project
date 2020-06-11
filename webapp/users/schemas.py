@@ -22,7 +22,7 @@ class UserSchema(Schema):
     Base user schema
     """
 
-    id = fields.Int()
+    id = fields.Int(dump_only=True)
     email = fields.Email()
     first_name = fields.String(validate=validate.Length(min=2))
     last_name = fields.String(validate=validate.Length(min=2))

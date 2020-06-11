@@ -25,9 +25,14 @@ def create_app(object_name: str):
         object_name: the python path of the config object,
                      e.g. project.config.ProdConfig
     """
-    app = connexion.FlaskApp(__name__)
+    app = connexion.FlaskApp(__name__, specification_dir="openapi/")
     app.add_api(
         "swagger.yml",
+        resolver=MethodViewResolver("api"),
+        strict_validation=True,
+    )
+    app.add_api(
+        "swagger_users.yml",
         resolver=MethodViewResolver("api"),
         strict_validation=True,
     )

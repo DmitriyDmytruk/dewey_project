@@ -91,8 +91,8 @@ class UserAPIView(MethodView):
             subject: str = "Sending with SendGrid"
             sengrid_send_mail(email, subject, content, content_type)
 
-            result = UserSchema.dump(UserModel.query.get(user.id))
-            return {"message": "Created new user.", "user": result}
+            result = UserSchema().dump(user)
+            return {"message": "Created new user.", "user": result}, 201
 
     def delete(self):
         """

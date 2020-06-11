@@ -1,0 +1,378 @@
+openapi: "3.0.0"
+info:
+  description: This is the openapi file that goes with our server code
+  version: "0.1"
+  title: Dewey project Open API
+
+servers:
+  - url: http://localhost:5000/doc
+
+
+paths:
+  /:
+    get:
+      operationId: "webapp.core.views.index"
+      tags:
+        - "Core"
+      summary: "Base endpoint"
+      responses:
+        '200':
+          description: receives `index.html`
+          content:
+            application/json:
+              schema:
+                type: string
+  /articles:
+    get:
+      operationId: "webapp.articles.views.ArticleAPIView.get"
+      tags:
+        - "Articles"
+      summary: "Retrieve all articles"
+      responses:
+        '200':
+          description: 'Successful'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  articles:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Article'
+        '401':
+          description: "Fail authentication"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+          description: "Access denied."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+    post:
+      operationId: "webapp.articles.views.ArticleAPIView.post"
+      tags:
+        - "Articles"
+      summary: "Article create"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                abstract:
+                  type: string
+                cfr40_part280:
+                  type: string
+                citation:
+                  type: string
+                effective_date:
+                  type: string
+                  example: "2020-06-11"
+                legal_language:
+                  type: string
+                local_regulation:
+                  type: string
+                reference_images:
+                  type: string
+                state:
+                  type: string
+                title:
+                  type: string
+                unique_id:
+                  type: string
+                updated_at:
+                  type: string
+                  example: "2020-06-11T12:19:32.372Z"
+                updated_date:
+                  type: string
+                  example: "2020-06-11"
+                categories:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                tags:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+      responses:
+        '200':
+          description: "Successful create article"
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    default: Article created
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    default: Invalid request
+                    example: Invalid request
+        '401':
+          description: "Fail authentication"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+          description: "Access denied."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+        '500':
+          description: Fail
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+  /articles/<article_id>:
+    put:
+      operationId: "webapp.articles.views.ArticleAPIView.put"
+      tags:
+        - "Articles"
+      summary: "Article update"
+      parameters:
+        - name: article_id
+          in: path
+          required: true
+          description: The id of the article to retrieve
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                abstract:
+                  type: string
+                cfr40_part280:
+                  type: string
+                citation:
+                  type: string
+                effective_date:
+                  type: string
+                  example: "2020-06-11"
+                legal_language:
+                  type: string
+                local_regulation:
+                  type: string
+                reference_images:
+                  type: string
+                state:
+                  type: string
+                title:
+                  type: string
+                unique_id:
+                  type: string
+                updated_at:
+                  type: string
+                  example: "2020-06-11T12:19:32.372Z"
+                updated_date:
+                  type: string
+                  example: "2020-06-11"
+                categories:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                tags:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+      responses:
+        '200':
+          description: "Successful update article"
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    default: Article updated
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    default: Invalid request
+                    example: Invalid request
+        '401':
+          description: "Fail authentication"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+          description: "Access denied."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+        '404':
+          description: Article does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404_Article'
+        '500':
+          description: Fail
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+  /articles/<article_id>/download:
+    get:
+      operationId: "webapp.articles.views.DownloadArticleXLSView.get"
+      tags:
+        - "Articles"
+      summary: "Article download"
+      parameters:
+        - name: article_id
+          in: path
+          required: true
+          description: The id of the article to retrieve
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: "Download file"
+          content:
+            application/vnd.ms-excel:
+              schema:
+                type: "string"
+                format: "binary"
+        '401':
+          description: "Fail authentication"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+          description: "Access denied."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+        '404':
+          description: "Article does not exist."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404_Article'
+
+components:
+  schemas:
+    IdNameSchema:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+    Article:
+      type: object
+      required:
+        - title
+        - cfr40_part280
+        - citation
+        - unique_id
+        - legal_language
+      properties:
+        abstract:
+          type: string
+        cfr40_part280:
+          type: string
+        citation:
+          type: string
+        effective_date:
+          type: string
+          example: "2020-06-11"
+        id:
+          type: integer
+          readOnly: true
+        legal_language:
+          type: string
+        local_regulation:
+          type: string
+        reference_images:
+          type: string
+        state:
+          type: string
+        title:
+          type: string
+        unique_id:
+          type: string
+        updated_at:
+          type: string
+          example: "2020-06-11T12:19:32.372Z"
+        updated_date:
+          type: string
+          example: "2020-06-11"
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdNameSchema'
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdNameSchema'
+    401:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "User not found."
+          default: "User not found."
+        status:
+          type: string
+          example: 401
+          default: 401
+    403:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Access denied."
+          default: "Access denied."
+        status:
+          type: string
+          example: 403
+          default: 403
+    404_Article:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Not exist.
+          default: Not exist.
