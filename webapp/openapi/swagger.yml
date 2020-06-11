@@ -250,6 +250,65 @@ paths:
                 properties:
                   message:
                     type: string
+#  /articles/upload:
+#    post:
+#      operationId: "webapp.articles.views.UploadFileAPIView.post"
+#      tags:
+#        - "Articles"
+#      summary: "Upload articles"
+#      requestBody:
+#        content:
+#          multipart/form-data:
+#            schema:
+#              type: object
+#              properties:
+#                file:
+#                  type: string
+#                  format: binary
+#                data:
+#                  type: object
+#                  description: Extra data.
+#      responses:
+#        '200':
+#          description: File uploaded
+#          content:
+#            application/json:
+#              schema:
+#                properties:
+#                  status:
+#                    type: string
+#                    default: success
+#                    example: success
+#                  message:
+#                    type: string
+#                    default: File uploaded.
+#                    example: File uploaded.
+#        '400':
+#          description: Error
+#          content:
+#            application/json:
+#              schema:
+#                properties:
+#                  status:
+#                    type: string
+#                    default: fail
+#                    example: fail
+#                  message:
+#                    type: string
+#                    default: Extension of file not allowed
+#                    example: Extension of file not allowed
+#        '401':
+#          description: "Fail authentication"
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/401'
+#        '403':
+#          description: "Access denied."
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/403'
   /articles/<article_id>/download:
     get:
       operationId: "webapp.articles.views.DownloadArticleXLSView.get"
