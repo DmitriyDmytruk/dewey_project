@@ -1,5 +1,6 @@
+import connexion
+from connexion.resolver import MethodViewResolver
 from flasgger import Swagger
-from flask import Flask
 from flask_bcrypt import Bcrypt
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
@@ -24,7 +25,13 @@ def create_app(object_name: str):
         object_name: the python path of the config object,
                      e.g. project.config.ProdConfig
     """
-    app = Flask(__name__)
+    app = connexion.FlaskApp(__name__)
+    app.add_api(
+        "swagger.yml",
+        resolver=MethodViewResolver("api"),
+        strict_validation=True,
+    )
+    app = app.app
     app.config.from_object(object_name)
     app.secret_key = app.config["SECRET_KEY"]
     app.config["SESSION_TYPE"] = "filesystem"

@@ -21,7 +21,7 @@ from .swagger_docstrings import (
 )
 
 
-class ArticleAPI(SwaggerView):
+class ArticleAPIView(SwaggerView):
     """
     Articles endpoints
     """
@@ -82,7 +82,7 @@ class ArticleAPI(SwaggerView):
         return jsonify({"message": "Article created", "id": article.id}), 200
 
 
-class DownloadArticleXLS(SwaggerView):
+class DownloadArticleXLSView(SwaggerView):
     """
     Download article from database
     """
@@ -108,7 +108,7 @@ class DownloadArticleXLS(SwaggerView):
             return jsonify({"message": "Article does not exist."}), 404
 
 
-ArticleAPI.get.__doc__ = articles_retrieve_docstring
-ArticleAPI.put.__doc__ = article_update_docstring
-ArticleAPI.post.__doc__ = article_create_docstring
-DownloadArticleXLS.get.__doc__ = article_download_docstring
+ArticleAPIView.get.__doc__ = articles_retrieve_docstring
+ArticleAPIView.put.__doc__ = article_update_docstring
+ArticleAPIView.post.__doc__ = article_create_docstring
+DownloadArticleXLSView.get.__doc__ = article_download_docstring

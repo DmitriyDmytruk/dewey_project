@@ -12,7 +12,7 @@ from .schemas import UserSchema
 from .swagger_docstrings import login_docstring, user_create_docstring
 
 
-class LoginAPI(MethodView):
+class LoginAPIView(MethodView):
     """
     User Login Resource
     """
@@ -50,7 +50,7 @@ class LoginAPI(MethodView):
             return make_response(jsonify(responseObject)), 500
 
 
-class UserAPI(MethodView):
+class UserAPIView(MethodView):
     """
     Users endpoints
     """
@@ -107,5 +107,5 @@ class UserAPI(MethodView):
         ...
 
 
-LoginAPI.post.__doc__ = login_docstring
-UserAPI.post.__doc__ = user_create_docstring
+LoginAPIView.post.__doc__ = login_docstring
+UserAPIView.post.__doc__ = user_create_docstring
