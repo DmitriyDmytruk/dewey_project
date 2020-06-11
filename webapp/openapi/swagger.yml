@@ -250,86 +250,53 @@ paths:
                 properties:
                   message:
                     type: string
-#  /articles/upload:
-#    post:
-#      operationId: "webapp.articles.views.UploadFileAPIView.post"
-#      tags:
-#        - "Articles"
-#      summary: "Upload articles"
-#      requestBody:
-#        content:
-#          multipart/form-data:
-#            schema:
-#              type: object
-#              properties:
-#                file:
-#                  type: string
-#                  format: binary
-#                data:
-#                  type: object
-#                  description: Extra data.
-#      responses:
-#        '200':
-#          description: File uploaded
-#          content:
-#            application/json:
-#              schema:
-#                properties:
-#                  status:
-#                    type: string
-#                    default: success
-#                    example: success
-#                  message:
-#                    type: string
-#                    default: File uploaded.
-#                    example: File uploaded.
-#        '400':
-#          description: Error
-#          content:
-#            application/json:
-#              schema:
-#                properties:
-#                  status:
-#                    type: string
-#                    default: fail
-#                    example: fail
-#                  message:
-#                    type: string
-#                    default: Extension of file not allowed
-#                    example: Extension of file not allowed
-#        '401':
-#          description: "Fail authentication"
-#          content:
-#            application/json:
-#              schema:
-#                $ref: '#/components/schemas/401'
-#        '403':
-#          description: "Access denied."
-#          content:
-#            application/json:
-#              schema:
-#                $ref: '#/components/schemas/403'
-  /articles/<article_id>/download:
-    get:
-      operationId: "webapp.articles.views.DownloadArticleXLSView.get"
+  /articles/upload:
+    post:
+      operationId: "webapp.articles.views.UploadFileAPIView.post"
       tags:
         - "Articles"
-      summary: "Article download"
-      parameters:
-        - name: article_id
-          in: path
-          required: true
-          description: The id of the article to retrieve
-          schema:
-            type: integer
+      summary: "Upload articles"
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                data:
+                  type: object
+                  description: Extra data.
       responses:
         '200':
-          description: "Download file"
+          description: File uploaded
           content:
-            application/vnd.ms-excel:
+            application/json:
               schema:
-                type: "string"
-                format: "binary"
+                properties:
+                  status:
+                    type: string
+                    default: success
+                    example: success
+                  message:
+                    type: string
+                    default: File uploaded.
+                    example: File uploaded.
+        '400':
+          description: Error
+          content:
+            application/json:
+              schema:
+                properties:
+                  status:
+                    type: string
+                    default: fail
+                    example: fail
+                  message:
+                    type: string
+                    default: Extension of file not allowed
+                    example: Extension of file not allowed
         '401':
           description: "Fail authentication"
           content:
@@ -342,13 +309,58 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/403'
-        '404':
-          description: "Article does not exist."
+  /articles/search:
+    get:
+      operationId: "webapp.articles.views.ArticleSearchAPIView.get"
+      tags:
+        - "Articles"
+      summary: "Articles search"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                state:
+                  type: string
+                categories:
+                  type: array
+                  items:
+                    type: string
+                    example: Category name
+                tags:
+                  type: array
+                  items:
+                    type: string
+                    example: Tag name
+      responses:
+        '200':
+          description: Articles found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/404_Article'
-
+                type: array
+                items:
+                  oneOf:
+                    - $ref: '#/components/schemas/ArticleFirstRequest'
+                    - $ref: '#/components/schemas/ArticlesList'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    default: Invalid request
+        '500':
+          description: Fail
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
 components:
   schemas:
     IdNameSchema:
@@ -406,6 +418,32 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/IdNameSchema'
+    ArticlesList:
+      type: object
+      properties:
+        response:
+          type: array
+          items:
+            $ref: '#/components/schemas/Article'
+    ArticleFirstRequest:
+      type: object
+      properties:
+        states:
+          type: array
+          items:
+            type: string
+        categories:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            type: string
+        response:
+          type: array
+          items:
+            $ref: '#/components/schemas/Article'
     401:
       type: object
       properties:
