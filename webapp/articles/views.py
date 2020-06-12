@@ -1,33 +1,22 @@
 from typing import IO, Any, Dict, List, Optional, Tuple, Union
 
 from elasticsearch_dsl import Q, Search
-from flask import Response, jsonify, request, make_response
+from flask import Response, jsonify, make_response, request
 from flask.views import MethodView
 
 from webapp import db, es
 from webapp.utils.decorators import login_required, permissions
-from webapp.utils.error_responses import (
-    acces_denied_response,
-    login_failed_response,
-)
 
 from .helpers.export_to_xls import convert_to_xls
 from .helpers.xls_csv_to_dict import CSVReader, XLSReader
 from .models import ArticleModel
-from .schemas import ArticlePutPostSchema, ArticleSchema, ArticleFirstRequestSchema
+from .schemas import ArticlePutPostSchema, ArticleSchema
 
 
 class ArticleAPIView(MethodView):
     """
     Articles endpoints
     """
-
-    tags = ["articles"]
-    definitions = {
-        "ArticleSchema": ArticleSchema,
-        "ArticlePutPostSchema": ArticlePutPostSchema,
-    }
-    responses = {401: login_failed_response, 403: acces_denied_response}
 
     @login_required
     @permissions(["can_view_articles"])
@@ -77,15 +66,11 @@ class ArticleAPIView(MethodView):
             return jsonify({"message": str(e)}), 500
         return jsonify({"message": "Article created", "id": article.id}), 200
 
+
 class ArticleSearchAPIView(MethodView):
     """
     Search articles using ElasticSearch
     """
-
-    definitions = {
-        "ArticleFirstRequestSchema": ArticleFirstRequestSchema,
-        "ArticleSchema": ArticleSchema,
-    }
 
     @staticmethod
     def filter_create(queries: List[Q]) -> Q:
@@ -171,12 +156,10 @@ class ArticleSearchAPIView(MethodView):
         return {"response": result}
 
 
-class DownloadArticleXLS(SwaggerView):
+class DownloadArticleXLSView(MethodView):
     """
     Download article from database
     """
-
-    tags = ["articles"]
 
     @login_required
     @permissions(["can_view_articles"])
@@ -195,6 +178,7 @@ class DownloadArticleXLS(SwaggerView):
             )
         else:
             return jsonify({"message": "Article does not exist."}), 404
+
 
 class UploadFileAPIView(MethodView):
     """

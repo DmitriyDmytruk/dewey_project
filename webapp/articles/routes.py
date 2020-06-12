@@ -1,5 +1,10 @@
 from . import articles_blueprint
-from .views import ArticleAPI, ArticleSearchAPIView, DownloadArticleXLS, UploadFileAPIView
+from .views import (
+    ArticleAPIView,
+    ArticleSearchAPIView,
+    DownloadArticleXLSView,
+    UploadFileAPIView,
+)
 
 
 article_view = ArticleAPIView.as_view("articles")

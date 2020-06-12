@@ -10,8 +10,6 @@ def test_role_shema(session):
     """
     role_data: Dict[str, Union[str, list, int]] = {
         "title": "API User",
-        "permissions": [],
-        "id": 1,
     }
     data = RoleSchema().load(role_data)
     assert data.get("title") == role_data.get("title")
@@ -30,7 +28,7 @@ def test_user_shema(session):
     ).one()
     user_data: Dict[str, Union[str, dict]] = {
         "email": "test@mail.com",
-        "role": RoleSchema(only=["id", "title"]).dump(role),
+        "role": RoleSchema(only=["title"]).dump(role),
     }
     data = UserSchema().load(user_data)
     assert data.get("email") == user_data.get("email")

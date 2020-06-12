@@ -5,7 +5,7 @@ info:
   title: Dewey project Open API
 
 servers:
-  - url: http://localhost:5000/docs/articles
+  - url: /docs/articles
 
 paths:
   /articles:
@@ -189,128 +189,128 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/404_Article'
-#  /articles/upload:
-#    post:
-#      operationId: "webapp.articles.views.UploadFileAPIView.post"
-#      tags:
-#        - "Articles"
-#      summary: "Upload articles"
-#      requestBody:
-#        content:
-#          multipart/form-data:
-#            schema:
-#              type: object
-#              properties:
-#                file:
-#                  type: string
-#                  format: binary
-#                data:
-#                  type: object
-#                  description: "Extra data."
-#      responses:
-#        '200':
-#          description: "File uploaded"
-#          content:
-#            application/json:
-#              schema:
-#                properties:
-#                  status:
-#                    type: string
-#                    default: "success"
-#                    example: "success"
-#                  message:
-#                    type: string
-#                    default: "File uploaded."
-#                    example: "File uploaded."
-#        '400':
-#          description: "Error"
-#          content:
-#            application/json:
-#              schema:
-#                properties:
-#                  status:
-#                    type: string
-#                    default: "fail"
-#                    example: "fail"
-#                  message:
-#                    type: string
-#                    default: "Extension of file not allowed"
-#                    example: "Extension of file not allowed"
-#        '401':
-#          description: "Fail authentication"
-#          content:
-#            application/json:
-#              schema:
-#                $ref: '#/components/schemas/401'
-#        '403':
-#          description: "Access denied."
-#          content:
-#            application/json:
-#              schema:
-#                $ref: '#/components/schemas/403'
-#  /articles/search:
-#    get:
-#      operationId: "webapp.articles.views.ArticleSearchAPIView.get"
-#      tags:
-#        - "Articles"
-#      summary: "Articles search"
-#      requestBody:
-#        content:
-#          application/json:
-#            schema:
-#              type: object
-#              properties:
-#                state:
-#                  type: string
-#                categories:
-#                  type: array
-#                  items:
-#                    type: string
-#                    example: Category name
-#                tags:
-#                  type: array
-#                  items:
-#                    type: string
-#                    example: "Tag name"
-#      responses:
-#        '200':
-#          description: "Articles found"
-#          content:
-#            application/json:
-#              schema:
-#                type: array
-#                items:
-#                  oneOf:
-#                    - $ref: '#/components/schemas/ArticleFirstRequest'
-#                    - $ref: '#/components/schemas/ArticlesList'
-#        '400':
-#          description: "Invalid request"
-#          content:
-#            application/json:
-#              schema:
-#                properties:
-#                  message:
-#                    type: string
-#                    default: "Invalid request"
-#                    example: "Invalid request"
-#        '401':
-#          description: "Fail authentication"
-#          content:
-#            application/json:
-#              schema:
-#                $ref: '#/components/schemas/401'
-#        '403':
-#          description: "Access denied."
-#          content:
-#            application/json:
-#              schema:
-#                $ref: '#/components/schemas/403'
-#        '500':
-#          description: Fail
-#          content:
-#            application/json:
-#              schema:
-#                $ref: '#/components/schemas/500'
+  /articles/upload:
+    post:
+      operationId: "webapp.articles.views.UploadFileAPIView.post"
+      tags:
+        - "Articles"
+      summary: "Upload articles"
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                data:
+                  type: object
+                  description: "Extra data."
+      responses:
+        '200':
+          description: "File uploaded"
+          content:
+            application/json:
+              schema:
+                properties:
+                  status:
+                    type: string
+                    default: "success"
+                    example: "success"
+                  message:
+                    type: string
+                    default: "File uploaded."
+                    example: "File uploaded."
+        '400':
+          description: "Error"
+          content:
+            application/json:
+              schema:
+                properties:
+                  status:
+                    type: string
+                    default: "fail"
+                    example: "fail"
+                  message:
+                    type: string
+                    default: "Extension of file not allowed"
+                    example: "Extension of file not allowed"
+        '401':
+          description: "Fail authentication"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+          description: "Access denied."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+  /articles/search:
+    get:
+      operationId: "webapp.articles.views.ArticleSearchAPIView.get"
+      tags:
+        - "Articles"
+      summary: "Articles search"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                state:
+                  type: string
+                categories:
+                  type: array
+                  items:
+                    type: string
+                    example: Category name
+                tags:
+                  type: array
+                  items:
+                    type: string
+                    example: "Tag name"
+      responses:
+        '200':
+          description: "Articles found"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  oneOf:
+                    - $ref: '#/components/schemas/ArticleFirstRequest'
+                    - $ref: '#/components/schemas/ArticlesList'
+        '400':
+          description: "Invalid request"
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    default: "Invalid request"
+                    example: "Invalid request"
+        '401':
+          description: "Fail authentication"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+          description: "Access denied."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+        '500':
+          description: Fail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/500'
 components:
   schemas:
     IdNameSchema:

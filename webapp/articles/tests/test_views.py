@@ -1,9 +1,8 @@
+import json
 import os
 
 from flask import Response, url_for
 from werkzeug.datastructures import FileStorage
-
-import json
 
 from webapp.articles.models import ArticleModel
 from webapp.users.models import PermissionModel, UserModel
@@ -51,7 +50,7 @@ def test_retrieve_articles(client, session):
     assert response.status_code == 200
 
 
-def test_create_article(client):
+def test_create_article(client, session):
     """
     Test article create api view (with decorators)
     :param client:
@@ -62,7 +61,9 @@ def test_create_article(client):
     assert response.json.get("message") == "Provide a valid auth token."
     assert response.json.get("status") == 401
 
-    user: UserModel = UserModel.query.order_by(UserModel.id.desc()).first()
+    user: UserModel = session.query(UserModel).order_by(
+        UserModel.id.desc()
+    ).first()
     response = client.post(
         "/articles",
         data=json.dumps(
@@ -100,7 +101,7 @@ def test_create_article(client):
     assert response.json.get("message") == "Access denied."
     assert response.json.get("status") == 403
 
-    user2 = UserModel.query.first()
+    user2: UserModel = session.query(UserModel).first()
     jwt_token: str = user2.encode_auth_token().decode("utf-8")
     user2.role.permissions.append(PermissionModel(title="can_add_articles"))
     response = client.post(
@@ -143,20 +144,22 @@ def test_create_article(client):
     assert response.status_code == 500
 
 
-def test_update_article(client):
+def test_update_article(client, session):
     """
     Test article update api view (with decorators)
     :param client:
     :param session:
     :return:
     """
-    article: ArticleModel = ArticleModel.query.first()
+    article: ArticleModel = session.query(ArticleModel).first()
     article_id: int = article.id
     response = client.put(f"/articles/{article_id}")
     assert response.json.get("message") == "Provide a valid auth token."
     assert response.json.get("status") == 401
 
-    user: UserModel = UserModel.query.order_by(UserModel.id.desc()).first()
+    user: UserModel = session.query(UserModel).order_by(
+        UserModel.id.desc()
+    ).first()
     response = client.put(
         f"/articles/{article_id}",
         data=json.dumps(
@@ -194,7 +197,7 @@ def test_update_article(client):
     assert response.json.get("message") == "Access denied."
     assert response.json.get("status") == 403
 
-    user2 = UserModel.query.first()
+    user2 = session.query(UserModel).first()
     jwt_token: str = user2.encode_auth_token().decode("utf-8")
     user2.role.permissions.append(PermissionModel(title="can_change_articles"))
     response = client.put(
@@ -454,12 +457,12 @@ def test_articles_search(client, session):
 
     response = client.get(
         "/articles/search",
-        json={"state": "Alaska"},
+        json={"state": "Arizona"},
         headers={"Authorization": f"Token {jwt_token}"},
     )
     assert response.status_code == 200
     assert len(response.json["response"]) == 1
-    assert response.json["response"][0]["state"] == "Alaska"
+    assert response.json["response"][0]["state"] == "Arizona"
 
     response = client.get(
         "/articles/search",
