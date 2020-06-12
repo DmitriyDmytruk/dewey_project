@@ -19,6 +19,7 @@ class DevConfig(Config):
     ELASTICSEARCH_URL = os.environ.get("ELASTICSEARCH_URL")
     DEBUG = True
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SWAGGER = {"openapi": "3.0.2"}
     PG_HOST = "db"
     PG_PORT = 5432
     SQLALCHEMY_DATABASE_URI = (
@@ -32,6 +33,7 @@ class TestConfig(Config):
     TESTDB_PATH = os.path.join(basedir, TESTDB)
     TEST_DATABASE_URI = "sqlite:///" + TESTDB_PATH
     SECRET_KEY = "SECRET-KEY"
+    SERVER_NAME = "localhost"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     TESTING = True
     SQLALCHEMY_DATABASE_URI = TEST_DATABASE_URI

@@ -1,9 +1,9 @@
 {
   "permissions": [
-    "can_view_articles",
     "can_add_articles",
     "can_change_articles",
     "can_delete_articles",
+    "can_view_articles",
     "can_add_tags",
     "can_change_tags",
     "can_delete_tags",

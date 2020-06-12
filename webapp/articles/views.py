@@ -1,6 +1,6 @@
 from typing import IO, Any, Dict, List, Optional, Tuple, Union
 
-from flask import Response, jsonify, request
+from flask import Response, jsonify, request, make_response
 from flask.views import MethodView
 
 from webapp import db
@@ -11,6 +11,7 @@ from webapp.utils.error_responses import (
 )
 
 from .helpers.export_to_xls import convert_to_xls
+from .helpers.xls_csv_to_dict import CSVReader, XLSReader
 from .models import ArticleModel
 from .schemas import ArticlePutPostSchema, ArticleSchema
 
@@ -74,6 +75,36 @@ class ArticleAPIView(MethodView):
         except Exception as e:
             return jsonify({"message": str(e)}), 500
         return jsonify({"message": "Article created", "id": article.id}), 200
+
+
+class UploadFileAPIView(MethodView):
+    """
+    Read xls/csv file
+    """
+
+    ALLOWED_EXTENSIONS = ["xls", "csv"]
+
+    @login_required
+    @permissions(["can_view_articles"])
+    def post(self):
+        """
+        xls/csv file upload
+        """
+        file = request.files["file"]
+        request.form.get("data")
+        file_extension = file.filename.split(".")[-1]
+        response = {"status": "success", "message": "File uploaded."}
+        if file_extension not in self.ALLOWED_EXTENSIONS:
+            response = {
+                "status": "fail",
+                "message": "Extension of file not allowed",
+            }
+            return make_response(jsonify(response)), 400
+        elif file_extension == "csv":
+            CSVReader().to_dict(file)
+            return make_response(jsonify(response)), 200
+        XLSReader().to_dict(file)
+        return make_response(jsonify(response)), 200
 
 
 class DownloadArticleXLSView(MethodView):
