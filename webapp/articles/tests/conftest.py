@@ -4,7 +4,7 @@ import pytest
 
 from config import basedir
 from webapp import create_app, db
-from webapp.articles.models import ArticleModel, TagModel
+from webapp.articles.models import ArticleModel, CategoryModel, TagModel
 from webapp.users.models import PermissionModel, RoleModel, UserModel
 
 
@@ -16,6 +16,7 @@ def prepare_data(session):
     permission: PermissionModel = PermissionModel(title="can_view_articles")
     role: RoleModel = RoleModel(title="API User", permissions=[permission])
     tag: TagModel = TagModel(name="Test tag")
+    category: CategoryModel = CategoryModel(name="Test category")
     article: ArticleModel = ArticleModel(
         unique_id="unique_id",
         title="Test article",
@@ -26,7 +27,7 @@ def prepare_data(session):
         state="Alaska",
         tags=[tag],
     )
-    session.add_all([role, permission, tag, article])
+    session.add_all([role, permission, tag, category, article])
     session.commit()
 
     user1: UserModel = UserModel(email="test@gmail.com", role_id=role.id)
