@@ -34,6 +34,7 @@ class TestConfig(Config):
     TEST_DATABASE_URI = "sqlite:///" + TESTDB_PATH
     SECRET_KEY = "SECRET-KEY"
     SERVER_NAME = "localhost"
+    DEBUG = True
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     TESTING = True
     SQLALCHEMY_DATABASE_URI = TEST_DATABASE_URI

@@ -9,6 +9,7 @@ from webapp.utils.mailing import sengrid_send_mail
 
 from .models import RoleModel, UserModel
 from .schemas import UserSchema
+from .schemas import RoleSchema, UserSchema
 
 
 class LoginAPIView(MethodView):
