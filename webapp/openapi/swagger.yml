@@ -17,7 +17,7 @@ paths:
       summary: "Base endpoint"
       responses:
         '200':
-          description: receives `index.html`
+          description: "receives `index.html`"
           content:
             application/json:
               schema:
@@ -30,7 +30,7 @@ paths:
       summary: "Retrieve all articles"
       responses:
         '200':
-          description: 'Successful'
+          description: "Successful"
           content:
             application/json:
               schema:
@@ -39,7 +39,7 @@ paths:
                   articles:
                     type: array
                     items:
-                      $ref: '#/components/schemas/Article'
+                      $ref: '#/components/schemas/ArticleGet'
         '401':
           description: "Fail authentication"
           content:
@@ -61,49 +61,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                abstract:
-                  type: string
-                cfr40_part280:
-                  type: string
-                citation:
-                  type: string
-                effective_date:
-                  type: string
-                  example: "2020-06-11"
-                legal_language:
-                  type: string
-                local_regulation:
-                  type: string
-                reference_images:
-                  type: string
-                state:
-                  type: string
-                title:
-                  type: string
-                unique_id:
-                  type: string
-                updated_at:
-                  type: string
-                  example: "2020-06-11T12:19:32.372Z"
-                updated_date:
-                  type: string
-                  example: "2020-06-11"
-                categories:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      id:
-                        type: integer
-                tags:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      id:
-                        type: integer
+              $ref: '#/components/schemas/ArticlePutPost'
       responses:
         '200':
           description: "Successful create article"
@@ -113,17 +71,17 @@ paths:
                 properties:
                   message:
                     type: string
-                    default: Article created
+                    default: "Article created"
         '400':
-          description: Invalid request
+          description: "Invalid request"
           content:
             application/json:
               schema:
                 properties:
                   message:
                     type: string
-                    default: Invalid request
-                    example: Invalid request
+                    default: "Invalid request"
+                    example: "Invalid request"
         '401':
           description: "Fail authentication"
           content:
@@ -137,13 +95,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/403'
         '500':
-          description: Fail
+          description: "Fail"
           content:
             application/json:
               schema:
-                properties:
-                  message:
-                    type: string
+                $ref: '#/components/schemas/500'
   /articles/<article_id>:
     put:
       operationId: "webapp.articles.views.ArticleAPIView.put"
@@ -154,56 +110,14 @@ paths:
         - name: article_id
           in: path
           required: true
-          description: The id of the article to retrieve
+          description: "The id of the article to retrieve"
           schema:
             type: integer
       requestBody:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                abstract:
-                  type: string
-                cfr40_part280:
-                  type: string
-                citation:
-                  type: string
-                effective_date:
-                  type: string
-                  example: "2020-06-11"
-                legal_language:
-                  type: string
-                local_regulation:
-                  type: string
-                reference_images:
-                  type: string
-                state:
-                  type: string
-                title:
-                  type: string
-                unique_id:
-                  type: string
-                updated_at:
-                  type: string
-                  example: "2020-06-11T12:19:32.372Z"
-                updated_date:
-                  type: string
-                  example: "2020-06-11"
-                categories:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      id:
-                        type: integer
-                tags:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      id:
-                        type: integer
+              $ref: '#/components/schemas/ArticlePutPost'
       responses:
         '200':
           description: "Successful update article"
@@ -213,17 +127,17 @@ paths:
                 properties:
                   message:
                     type: string
-                    default: Article updated
+                    default: "Article updated"
         '400':
-          description: Invalid request
+          description: "Invalid request"
           content:
             application/json:
               schema:
                 properties:
                   message:
                     type: string
-                    default: Invalid request
-                    example: Invalid request
+                    default: "Invalid request"
+                    example: "Invalid request"
         '401':
           description: "Fail authentication"
           content:
@@ -237,19 +151,58 @@ paths:
               schema:
                 $ref: '#/components/schemas/403'
         '404':
-          description: Article does not exist
+          description: "Article does not exist"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/404_Article'
         '500':
-          description: Fail
+          description: "Fail"
           content:
             application/json:
               schema:
+                $ref: '#/components/schemas/500'
+  /articles/<article_id>/download:
+    get:
+      operationId: "webapp.articles.views.DownloadArticleXLSView.get"
+      tags:
+        - "Articles"
+      summary: "Article download"
+      parameters:
+        - name: article_id
+          in: path
+          required: true
+          description: "The id of the article to retrieve"
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: "Download file"
+          content:
+            application/vnd:ms-excel:
+              schema:
                 properties:
-                  message:
+                  file:
                     type: string
+                    format: binary
+        '401':
+          description: "Fail authentication"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+          description: "Access denied."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+        '404':
+          description: "Article does not exist"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404_Article'
   /articles/upload:
     post:
       operationId: "webapp.articles.views.UploadFileAPIView.post"
@@ -267,36 +220,36 @@ paths:
                   format: binary
                 data:
                   type: object
-                  description: Extra data.
+                  description: "Extra data."
       responses:
         '200':
-          description: File uploaded
+          description: "File uploaded"
           content:
             application/json:
               schema:
                 properties:
                   status:
                     type: string
-                    default: success
-                    example: success
+                    default: "success"
+                    example: "success"
                   message:
                     type: string
-                    default: File uploaded.
-                    example: File uploaded.
+                    default: "File uploaded."
+                    example: "File uploaded."
         '400':
-          description: Error
+          description: "Error"
           content:
             application/json:
               schema:
                 properties:
                   status:
                     type: string
-                    default: fail
-                    example: fail
+                    default: "fail"
+                    example: "fail"
                   message:
                     type: string
-                    default: Extension of file not allowed
-                    example: Extension of file not allowed
+                    default: "Extension of file not allowed"
+                    example: "Extension of file not allowed"
         '401':
           description: "Fail authentication"
           content:
@@ -332,10 +285,10 @@ paths:
                   type: array
                   items:
                     type: string
-                    example: Tag name
+                    example: "Tag name"
       responses:
         '200':
-          description: Articles found
+          description: "Articles found"
           content:
             application/json:
               schema:
@@ -345,22 +298,33 @@ paths:
                     - $ref: '#/components/schemas/ArticleFirstRequest'
                     - $ref: '#/components/schemas/ArticlesList'
         '400':
-          description: Invalid request
+          description: "Invalid request"
           content:
             application/json:
               schema:
                 properties:
                   message:
                     type: string
-                    default: Invalid request
+                    default: "Invalid request"
+                    example: "Invalid request"
+        '401':
+          description: "Fail authentication"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+          description: "Access denied."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
         '500':
           description: Fail
           content:
             application/json:
               schema:
-                properties:
-                  message:
-                    type: string
+                $ref: '#/components/schemas/500'
 components:
   schemas:
     IdNameSchema:
@@ -371,7 +335,7 @@ components:
           readOnly: true
         name:
           type: string
-    Article:
+    BaseArticle:
       type: object
       required:
         - title
@@ -389,9 +353,6 @@ components:
         effective_date:
           type: string
           example: "2020-06-11"
-        id:
-          type: integer
-          readOnly: true
         legal_language:
           type: string
         local_regulation:
@@ -410,21 +371,48 @@ components:
         updated_date:
           type: string
           example: "2020-06-11"
-        categories:
-          type: array
-          items:
-            $ref: '#/components/schemas/IdNameSchema'
-        tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/IdNameSchema'
+    ArticleGet:
+      allOf:
+        - $ref: '#/components/schemas/BaseArticle'
+        - type: object
+          properties:
+            id:
+              type: integer
+              readOnly: true
+            categories:
+              type: array
+              items:
+                $ref: '#/components/schemas/IdNameSchema'
+            tags:
+              type: array
+              items:
+                $ref: '#/components/schemas/IdNameSchema'
+    ArticlePutPost:
+      allOf:
+        - $ref: '#/components/schemas/BaseArticle'
+        - type: object
+          properties:
+            categories:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+            tags:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
     ArticlesList:
       type: object
       properties:
         response:
           type: array
           items:
-            $ref: '#/components/schemas/Article'
+            $ref: '#/components/schemas/ArticleGet'
     ArticleFirstRequest:
       type: object
       properties:
@@ -443,7 +431,7 @@ components:
         response:
           type: array
           items:
-            $ref: '#/components/schemas/Article'
+            $ref: '#/components/schemas/ArticleGet'
     401:
       type: object
       properties:
@@ -471,5 +459,10 @@ components:
       properties:
         message:
           type: string
-          example: Not exist.
-          default: Not exist.
+          example: "Not exist."
+          default: "Not exist."
+    500:
+      type: object
+      properties:
+        message:
+          type: string
