@@ -9,7 +9,6 @@ from webapp.utils.mailing import sengrid_send_mail
 
 from .models import RoleModel, UserModel
 from .schemas import UserSchema
-from .swagger_docstrings import login_docstring, user_create_docstring
 
 
 class LoginAPIView(MethodView):
@@ -105,7 +104,3 @@ class UserAPIView(MethodView):
         Update user
         """
         ...
-
-
-LoginAPIView.post.__doc__ = login_docstring
-UserAPIView.post.__doc__ = user_create_docstring

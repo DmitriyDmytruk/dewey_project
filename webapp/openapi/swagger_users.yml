@@ -1,11 +1,11 @@
 openapi: "3.0.0"
 info:
-  description: This is the openapi file that goes with our server code
+  description: This is the openapi for Users API
   version: "0.1"
   title: Dewey project Open API
 
 servers:
-  - url: http://localhost:5000/doc/users
+  - url: http://localhost:5000/docs/users
 
 
 paths:
@@ -46,13 +46,13 @@ paths:
                   "auth_token":
                     type: string
         '404':
-          description: User does not exist
+          description: "User does not exist"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/404_User'
         '500':
-          description: Fail
+          description: "Fail"
           content:
             application/json:
               schema:
@@ -82,29 +82,29 @@ paths:
                       type: string
       responses:
         '201':
-          description: User created
+          description: "User created"
           content:
             application/json:
               schema:
                 properties:
                   message:
                     type: string
-                    default: Created new user.
-                    example: Created new user.
+                    default: "Created new user."
+                    example: "Created new user."
                   user:
                     $ref: '#/components/schemas/User'
         '400':
-          description: Failed
+          description: "Failed"
           content:
             application/json:
               schema:
                 properties:
                   message:
                     type: string
-                    default: No input data provided
-                    example: No input data provided
+                    default: "No input data provided"
+                    example: "No input data provided"
         '422':
-          description: Error
+          description: "Error"
           content:
             application/json:
               schema:

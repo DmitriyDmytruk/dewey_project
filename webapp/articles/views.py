@@ -1,7 +1,7 @@
 from typing import IO, Any, Dict, List, Optional, Tuple, Union
 
-from flasgger import SwaggerView
 from flask import Response, jsonify, request
+from flask.views import MethodView
 
 from webapp import db
 from webapp.utils.decorators import login_required, permissions
@@ -13,15 +13,9 @@ from webapp.utils.error_responses import (
 from .helpers.export_to_xls import convert_to_xls
 from .models import ArticleModel
 from .schemas import ArticlePutPostSchema, ArticleSchema
-from .swagger_docstrings import (
-    article_create_docstring,
-    article_download_docstring,
-    article_update_docstring,
-    articles_retrieve_docstring,
-)
 
 
-class ArticleAPIView(SwaggerView):
+class ArticleAPIView(MethodView):
     """
     Articles endpoints
     """
@@ -82,7 +76,7 @@ class ArticleAPIView(SwaggerView):
         return jsonify({"message": "Article created", "id": article.id}), 200
 
 
-class DownloadArticleXLSView(SwaggerView):
+class DownloadArticleXLSView(MethodView):
     """
     Download article from database
     """
@@ -106,9 +100,3 @@ class DownloadArticleXLSView(SwaggerView):
             )
         else:
             return jsonify({"message": "Article does not exist."}), 404
-
-
-ArticleAPIView.get.__doc__ = articles_retrieve_docstring
-ArticleAPIView.put.__doc__ = article_update_docstring
-ArticleAPIView.post.__doc__ = article_create_docstring
-DownloadArticleXLSView.get.__doc__ = article_download_docstring
