@@ -217,9 +217,9 @@ paths:
                 file:
                   type: string
                   format: binary
-                data:
-                  type: object
-                  description: "Extra data."
+#                data:
+#                  type: object
+#                  description: "Extra data."
       responses:
         '200':
           description: "File uploaded"

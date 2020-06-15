@@ -19,7 +19,6 @@ class DevConfig(Config):
     ELASTICSEARCH_URL = os.environ.get("ELASTICSEARCH_URL")
     DEBUG = True
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SWAGGER = {"openapi": "3.0.2"}
     PG_HOST = "db"
     PG_PORT = 5432
     SQLALCHEMY_DATABASE_URI = (

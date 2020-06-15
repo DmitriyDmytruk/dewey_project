@@ -9,7 +9,7 @@ from webapp.utils.decorators import login_required, permissions
 
 from .helpers.export_to_xls import convert_to_xls
 from .helpers.xls_csv_to_dict import CSVReader, XLSReader
-from .models import ArticleModel
+from .models import ArticleModel, CategoryModel, TagModel
 from .schemas import ArticlePutPostSchema, ArticleSchema
 
 
@@ -204,7 +204,40 @@ class UploadFileAPIView(MethodView):
             }
             return make_response(jsonify(response)), 400
         elif file_extension == "csv":
-            CSVReader().to_dict(file)
-            return make_response(jsonify(response)), 200
-        XLSReader().to_dict(file)
+            data = CSVReader().to_dict(file)
+        else:
+            data = XLSReader().to_dict(file)
+
+        for article_data in data:
+            categories = article_data["categories"]
+            categories_list = []
+            if categories:
+                for category_data in categories:
+                    category = CategoryModel.query.filter_by(
+                        name=category_data["name"]
+                    ).first()
+                    if not category:
+                        category = CategoryModel(name=category_data["name"])
+                        db.session.add(category)
+                        db.session.commit()
+                    categories_list.append(category)
+            article_data["categories"] = categories_list
+
+            tags = article_data["tags"]
+            tags_list = []
+            if tags:
+                for tag_data in tags:
+                    tag = TagModel.query.filter_by(
+                        name=tag_data["name"]
+                    ).first()
+                    if not tag:
+                        tag = TagModel(name=tag_data["name"])
+                        db.session.add(tag)
+                        db.session.commit()
+                    tags_list.append(tag)
+            article_data["tags"] = tags_list
+
+            article = ArticleModel(**article_data)
+            db.session.add(article)
+            db.session.commit()
         return make_response(jsonify(response)), 200
