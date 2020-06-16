@@ -208,7 +208,7 @@ class UploadFileAPIView(MethodView):
         else:
             data = XLSReader().to_dict(file)
 
-        for article_data in data:
+        for ind, article_data in enumerate(data):
             categories = article_data["categories"]
             categories_list = []
             if categories:
@@ -236,7 +236,7 @@ class UploadFileAPIView(MethodView):
                         db.session.commit()
                     tags_list.append(tag)
             article_data["tags"] = tags_list
-
+            article_data["title"] = f"Article {ind}"
             article = ArticleModel(**article_data)
             db.session.add(article)
             db.session.commit()

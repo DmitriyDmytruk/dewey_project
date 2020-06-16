@@ -29,7 +29,6 @@ def columns_mapping(origin_dict: dict) -> Dict:
     origin_dict.pop("")
     for i in range(1, 17):
         origin_dict.pop(f"category_{i}")
-    origin_dict["title"] = origin_dict["legal_language"][:50]
     origin_dict["unique_id"] = uuid.uuid4().hex[:30]
     return origin_dict
 
