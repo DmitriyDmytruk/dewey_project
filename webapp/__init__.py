@@ -87,9 +87,9 @@ def create_app(object_name: str):
     migrate.init_app(app, db)
     session.init_app(app)
 
-    from .articles.routes import articles_blueprint
-    from .core.routes import base_blueprint
-    from .users.routes import users_blueprint
+    from webapp.articles.routes import articles_blueprint
+    from webapp.core.routes import base_blueprint
+    from webapp.users.routes import users_blueprint
 
     app.register_blueprint(articles_blueprint)
     app.register_blueprint(base_blueprint)
@@ -99,5 +99,5 @@ def create_app(object_name: str):
     return app
 
 
-from .articles import models  # pylint: disable=wrong-import-position
-from .users import models  # pylint: disable=wrong-import-position
+# from webapp.articles import models
+# from webapp.users import models

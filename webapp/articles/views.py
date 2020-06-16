@@ -5,7 +5,7 @@ from flask import Response, jsonify, make_response, request
 from flask.views import MethodView
 
 from webapp import db, es
-from webapp.utils.decorators import login_required, permissions
+from webapp.utils.decorators import has_permissions, login_required
 
 from .helpers.export_to_xls import convert_to_xls
 from .helpers.xls_csv_to_dict import CSVReader, XLSReader
@@ -19,17 +19,24 @@ class ArticleAPIView(MethodView):
     """
 
     @login_required
-    @permissions(["can_view_articles"])
+    @has_permissions(["can_view_articles"])
     def get(self, article_id: str = None) -> Dict[str, Any]:
+        """
+        Retrieve articles
+        """
         if article_id is None:
             articles_schema = ArticleSchema(many=True)
             articles: List[ArticleModel] = ArticleModel.query.all()
             result = articles_schema.dump(articles)
             return {"articles": result}
+        return {}
 
     @login_required
-    @permissions(["can_change_articles"])
-    def put(self, article_id: str):
+    @has_permissions(["can_change_articles"])
+    def put(self, article_id: int):
+        """
+        Article update
+        """
         json_data: dict = request.get_json()
         if not json_data:
             return jsonify({"message": "Invalid request"}), 400
@@ -46,13 +53,14 @@ class ArticleAPIView(MethodView):
                 session=db.session,
             )
             db.session.commit()
-        except Exception as e:
-            return jsonify({"message": str(e)}), 500
+        except Exception as error:
+            return jsonify({"message": str(error)}), 500
         return jsonify({"message": "Article updated"}), 200
 
     @login_required
-    @permissions(["can_add_articles"])
+    @has_permissions(["can_add_articles"])
     def post(self):
+        """Article create"""
         json_data: dict = request.get_json()
         if not json_data:
             return jsonify({"message": "Invalid request"}), 400
@@ -62,8 +70,8 @@ class ArticleAPIView(MethodView):
             )
             db.session.add(article)
             db.session.commit()
-        except Exception as e:
-            return jsonify({"message": str(e)}), 500
+        except Exception as error:
+            return jsonify({"message": str(error)}), 500
         return jsonify({"message": "Article created", "id": article.id}), 200
 
 
@@ -98,8 +106,12 @@ class ArticleSearchAPIView(MethodView):
         )
 
     @login_required
-    @permissions(["can_view_articles"])
+    @has_permissions(["can_view_articles"])
     def get(self) -> dict:
+        """
+        Search article
+        First request - with empty params
+        """
         data = request.get_json()
         categories = tags = state = None
         result = "Articles not found."
@@ -162,8 +174,11 @@ class DownloadArticleXLSView(MethodView):
     """
 
     @login_required
-    @permissions(["can_view_articles"])
+    @has_permissions(["can_view_articles"])
     def get(self, article_id: int) -> Union[Tuple[Dict[str, str], int], IO]:
+        """
+        Converts exist article to .xls file
+        """
         article: Optional[ArticleModel] = ArticleModel.query.filter_by(
             id=article_id
         ).one_or_none()
@@ -173,11 +188,10 @@ class DownloadArticleXLSView(MethodView):
                 book,
                 mimetype="application/vnd.ms-excel",
                 headers={
-                    "Content-disposition": f"attachment; filename={article.title}.xls"
+                    "Content-disposition": f"attachment; filename={article.title}.xls"  # pylint: disable
                 },
             )
-        else:
-            return jsonify({"message": "Article does not exist."}), 404
+        return jsonify({"message": "Article does not exist."}), 404
 
 
 class UploadFileAPIView(MethodView):
@@ -188,31 +202,37 @@ class UploadFileAPIView(MethodView):
     ALLOWED_EXTENSIONS = ["xls", "csv"]
 
     @login_required
-    @permissions(["can_view_articles"])
+    @has_permissions(["can_view_articles"])
     def post(self):
         """
-        xls/csv file upload
+        xls/csv file upload for article create
         """
         file = request.files["file"]
-        request.form.get("data")
+        # request.form.get("data")
         file_extension = file.filename.split(".")[-1]
         response = {"status": "success", "message": "File uploaded."}
+
         if file_extension not in self.ALLOWED_EXTENSIONS:
-            response = {
-                "status": "fail",
-                "message": "Extension of file not allowed",
-            }
-            return make_response(jsonify(response)), 400
-        elif file_extension == "csv":
+            return (
+                make_response(
+                    jsonify(
+                        {
+                            "status": "fail",
+                            "message": "Extension of file not allowed",
+                        }
+                    )
+                ),
+                400,
+            )
+        if file_extension == "csv":
             data = CSVReader().to_dict(file)
         else:
             data = XLSReader().to_dict(file)
 
         for ind, article_data in enumerate(data):
-            categories = article_data["categories"]
             categories_list = []
-            if categories:
-                for category_data in categories:
+            if article_data["categories"]:
+                for category_data in article_data["categories"]:
                     category = CategoryModel.query.filter_by(
                         name=category_data["name"]
                     ).first()
@@ -223,10 +243,9 @@ class UploadFileAPIView(MethodView):
                     categories_list.append(category)
             article_data["categories"] = categories_list
 
-            tags = article_data["tags"]
             tags_list = []
-            if tags:
-                for tag_data in tags:
+            if article_data["tags"]:
+                for tag_data in article_data["tags"]:
                     tag = TagModel.query.filter_by(
                         name=tag_data["name"]
                     ).first()

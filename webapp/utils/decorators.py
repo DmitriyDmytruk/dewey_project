@@ -17,7 +17,7 @@ def get_fail_response(status: int, response: dict) -> Dict[str, str]:
     return {"status": status, "message": response.get("message")}
 
 
-def get_user_by_token() -> Dict[str, Union[int, str]]:
+def get_user_by_token() -> Dict[str, Union[int, str]]:  # pylint: disable=R1710
     """
     Get user from jwt token
     :return: dict
@@ -44,7 +44,7 @@ def get_user_by_token() -> Dict[str, Union[int, str]]:
 def check_user_permissions(permissions: List[str]) -> bool:
     """
     Check user permissions
-    :param permissions:list
+    :param permissions: list
     :return: bool
     """
     res = False
@@ -56,29 +56,28 @@ def check_user_permissions(permissions: List[str]) -> bool:
     return res
 
 
-def login_required(f):
+def login_required(func):
     """
     Checking user authorization by JWT Token
     """
 
-    @functools.wraps(f)
+    @functools.wraps(func)
     def decorated_function(*args, **kwargs):
         user_by_token = get_user_by_token()
         if session.get("user"):
-            return f(*args, **kwargs)
-        else:
-            return user_by_token
+            return func(*args, **kwargs)
+        return user_by_token
 
     return decorated_function
 
 
-def permissions(*permissions):
+def has_permissions(*permissions):
     """
     Checking user permission
     """
 
-    def decorated_function(f):
-        def new_f(*args, **kwargs):
+    def wrapper(func):
+        def checking(*args, **kwargs):
             user = session.get("user")
             if not user:
                 get_user_by_token()
@@ -88,9 +87,9 @@ def permissions(*permissions):
             check_perm = check_user_permissions(*permissions)
             if not check_perm:
                 return get_fail_response(403, {"message": "Access denied."})
-            return f(*args, **kwargs)
+            return func(*args, **kwargs)
 
-        new_f.__name__ = f.__name__
-        return new_f
+        checking.__name__ = func.__name__
+        return checking
 
-    return decorated_function
+    return wrapper

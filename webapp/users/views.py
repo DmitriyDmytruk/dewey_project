@@ -1,4 +1,4 @@
-from typing import Dict, Optional
+from typing import Dict, Optional, Union
 
 from flask import jsonify, make_response, request
 from flask.views import MethodView
@@ -16,7 +16,10 @@ class LoginAPIView(MethodView):
     User Login Resource
     """
 
-    def post(self):  # pylint: disable=C0116
+    def post(self):
+        """
+        User login
+        """
         post_data = request.get_json()
         try:
             user: UserModel = UserModel.query.filter_by(
@@ -27,26 +30,30 @@ class LoginAPIView(MethodView):
                 and user.is_active
                 and user.check_password(post_data["password"])
             ):
-                auth_token: str = user.encode_auth_token()
+                auth_token: Union[str, bytes] = user.encode_auth_token()
                 if auth_token:
-                    responseObject: Dict[str, str] = {
+                    response_object: Dict[str, str] = {
                         "status": "success",
                         "message": "Successfully logged in.",
                         "auth_token": auth_token.decode(),
                     }
-                    return make_response(jsonify(responseObject)), 200
-            else:
-                responseObject: Dict[str, str] = {
-                    "status": "fail",
-                    "message": "User does not exist.",
+                    return make_response(jsonify(response_object)), 200
+                response_object: Dict[str, str] = {
+                    "status": "success",
+                    "message": "Sign In failed",
                 }
-                return make_response(jsonify(responseObject)), 404
+                return make_response(jsonify(response_object)), 200
+            response_object: Dict[str, str] = {
+                "status": "fail",
+                "message": "User does not exist.",
+            }
+            return make_response(jsonify(response_object)), 404
         except Exception:
-            responseObject: Dict[str, str] = {
+            response_object: Dict[str, str] = {
                 "status": "fail",
                 "message": "Try again",
             }
-            return make_response(jsonify(responseObject)), 500
+            return make_response(jsonify(response_object)), 500
 
 
 class UserAPIView(MethodView):
@@ -54,19 +61,10 @@ class UserAPIView(MethodView):
     Users endpoints
     """
 
-    def get(self, user_id):
-        """
-        :param user_id:
-        :return:
-        """
-        if user_id is None:
-            # list view
-            pass
-        else:
-            # detail view
-            pass
-
     def post(self):
+        """
+        User create
+        """
         json_data = request.get_json()
         if not json_data:
             return {"message": "No input data provided"}, 400
@@ -92,15 +90,4 @@ class UserAPIView(MethodView):
 
             result = UserSchema().dump(user)
             return {"message": "Created new user.", "user": result}, 201
-
-    def delete(self):
-        """
-        Delete user
-        """
-        ...
-
-    def put(self):
-        """
-        Update user
-        """
-        ...
+        return {"message": "Fail"}, 400

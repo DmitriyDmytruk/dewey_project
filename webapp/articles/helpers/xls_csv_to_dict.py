@@ -61,7 +61,8 @@ class XLSReader:
         """
         Columns mapping
         """
-        d = {
+        col_index: int
+        data = {
             self.keys[col_index]
             .lower()
             .replace(" ", "_")
@@ -71,9 +72,9 @@ class XLSReader:
         }
         if self.sheet.cell(row_index, 0).value:
             self.state = self.sheet.cell(row_index, 0).value
-        d["state"] = self.state
-        d = columns_mapping(d)
-        return d
+        data["state"] = self.state
+        data = columns_mapping(data)
+        return data
 
     def to_dict(self, file: IO) -> List[dict]:
         """
@@ -112,11 +113,11 @@ class CSVReader:
         """
         Columns mapping
         """
-        d = {}
+        data = {}
         for index, item in enumerate(rows):
-            d[self.keys[index]] = item
-        d = columns_mapping(d)
-        return d
+            data[self.keys[index]] = item
+        data = columns_mapping(data)
+        return data
 
     def to_dict(self, file: IO) -> List[dict]:
         """
@@ -125,8 +126,8 @@ class CSVReader:
         self.open(file)
         dict_list = []
         for rows in self.rows_list[1:]:
-            d = self._read(rows)
-            dict_list.append(d)
+            data = self._read(rows)
+            dict_list.append(data)
         return dict_list
 
 

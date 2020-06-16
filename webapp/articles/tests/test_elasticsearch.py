@@ -28,9 +28,9 @@ def test_new_tag(app):
     db.session.add(new_article)
     db.session.commit()
 
-    with pytest.raises(NotFoundError) as e:
+    with pytest.raises(NotFoundError) as error:
         es.get(ARTICLE_INDEX, 0)
-    assert e.value.status_code == 404
+    assert error.value.status_code == 404
     resp = es.get(ARTICLE_INDEX, new_article.id)
     assert resp.get("_source").get("id") == new_article.id
     assert resp.get("_source").get("title") == article_title
