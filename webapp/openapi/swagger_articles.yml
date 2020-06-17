@@ -26,6 +26,10 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/ArticleGet'
+                  message:
+                    type: string
+                    default: "Articles retrieved"
+                    example: "Articles retrieved"
         '401':
           description: "Fail authentication"
           content:
@@ -49,7 +53,7 @@ paths:
             schema:
               $ref: '#/components/schemas/ArticlePutPost'
       responses:
-        '200':
+        '201':
           description: "Successful create article"
           content:
             application/json:
@@ -58,6 +62,8 @@ paths:
                   message:
                     type: string
                     default: "Article created"
+                  id:
+                    type: integer
         '400':
           description: "Invalid request"
           content:
@@ -66,8 +72,8 @@ paths:
                 properties:
                   message:
                     type: string
-                    default: "Invalid request"
-                    example: "Invalid request"
+                    default: "No input data provided"
+                    example: "No input data provided"
         '401':
           description: "Fail authentication"
           content:
@@ -86,68 +92,68 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/500'
-  /articles/<article_id>:
-    put:
-      operationId: "webapp.articles.views.ArticleAPIView.put"
-      tags:
-        - "Articles"
-      summary: "Article update"
-      parameters:
-        - name: article_id
-          in: path
-          required: true
-          description: "The id of the article to retrieve"
-          schema:
-            type: integer
-      requestBody:
-        content:
-          application/json:
+    /articles/<article_id>:
+      put:
+        operationId: "webapp.articles.views.ArticleAPIView.put"
+        tags:
+          - "Articles"
+        summary: "Article update"
+        parameters:
+          - name: article_id
+            in: path
+            required: true
+            description: "The id of the article to retrieve"
             schema:
-              $ref: '#/components/schemas/ArticlePutPost'
-      responses:
-        '200':
-          description: "Successful update article"
+              type: integer
+        requestBody:
           content:
             application/json:
               schema:
-                properties:
-                  message:
-                    type: string
-                    default: "Article updated"
-        '400':
-          description: "Invalid request"
-          content:
-            application/json:
-              schema:
-                properties:
-                  message:
-                    type: string
-                    default: "Invalid request"
-                    example: "Invalid request"
-        '401':
-          description: "Fail authentication"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/401'
-        '403':
-          description: "Access denied."
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/403'
-        '404':
-          description: "Article does not exist"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/404_Article'
-        '500':
-          description: "Fail"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/500'
+                $ref: '#/components/schemas/ArticlePutPost'
+        responses:
+          '200':
+            description: "Successful update article"
+            content:
+              application/json:
+                schema:
+                  properties:
+                    message:
+                      type: string
+                      default: "Article updated"
+          '400':
+            description: "Invalid request"
+            content:
+              application/json:
+                schema:
+                  properties:
+                    message:
+                      type: string
+                      default: "No input data provided"
+                      example: "No input data provided"
+          '401':
+            description: "Fail authentication"
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/401'
+          '403':
+            description: "Access denied."
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/403'
+          '404':
+            description: "Article does not exist"
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/404_Article'
+          '500':
+            description: "Fail"
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/500'
   /articles/<article_id>/download:
     get:
       operationId: "webapp.articles.views.DownloadArticleXLSView.get"
@@ -204,9 +210,9 @@ paths:
                 file:
                   type: string
                   format: binary
-#                data:
-#                  type: object
-#                  description: "Extra data."
+      #                data:
+      #                  type: object
+      #                  description: "Extra data."
       responses:
         '200':
           description: "File uploaded"
@@ -216,8 +222,8 @@ paths:
                 properties:
                   status:
                     type: string
-                    default: "success"
-                    example: "success"
+                    default: "Successful"
+                    example: "Successful"
                   message:
                     type: string
                     default: "File uploaded."
@@ -230,8 +236,8 @@ paths:
                 properties:
                   status:
                     type: string
-                    default: "fail"
-                    example: "fail"
+                    default: "Failed"
+                    example: "Failed"
                   message:
                     type: string
                     default: "Extension of file not allowed"
@@ -278,21 +284,13 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  oneOf:
-                    - $ref: '#/components/schemas/ArticleFirstRequest'
-                    - $ref: '#/components/schemas/ArticlesList'
-        '400':
-          description: "Invalid request"
-          content:
-            application/json:
-              schema:
                 properties:
-                  message:
-                    type: string
-                    default: "Invalid request"
-                    example: "Invalid request"
+                  response:
+                    type: array
+                    items:
+                      oneOf:
+                        - $ref: '#/components/schemas/ArticleFirstRequest'
+                        - $ref: '#/components/schemas/ArticlesList'
         '401':
           description: "Fail authentication"
           content:
@@ -305,12 +303,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/403'
-        '500':
-          description: Fail
+        '404':
+          description: "Article does not exist"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/500'
+                properties:
+                  response:
+                    type: string
+                    default: "Articles not found."
+                    example: "Articles not found."
 components:
   schemas:
     IdNameSchema:
@@ -445,8 +447,8 @@ components:
       properties:
         message:
           type: string
-          example: "Not exist."
-          default: "Not exist."
+          example: "Article not found."
+          default: "Article not found."
     500:
       type: object
       properties:

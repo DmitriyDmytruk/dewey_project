@@ -1,7 +1,7 @@
 from typing import IO, Any, Dict, List, Optional, Tuple, Union
 
 from elasticsearch_dsl import Q, Search
-from flask import Response, jsonify, make_response, request
+from flask import Response, request
 from flask.views import MethodView
 
 from webapp import db, es
@@ -28,7 +28,7 @@ class ArticleAPIView(MethodView):
             articles_schema = ArticleSchema(many=True)
             articles: List[ArticleModel] = ArticleModel.query.all()
             result = articles_schema.dump(articles)
-            return {"articles": result}
+            return {"articles": result, "message": "Articles retrieved"}
         return {}
 
     @login_required
@@ -39,12 +39,12 @@ class ArticleAPIView(MethodView):
         """
         json_data: dict = request.get_json()
         if not json_data:
-            return jsonify({"message": "Invalid request"}), 400
+            return {"message": "No input data provided"}, 400
         article: ArticleModel = ArticleModel.query.filter(
             ArticleModel.id == article_id
         ).first()
         if not article:
-            return jsonify({"message": "Article does not exist."}), 404
+            return {"message": "Article not found."}, 404
         try:
             ArticlePutPostSchema().load(
                 data=json_data,
@@ -54,8 +54,8 @@ class ArticleAPIView(MethodView):
             )
             db.session.commit()
         except Exception as error:
-            return jsonify({"message": str(error)}), 500
-        return jsonify({"message": "Article updated"}), 200
+            return {"message": str(error)}, 500
+        return {"message": "Article updated"}
 
     @login_required
     @has_permissions(["can_add_articles"])
@@ -63,7 +63,7 @@ class ArticleAPIView(MethodView):
         """Article create"""
         json_data: dict = request.get_json()
         if not json_data:
-            return jsonify({"message": "Invalid request"}), 400
+            return {"message": "No input data provided"}, 400
         try:
             article: ArticleModel = ArticlePutPostSchema().load(
                 data=json_data, partial=True, session=db.session
@@ -71,8 +71,8 @@ class ArticleAPIView(MethodView):
             db.session.add(article)
             db.session.commit()
         except Exception as error:
-            return jsonify({"message": str(error)}), 500
-        return jsonify({"message": "Article created", "id": article.id}), 200
+            return {"message": str(error)}, 500
+        return {"message": "Article created", "id": article.id}, 201
 
 
 class ArticleSearchAPIView(MethodView):
@@ -140,7 +140,7 @@ class ArticleSearchAPIView(MethodView):
                         )
                     ),
                 }
-            return {"response": result}
+            return {"response": result}, 404
 
         state_filter = categories_filter = tags_filter = Q()
 
@@ -191,7 +191,7 @@ class DownloadArticleXLSView(MethodView):
                     "Content-disposition": f"attachment; filename={article.title}.xls"  # pylint: disable
                 },
             )
-        return jsonify({"message": "Article does not exist."}), 404
+        return {"message": "Article not found."}, 404
 
 
 class UploadFileAPIView(MethodView):
@@ -210,18 +210,11 @@ class UploadFileAPIView(MethodView):
         file = request.files["file"]
         # request.form.get("data")
         file_extension = file.filename.split(".")[-1]
-        response = {"status": "success", "message": "File uploaded."}
+        response = {"status": "Successful", "message": "File uploaded."}
 
         if file_extension not in self.ALLOWED_EXTENSIONS:
             return (
-                make_response(
-                    jsonify(
-                        {
-                            "status": "fail",
-                            "message": "Extension of file not allowed",
-                        }
-                    )
-                ),
+                {"status": "Failed", "message": "Extension of file not allowed"},
                 400,
             )
         if file_extension == "csv":
@@ -259,4 +252,4 @@ class UploadFileAPIView(MethodView):
             article = ArticleModel(**article_data)
             db.session.add(article)
             db.session.commit()
-        return make_response(jsonify(response)), 200
+        return response

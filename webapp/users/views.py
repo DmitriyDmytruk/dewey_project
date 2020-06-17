@@ -1,6 +1,6 @@
-from typing import Dict, Optional, Union
+from typing import Optional, Union
 
-from flask import jsonify, make_response, request
+from flask import request
 from flask.views import MethodView
 from marshmallow import ValidationError
 
@@ -32,28 +32,16 @@ class LoginAPIView(MethodView):
             ):
                 auth_token: Union[str, bytes] = user.encode_auth_token()
                 if auth_token:
-                    response_object: Dict[str, str] = {
-                        "status": "success",
+                    return {
                         "message": "Successfully logged in.",
                         "auth_token": auth_token.decode(),
                     }
-                    return make_response(jsonify(response_object)), 200
-                response_object: Dict[str, str] = {
-                    "status": "success",
-                    "message": "Sign In failed",
-                }
-                return make_response(jsonify(response_object)), 200
-            response_object: Dict[str, str] = {
-                "status": "fail",
-                "message": "User does not exist.",
-            }
-            return make_response(jsonify(response_object)), 404
+                return {
+                    "message": "Token not found",
+                }, 401
+            return {"message": "User not found."}, 404
         except Exception:
-            response_object: Dict[str, str] = {
-                "status": "fail",
-                "message": "Try again",
-            }
-            return make_response(jsonify(response_object)), 500
+            return {"message": "Error. Try again"}, 500
 
 
 class UserAPIView(MethodView):
@@ -71,7 +59,7 @@ class UserAPIView(MethodView):
         try:
             data = UserSchema(partial=True).load(json_data)
         except ValidationError as err:
-            return err.messages, 422
+            return {"messages": err.messages}, 422
         email, role_title = data["email"], data["role"]["title"]
         role: RoleModel = RoleModel.query.filter_by(title=role_title).one()
         # TODO: If role not exists?
@@ -89,5 +77,5 @@ class UserAPIView(MethodView):
             sengrid_send_mail(email, subject, content, content_type)
 
             result = UserSchema().dump(user)
-            return {"message": "Created new user.", "user": result}, 201
-        return {"message": "Fail"}, 400
+            return {"message": "User created", "user": result}, 201
+        return {"message": "User with this email address already exists"}, 422
