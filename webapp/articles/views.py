@@ -214,7 +214,10 @@ class UploadFileAPIView(MethodView):
 
         if file_extension not in self.ALLOWED_EXTENSIONS:
             return (
-                {"status": "Failed", "message": "Extension of file not allowed"},
+                {
+                    "status": "Failed",
+                    "message": "Extension of file not allowed",
+                },
                 400,
             )
         if file_extension == "csv":

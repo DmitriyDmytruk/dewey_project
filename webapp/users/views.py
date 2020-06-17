@@ -36,9 +36,7 @@ class LoginAPIView(MethodView):
                         "message": "Successfully logged in.",
                         "auth_token": auth_token.decode(),
                     }
-                return {
-                    "message": "Token not found",
-                }, 401
+                return {"message": "Token not found",}, 401
             return {"message": "User not found."}, 404
         except Exception:
             return {"message": "Error. Try again"}, 500
