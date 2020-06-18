@@ -92,68 +92,68 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/500'
-    /articles/<article_id>:
-      put:
-        operationId: "webapp.articles.views.ArticleAPIView.put"
-        tags:
-          - "Articles"
-        summary: "Article update"
-        parameters:
-          - name: article_id
-            in: path
-            required: true
-            description: "The id of the article to retrieve"
+  /articles/<article_id>:
+    put:
+      operationId: "webapp.articles.views.ArticleAPIView.put"
+      tags:
+        - "Articles"
+      summary: "Article update"
+      parameters:
+        - name: article_id
+          in: path
+          required: true
+          description: "The id of the article to retrieve"
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
             schema:
-              type: integer
-        requestBody:
+              $ref: '#/components/schemas/ArticlePutPost'
+      responses:
+        '200':
+          description: "Successful update article"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ArticlePutPost'
-        responses:
-          '200':
-            description: "Successful update article"
-            content:
-              application/json:
-                schema:
-                  properties:
-                    message:
-                      type: string
-                      default: "Article updated"
-          '400':
-            description: "Invalid request"
-            content:
-              application/json:
-                schema:
-                  properties:
-                    message:
-                      type: string
-                      default: "No input data provided"
-                      example: "No input data provided"
-          '401':
-            description: "Fail authentication"
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/401'
-          '403':
-            description: "Access denied."
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/403'
-          '404':
-            description: "Article does not exist"
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/404_Article'
-          '500':
-            description: "Fail"
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/500'
+                properties:
+                  message:
+                    type: string
+                    default: "Article updated"
+        '400':
+          description: "Invalid request"
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    default: "No input data provided"
+                    example: "No input data provided"
+        '401':
+          description: "Fail authentication"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+        '403':
+          description: "Access denied."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403'
+        '404':
+          description: "Article does not exist"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404_Article'
+        '500':
+          description: "Fail"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/500'
   /articles/<article_id>/download:
     get:
       operationId: "webapp.articles.views.DownloadArticleXLSView.get"

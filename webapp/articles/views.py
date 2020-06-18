@@ -80,7 +80,7 @@ class ArticleSearchAPIView(MethodView):
     """
 
     @staticmethod
-    def usable_items(found: list, items: str) -> List[str]:
+    def _usable_items(found: list, items: str) -> List[str]:
         """
         Generates list of usable items
         """
@@ -93,6 +93,31 @@ class ArticleSearchAPIView(MethodView):
                 )
             )
         )
+
+    @staticmethod
+    def _forming_query(state, categories, tags) -> dict:
+        query = {"bool": {"must": []}}
+        if state:
+            query["bool"]["must"].append({"term": {"state.keyword": state}})
+        if categories:
+            query["bool"]["must"].append(
+                {"terms": {"categories.keyword": categories}}
+            )
+        if tags:
+            query["bool"]["must"].append({"terms": {"tags.keyword": tags}})
+        return query
+
+    @staticmethod
+    def _retrieve_articles(
+        query: Optional[dict] = None, match_all: bool = False
+    ):
+        if match_all:
+            query = {"match_all": {}}
+        found = es.search(
+            index=ArticleModel.__tablename__, body={"query": query},
+        )["hits"].get("hits")
+
+        return found
 
     @login_required
     @has_permissions(["can_view_articles"])
@@ -116,14 +141,11 @@ class ArticleSearchAPIView(MethodView):
             state = data.get("state")
 
         if not categories and not tags and not state:
-            found = es.search(
-                index=ArticleModel.__tablename__,
-                body={"query": {"match_all": {}}},
-            )["hits"].get("hits")
+            found = self._retrieve_articles(match_all=True)
             if found:
                 result = [article["_source"] for article in found]
-                usable_categories = self.usable_items(found, "categories")
-                usable_tags = self.usable_items(found, "tags")
+                usable_categories = self._usable_items(found, "categories")
+                usable_tags = self._usable_items(found, "tags")
                 return {
                     "response": result,
                     "categories": usable_categories,
@@ -139,25 +161,8 @@ class ArticleSearchAPIView(MethodView):
                 }
             return {"response": result}, 404
 
-        query = {"query": {"bool": {"must": []}}}
-
-        if state:
-            query["query"]["bool"]["must"].append(
-                {"term": {"state.keyword": state}}
-            )
-
-        if categories:
-            query["query"]["bool"]["must"].append(
-                {"terms": {"categories.keyword": categories}}
-            )
-
-        if tags:
-            query["query"]["bool"]["must"].append(
-                {"terms": {"tags.keyword": tags}}
-            )
-
-        found = es.search(index="articles", body=query)["hits"].get("hits")
-
+        query = self._forming_query(state, categories, tags)
+        found = self._retrieve_articles(query)
         if found:
             result = [article["_source"] for article in found]
         return {"response": result}
