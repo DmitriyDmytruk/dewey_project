@@ -1,6 +1,5 @@
 from typing import IO, Any, Dict, List, Optional, Tuple, Union
 
-from elasticsearch_dsl import Q, Search
 from flask import Response, request
 from flask.views import MethodView
 
@@ -81,16 +80,6 @@ class ArticleSearchAPIView(MethodView):
     """
 
     @staticmethod
-    def filter_create(queries: List[Q]) -> Q:
-        """
-        Creates Q.OR filter
-        """
-        query = queries.pop()
-        for item in queries:
-            query |= item
-        return query
-
-    @staticmethod
     def usable_items(found: list, items: str) -> List[str]:
         """
         Generates list of usable items
@@ -107,7 +96,13 @@ class ArticleSearchAPIView(MethodView):
 
     @login_required
     @has_permissions(["can_view_articles"])
-    def get(self) -> dict:
+    def get(
+        self,
+    ) -> Union[
+        Dict[str, Union[list, List[str]]],
+        Tuple[Dict[str, str], int],
+        Dict[str, Union[list, str]],
+    ]:
         """
         Search article
         First request - with empty params
@@ -119,10 +114,12 @@ class ArticleSearchAPIView(MethodView):
             categories = data.get("categories")
             tags = data.get("tags")
             state = data.get("state")
-        search = Search(using=es, index=ArticleModel.__tablename__)
 
         if not categories and not tags and not state:
-            found = search.execute().to_dict()["hits"].get("hits")
+            found = es.search(
+                index=ArticleModel.__tablename__,
+                body={"query": {"match_all": {}}},
+            )["hits"].get("hits")
             if found:
                 result = [article["_source"] for article in found]
                 usable_categories = self.usable_items(found, "categories")
@@ -142,26 +139,24 @@ class ArticleSearchAPIView(MethodView):
                 }
             return {"response": result}, 404
 
-        state_filter = categories_filter = tags_filter = Q()
+        query = {"query": {"bool": {"must": []}}}
 
         if state:
-            state_filter = Q("match", state=state)
+            query["query"]["bool"]["must"].append(
+                {"term": {"state.keyword": state}}
+            )
 
         if categories:
-            queries = [Q("match", categories=value) for value in categories]
-            categories_filter = self.filter_create(queries)
+            query["query"]["bool"]["must"].append(
+                {"terms": {"categories.keyword": categories}}
+            )
 
         if tags:
-            queries = [Q("match", tags=value) for value in tags]
-            tags_filter = categories_filter = self.filter_create(queries)
+            query["query"]["bool"]["must"].append(
+                {"terms": {"tags.keyword": tags}}
+            )
 
-        combined_filter = state_filter & categories_filter & tags_filter
-        found = (
-            search.filter(combined_filter)
-            .execute()
-            .to_dict()["hits"]
-            .get("hits")
-        )
+        found = es.search(index="articles", body=query)["hits"].get("hits")
 
         if found:
             result = [article["_source"] for article in found]
