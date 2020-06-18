@@ -83,6 +83,9 @@ class ArticleSearchAPIView(MethodView):
     def _usable_items(found: list, items: str) -> List[str]:
         """
         Generates list of usable items
+        @param found: list
+        @param items: str
+        @return: list
         """
         return sorted(
             list(
@@ -95,7 +98,18 @@ class ArticleSearchAPIView(MethodView):
         )
 
     @staticmethod
-    def _forming_query(state, categories, tags) -> dict:
+    def _forming_query(
+        state: Optional[str] = None,
+        categories: Optional[List[str]] = None,
+        tags: Optional[List[str]] = None,
+    ) -> dict:
+        """
+        Forming query for elasticsearch
+        @param state: string | None
+        @param categories: list | None
+        @param tags: list | None
+        @return: dict
+        """
         query = {"bool": {"must": []}}
         if state:
             query["bool"]["must"].append({"term": {"state.keyword": state}})
@@ -110,7 +124,13 @@ class ArticleSearchAPIView(MethodView):
     @staticmethod
     def _retrieve_articles(
         query: Optional[dict] = None, match_all: bool = False
-    ):
+    ) -> List:
+        """
+        Retrieve articles from request to elasticsearch
+        @param query: dict | None
+        @param match_all: bool
+        @return: list
+        """
         if match_all:
             query = {"match_all": {}}
         found = es.search(
