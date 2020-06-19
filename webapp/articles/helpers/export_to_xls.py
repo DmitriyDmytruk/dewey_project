@@ -16,6 +16,7 @@ def convert_to_xls(article: ArticleModel) -> bytes:
     article_dict = article.__dict__
     tags = ", ".join(article.get_relations("tags"))
     categories = ", ".join(article.get_relations("categories"))
+    reference_images = ", ".join(article.get_relations("reference_images"))
     keys = [
         "unique_id",
         "state",
@@ -24,7 +25,6 @@ def convert_to_xls(article: ArticleModel) -> bytes:
         "cfr40_part280",
         "local_regulation",
         "abstract",
-        "reference_images",
         "updated_date",
         "effective_date",
     ]
@@ -37,6 +37,7 @@ def convert_to_xls(article: ArticleModel) -> bytes:
         data[-1] = effective_date.strftime("%d/%m/%Y")
     data.insert(-2, tags)
     data.insert(-3, categories)
+    data.insert(-4, reference_images)
 
     header = [
         "Unique ID",

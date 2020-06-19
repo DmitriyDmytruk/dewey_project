@@ -10,6 +10,8 @@ RUN apk update && apk add postgresql-dev gcc libc-dev make git libffi-dev openss
 
 COPY requirements.txt requirements.txt
 RUN pip install -r ./requirements.txt
+RUN pip install connexion[swagger-ui]
+RUN pip install python-dotenv
 RUN pip install gunicorn
 
 COPY webapp webapp

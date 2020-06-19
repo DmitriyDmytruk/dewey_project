@@ -17,9 +17,9 @@ def test_new_tag(session):
     tag_name: str = "Test tag"
     new_tag: TagModel = TagModel(name=tag_name)
     session.add(new_tag)
-    with pytest.raises(IntegrityError) as e:
+    with pytest.raises(IntegrityError) as error:
         session.commit()
-    assert e.typename == "IntegrityError"
+    assert error.typename == "IntegrityError"
 
 
 def test_new_category(session):
@@ -35,9 +35,9 @@ def test_new_category(session):
     category_name: str = "Test category"
     new_category: CategoryModel = CategoryModel(name=category_name)
     session.add(new_category)
-    with pytest.raises(IntegrityError) as e:
+    with pytest.raises(IntegrityError) as error:
         session.commit()
-    assert e.typename == "IntegrityError"
+    assert error.typename == "IntegrityError"
 
 
 def test_new_article(session):

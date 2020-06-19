@@ -39,6 +39,10 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/ArticleGet'
+                  message:
+                    type: string
+                    default: "Articles retrieved"
+                    example: "Articles retrieved"
         '401':
           description: "Fail authentication"
           content:
@@ -62,7 +66,7 @@ paths:
             schema:
               $ref: '#/components/schemas/ArticlePutPost'
       responses:
-        '200':
+        '201':
           description: "Successful create article"
           content:
             application/json:
@@ -71,6 +75,8 @@ paths:
                   message:
                     type: string
                     default: "Article created"
+                  id:
+                    type: integer
         '400':
           description: "Invalid request"
           content:
@@ -79,8 +85,8 @@ paths:
                 properties:
                   message:
                     type: string
-                    default: "Invalid request"
-                    example: "Invalid request"
+                    default: "No input data provided"
+                    example: "No input data provided"
         '401':
           description: "Fail authentication"
           content:
@@ -135,8 +141,8 @@ paths:
                 properties:
                   message:
                     type: string
-                    default: "Invalid request"
-                    example: "Invalid request"
+                    default: "No input data provided"
+                    example: "No input data provided"
         '401':
           description: "Fail authentication"
           content:
@@ -217,9 +223,9 @@ paths:
                 file:
                   type: string
                   format: binary
-                data:
-                  type: object
-                  description: "Extra data."
+#                data:
+#                  type: object
+#                  description: "Extra data."
       responses:
         '200':
           description: "File uploaded"
@@ -229,8 +235,8 @@ paths:
                 properties:
                   status:
                     type: string
-                    default: "success"
-                    example: "success"
+                    default: "Successful"
+                    example: "Successful"
                   message:
                     type: string
                     default: "File uploaded."
@@ -243,8 +249,8 @@ paths:
                 properties:
                   status:
                     type: string
-                    default: "fail"
-                    example: "fail"
+                    default: "Failed"
+                    example: "Failed"
                   message:
                     type: string
                     default: "Extension of file not allowed"
@@ -291,21 +297,13 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  oneOf:
-                    - $ref: '#/components/schemas/ArticleFirstRequest'
-                    - $ref: '#/components/schemas/ArticlesList'
-        '400':
-          description: "Invalid request"
-          content:
-            application/json:
-              schema:
                 properties:
-                  message:
-                    type: string
-                    default: "Invalid request"
-                    example: "Invalid request"
+                  response:
+                    type: array
+                    items:
+                      oneOf:
+                        - $ref: '#/components/schemas/ArticleFirstRequest'
+                        - $ref: '#/components/schemas/ArticlesList'
         '401':
           description: "Fail authentication"
           content:
@@ -318,12 +316,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/403'
-        '500':
-          description: Fail
+        '404':
+          description: "Article does not exist"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/500'
+                properties:
+                  response:
+                    type: string
+                    default: "Articles not found."
+                    example: "Articles not found."
   /users/login:
     post:
       operationId: "webapp.users.views.LoginAPIView.post"
@@ -350,15 +352,11 @@ paths:
             application/json:
               schema:
                 properties:
-                  "status":
-                    type: string
-                    default: "success"
-                    example: "success"
-                  "message":
+                  message:
                     type: string
                     default: "Successfully logged in."
                     example: "Successfully logged in."
-                  "auth_token":
+                  auth_token:
                     type: string
         '404':
           description: "User does not exist"
@@ -402,8 +400,8 @@ paths:
                 properties:
                   message:
                     type: string
-                    default: "Created new user."
-                    example: "Created new user."
+                    default: "User created"
+                    example: "User created"
                   user:
                     $ref: '#/components/schemas/User'
         '400':
@@ -422,8 +420,13 @@ paths:
             application/json:
               schema:
                 properties:
-                  message:
-                    type: string
+                  messages:
+                    type: array
+                    items:
+                      oneOf:
+                        - type: string
+                        - type: string
+                      example: "User with this email address already exists"
 
 components:
   schemas:
@@ -599,19 +602,19 @@ components:
       properties:
         message:
           type: string
-          example: "Not exist."
-          default: "Not exist."
+          example: "Article not found."
+          default: "Article not found."
     404_User:
       type: object
       properties:
         message:
           type: string
-          example: Not exist.
-          default: Not exist.
+          example: "User not found."
+          default: "User not found."
         status:
           type: string
-          example: fail
-          default: fail
+          example: "Failed"
+          default: "Failed"
     500:
       type: object
       properties:

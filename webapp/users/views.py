@@ -1,6 +1,6 @@
-from typing import Dict, Optional
+from typing import Optional, Union
 
-from flask import jsonify, make_response, request
+from flask import request
 from flask.views import MethodView
 from marshmallow import ValidationError
 
@@ -16,7 +16,10 @@ class LoginAPIView(MethodView):
     User Login Resource
     """
 
-    def post(self):  # pylint: disable=C0116
+    def post(self):
+        """
+        User login
+        """
         post_data = request.get_json()
         try:
             user: UserModel = UserModel.query.filter_by(
@@ -27,26 +30,16 @@ class LoginAPIView(MethodView):
                 and user.is_active
                 and user.check_password(post_data["password"])
             ):
-                auth_token: str = user.encode_auth_token()
+                auth_token: Union[str, bytes] = user.encode_auth_token()
                 if auth_token:
-                    responseObject: Dict[str, str] = {
-                        "status": "success",
+                    return {
                         "message": "Successfully logged in.",
                         "auth_token": auth_token.decode(),
                     }
-                    return make_response(jsonify(responseObject)), 200
-            else:
-                responseObject: Dict[str, str] = {
-                    "status": "fail",
-                    "message": "User does not exist.",
-                }
-                return make_response(jsonify(responseObject)), 404
+                return {"message": "Token not found",}, 401
+            return {"message": "User not found."}, 404
         except Exception:
-            responseObject: Dict[str, str] = {
-                "status": "fail",
-                "message": "Try again",
-            }
-            return make_response(jsonify(responseObject)), 500
+            return {"message": "Error. Try again"}, 500
 
 
 class UserAPIView(MethodView):
@@ -54,26 +47,17 @@ class UserAPIView(MethodView):
     Users endpoints
     """
 
-    def get(self, user_id):
-        """
-        :param user_id:
-        :return:
-        """
-        if user_id is None:
-            # list view
-            pass
-        else:
-            # detail view
-            pass
-
     def post(self):
+        """
+        User create
+        """
         json_data = request.get_json()
         if not json_data:
             return {"message": "No input data provided"}, 400
         try:
             data = UserSchema(partial=True).load(json_data)
         except ValidationError as err:
-            return err.messages, 422
+            return {"messages": err.messages}, 422
         email, role_title = data["email"], data["role"]["title"]
         role: RoleModel = RoleModel.query.filter_by(title=role_title).one()
         # TODO: If role not exists?
@@ -91,16 +75,5 @@ class UserAPIView(MethodView):
             sengrid_send_mail(email, subject, content, content_type)
 
             result = UserSchema().dump(user)
-            return {"message": "Created new user.", "user": result}, 201
-
-    def delete(self):
-        """
-        Delete user
-        """
-        ...
-
-    def put(self):
-        """
-        Update user
-        """
-        ...
+            return {"message": "User created", "user": result}, 201
+        return {"message": "User with this email address already exists"}, 422

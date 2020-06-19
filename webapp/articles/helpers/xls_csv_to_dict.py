@@ -1,5 +1,6 @@
 import codecs
 import csv
+import uuid
 from typing import IO, Any, Dict, List, Tuple, Union
 
 from xlrd import Book, open_workbook
@@ -13,13 +14,22 @@ def columns_mapping(origin_dict: dict) -> Dict:
     :return: dict
     """
     origin_dict["legal_language"] = origin_dict.pop("regulation")
+    origin_dict["local_regulation"] = origin_dict.pop("local_reg")
+    origin_dict["abstract"] = origin_dict.pop("abstract_(interpretation)")
     origin_dict["cfr40_part280"] = origin_dict.pop(
-        "40cfr_280_part_federal_rule"
+        "40cfr_part_280_federal_rule"
     )
-    tags = origin_dict["tags"].split(",")
+    tags = origin_dict["tags"].split("#")[1:]
     origin_dict["tags"] = [{"name": tag} for tag in tags]
-    categories = origin_dict["categories"].split(",")
-    origin_dict["categories"] = [{"name": category} for category in categories]
+    origin_dict["categories"] = [
+        {"name": origin_dict[f"category_{i}"]}
+        for i in range(1, 17)
+        if origin_dict[f"category_{i}"]
+    ]
+    origin_dict.pop("")
+    for i in range(1, 17):
+        origin_dict.pop(f"category_{i}")
+    origin_dict["unique_id"] = uuid.uuid4().hex[:30]
     return origin_dict
 
 
@@ -33,6 +43,7 @@ class XLSReader:
         self.sheet = Sheet
         self.file = IO
         self.dict_list = []
+        self.state = str
 
     def open(self, file: IO) -> Tuple[Sheet, List[str]]:
         """
@@ -50,15 +61,20 @@ class XLSReader:
         """
         Columns mapping
         """
-        d = {
+        col_index: int
+        data = {
             self.keys[col_index]
             .lower()
-            .replace(" ", "_"): self.sheet.cell(row_index, col_index)
+            .replace(" ", "_")
+            .strip(): self.sheet.cell(row_index, col_index)
             .value
             for col_index in range(self.sheet.ncols)
         }
-        d = columns_mapping(d)
-        return d
+        if self.sheet.cell(row_index, 0).value:
+            self.state = self.sheet.cell(row_index, 0).value
+        data["state"] = self.state
+        data = columns_mapping(data)
+        return data
 
     def to_dict(self, file: IO) -> List[dict]:
         """
@@ -97,11 +113,11 @@ class CSVReader:
         """
         Columns mapping
         """
-        d = {}
+        data = {}
         for index, item in enumerate(rows):
-            d[self.keys[index]] = item
-        d = columns_mapping(d)
-        return d
+            data[self.keys[index]] = item
+        data = columns_mapping(data)
+        return data
 
     def to_dict(self, file: IO) -> List[dict]:
         """
@@ -110,8 +126,8 @@ class CSVReader:
         self.open(file)
         dict_list = []
         for rows in self.rows_list[1:]:
-            d = self._read(rows)
-            dict_list.append(d)
+            data = self._read(rows)
+            dict_list.append(data)
         return dict_list
 
 

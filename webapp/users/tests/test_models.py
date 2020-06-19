@@ -16,9 +16,9 @@ def test_create_new_role_permission(session):
     permission: PermissionModel = PermissionModel(permission_title)
     role: RoleModel = RoleModel(title=role_title, permissions=[permission])
     session.add(role, permission)
-    with pytest.raises(IntegrityError) as e:
+    with pytest.raises(IntegrityError) as error:
         session.commit()
-    assert e.typename == "IntegrityError"
+    assert error.typename == "IntegrityError"
 
     role_title: str = "Test User"
     permission: PermissionModel = PermissionModel(permission_title)

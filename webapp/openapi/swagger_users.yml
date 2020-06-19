@@ -35,15 +35,11 @@ paths:
             application/json:
               schema:
                 properties:
-                  "status":
-                    type: string
-                    default: "success"
-                    example: "success"
-                  "message":
+                  message:
                     type: string
                     default: "Successfully logged in."
                     example: "Successfully logged in."
-                  "auth_token":
+                  auth_token:
                     type: string
         '404':
           description: "User does not exist"
@@ -52,13 +48,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/404_User'
         '500':
-          description: "Fail"
+          description: Fail
           content:
             application/json:
               schema:
-                properties:
-                  message:
-                    type: string
+                $ref: '#/components/schemas/500'
   /users:
     post:
       operationId: "webapp.users.views.UserAPIView.post"
@@ -89,8 +83,8 @@ paths:
                 properties:
                   message:
                     type: string
-                    default: "Created new user."
-                    example: "Created new user."
+                    default: "User created"
+                    example: "User created"
                   user:
                     $ref: '#/components/schemas/User'
         '400':
@@ -109,8 +103,13 @@ paths:
             application/json:
               schema:
                 properties:
-                  message:
-                    type: string
+                  messages:
+                    type: array
+                    items:
+                      oneOf:
+                        - type: string
+                        - type: string
+                      example: "User with this email address already exists"
 
 components:
   schemas:
@@ -159,9 +158,14 @@ components:
       properties:
         message:
           type: string
-          example: Not exist.
-          default: Not exist.
+          example: "User not found."
+          default: "User not found."
         status:
           type: string
-          example: fail
-          default: fail
+          example: "Failed"
+          default: "Failed"
+    500:
+      type: object
+      properties:
+        message:
+          type: string

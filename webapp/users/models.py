@@ -1,5 +1,5 @@
 import datetime
-from typing import Optional
+from typing import Optional, Union
 
 import jwt
 from flask import current_app
@@ -89,7 +89,7 @@ class UserModel(db.Model):
         for key, item in data.items():
             setattr(self, key, item)
 
-    def encode_auth_token(self) -> str:
+    def encode_auth_token(self) -> Union[str, bytes]:
         """
         Generates the Auth Token
         :return: string
@@ -113,7 +113,7 @@ class UserModel(db.Model):
                 algorithm="HS256",
             )
         except Exception as err:  # pylint: disable=broad-except
-            return err
+            return str(err)
 
     @staticmethod
     def _hash_password(password: str):

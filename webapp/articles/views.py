@@ -1,15 +1,14 @@
 from typing import IO, Any, Dict, List, Optional, Tuple, Union
 
-from elasticsearch_dsl import Q, Search
-from flask import Response, jsonify, make_response, request
+from flask import Response, request
 from flask.views import MethodView
 
 from webapp import db, es
-from webapp.utils.decorators import login_required, permissions
+from webapp.utils.decorators import has_permissions, login_required
 
 from .helpers.export_to_xls import convert_to_xls
 from .helpers.xls_csv_to_dict import CSVReader, XLSReader
-from .models import ArticleModel
+from .models import ArticleModel, CategoryModel, TagModel
 from .schemas import ArticlePutPostSchema, ArticleSchema
 
 
@@ -19,25 +18,32 @@ class ArticleAPIView(MethodView):
     """
 
     @login_required
-    @permissions(["can_view_articles"])
+    @has_permissions(["can_view_articles"])
     def get(self, article_id: str = None) -> Dict[str, Any]:
+        """
+        Retrieve articles
+        """
         if article_id is None:
             articles_schema = ArticleSchema(many=True)
             articles: List[ArticleModel] = ArticleModel.query.all()
             result = articles_schema.dump(articles)
-            return {"articles": result}
+            return {"articles": result, "message": "Articles retrieved"}
+        return {}
 
     @login_required
-    @permissions(["can_change_articles"])
-    def put(self, article_id: str):
+    @has_permissions(["can_change_articles"])
+    def put(self, article_id: int):
+        """
+        Article update
+        """
         json_data: dict = request.get_json()
         if not json_data:
-            return jsonify({"message": "Invalid request"}), 400
+            return {"message": "No input data provided"}, 400
         article: ArticleModel = ArticleModel.query.filter(
             ArticleModel.id == article_id
         ).first()
         if not article:
-            return jsonify({"message": "Article does not exist."}), 404
+            return {"message": "Article not found."}, 404
         try:
             ArticlePutPostSchema().load(
                 data=json_data,
@@ -46,25 +52,26 @@ class ArticleAPIView(MethodView):
                 session=db.session,
             )
             db.session.commit()
-        except Exception as e:
-            return jsonify({"message": str(e)}), 500
-        return jsonify({"message": "Article updated"}), 200
+        except Exception as error:
+            return {"message": str(error)}, 500
+        return {"message": "Article updated"}
 
     @login_required
-    @permissions(["can_add_articles"])
+    @has_permissions(["can_add_articles"])
     def post(self):
+        """Article create"""
         json_data: dict = request.get_json()
         if not json_data:
-            return jsonify({"message": "Invalid request"}), 400
+            return {"message": "No input data provided"}, 400
         try:
             article: ArticleModel = ArticlePutPostSchema().load(
                 data=json_data, partial=True, session=db.session
             )
             db.session.add(article)
             db.session.commit()
-        except Exception as e:
-            return jsonify({"message": str(e)}), 500
-        return jsonify({"message": "Article created", "id": article.id}), 200
+        except Exception as error:
+            return {"message": str(error)}, 500
+        return {"message": "Article created", "id": article.id}, 201
 
 
 class ArticleSearchAPIView(MethodView):
@@ -73,19 +80,12 @@ class ArticleSearchAPIView(MethodView):
     """
 
     @staticmethod
-    def filter_create(queries: List[Q]) -> Q:
-        """
-        Creates Q.OR filter
-        """
-        query = queries.pop()
-        for item in queries:
-            query |= item
-        return query
-
-    @staticmethod
-    def usable_items(found: list, items: str) -> List[str]:
+    def _usable_items(found: list, items: str) -> List[str]:
         """
         Generates list of usable items
+        @param found: list
+        @param items: str
+        @return: list
         """
         return sorted(
             list(
@@ -97,9 +97,61 @@ class ArticleSearchAPIView(MethodView):
             )
         )
 
+    @staticmethod
+    def _forming_query(
+        state: Optional[str] = None,
+        categories: Optional[List[str]] = None,
+        tags: Optional[List[str]] = None,
+    ) -> dict:
+        """
+        Forming query for elasticsearch
+        @param state: string | None
+        @param categories: list | None
+        @param tags: list | None
+        @return: dict
+        """
+        query = {"bool": {"must": []}}
+        if state:
+            query["bool"]["must"].append({"term": {"state.keyword": state}})
+        if categories:
+            query["bool"]["must"].append(
+                {"terms": {"categories.keyword": categories}}
+            )
+        if tags:
+            query["bool"]["must"].append({"terms": {"tags.keyword": tags}})
+        return query
+
+    @staticmethod
+    def _retrieve_articles(
+        query: Optional[dict] = None, match_all: bool = False
+    ) -> List:
+        """
+        Retrieve articles from request to elasticsearch
+        @param query: dict | None
+        @param match_all: bool
+        @return: list
+        """
+        if match_all:
+            query = {"match_all": {}}
+        found = es.search(
+            index=ArticleModel.__tablename__, body={"query": query},
+        )["hits"].get("hits")
+
+        return found
+
     @login_required
-    @permissions(["can_view_articles"])
-    def get(self) -> dict:
+    @has_permissions(["can_view_articles"])
+    def get(
+        self,
+    ) -> Union[
+        Dict[str, Union[list, List[str]]],
+        Tuple[Dict[str, str], int],
+        Dict[str, Union[list, str]],
+    ]:
+        """
+        Search article
+        First request - with empty params
+        """
         data = request.get_json()
         categories = tags = state = None
         result = "Articles not found."
@@ -107,14 +159,13 @@ class ArticleSearchAPIView(MethodView):
             categories = data.get("categories")
             tags = data.get("tags")
             state = data.get("state")
-        search = Search(using=es, index=ArticleModel.__tablename__)
 
         if not categories and not tags and not state:
-            found = search.execute().to_dict()["hits"].get("hits")
+            found = self._retrieve_articles(match_all=True)
             if found:
                 result = [article["_source"] for article in found]
-                usable_categories = self.usable_items(found, "categories")
-                usable_tags = self.usable_items(found, "tags")
+                usable_categories = self._usable_items(found, "categories")
+                usable_tags = self._usable_items(found, "tags")
                 return {
                     "response": result,
                     "categories": usable_categories,
@@ -128,29 +179,10 @@ class ArticleSearchAPIView(MethodView):
                         )
                     ),
                 }
-            return {"response": result}
+            return {"response": result}, 404
 
-        state_filter = categories_filter = tags_filter = Q()
-
-        if state:
-            state_filter = Q("match", state=state)
-
-        if categories:
-            queries = [Q("match", categories=value) for value in categories]
-            categories_filter = self.filter_create(queries)
-
-        if tags:
-            queries = [Q("match", tags=value) for value in tags]
-            tags_filter = categories_filter = self.filter_create(queries)
-
-        combined_filter = state_filter & categories_filter & tags_filter
-        found = (
-            search.filter(combined_filter)
-            .execute()
-            .to_dict()["hits"]
-            .get("hits")
-        )
-
+        query = self._forming_query(state, categories, tags)
+        found = self._retrieve_articles(query)
         if found:
             result = [article["_source"] for article in found]
         return {"response": result}
@@ -162,8 +194,11 @@ class DownloadArticleXLSView(MethodView):
     """
 
     @login_required
-    @permissions(["can_view_articles"])
+    @has_permissions(["can_view_articles"])
     def get(self, article_id: int) -> Union[Tuple[Dict[str, str], int], IO]:
+        """
+        Converts exist article to .xls file
+        """
         article: Optional[ArticleModel] = ArticleModel.query.filter_by(
             id=article_id
         ).one_or_none()
@@ -173,11 +208,10 @@ class DownloadArticleXLSView(MethodView):
                 book,
                 mimetype="application/vnd.ms-excel",
                 headers={
-                    "Content-disposition": f"attachment; filename={article.title}.xls"
+                    "Content-disposition": f"attachment; filename={article.title}.xls"  # pylint: disable
                 },
             )
-        else:
-            return jsonify({"message": "Article does not exist."}), 404
+        return {"message": "Article not found."}, 404
 
 
 class UploadFileAPIView(MethodView):
@@ -188,23 +222,57 @@ class UploadFileAPIView(MethodView):
     ALLOWED_EXTENSIONS = ["xls", "csv"]
 
     @login_required
-    @permissions(["can_view_articles"])
+    @has_permissions(["can_view_articles"])
     def post(self):
         """
-        xls/csv file upload
+        xls/csv file upload for article create
         """
         file = request.files["file"]
-        request.form.get("data")
+        # request.form.get("data")
         file_extension = file.filename.split(".")[-1]
-        response = {"status": "success", "message": "File uploaded."}
+        response = {"status": "Successful", "message": "File uploaded."}
+
         if file_extension not in self.ALLOWED_EXTENSIONS:
-            response = {
-                "status": "fail",
-                "message": "Extension of file not allowed",
-            }
-            return make_response(jsonify(response)), 400
-        elif file_extension == "csv":
-            CSVReader().to_dict(file)
-            return make_response(jsonify(response)), 200
-        XLSReader().to_dict(file)
-        return make_response(jsonify(response)), 200
+            return (
+                {
+                    "status": "Failed",
+                    "message": "Extension of file not allowed",
+                },
+                400,
+            )
+        if file_extension == "csv":
+            data = CSVReader().to_dict(file)
+        else:
+            data = XLSReader().to_dict(file)
+
+        for ind, article_data in enumerate(data):
+            categories_list = []
+            if article_data["categories"]:
+                for category_data in article_data["categories"]:
+                    category = CategoryModel.query.filter_by(
+                        name=category_data["name"]
+                    ).first()
+                    if not category:
+                        category = CategoryModel(name=category_data["name"])
+                        db.session.add(category)
+                        db.session.commit()
+                    categories_list.append(category)
+            article_data["categories"] = categories_list
+
+            tags_list = []
+            if article_data["tags"]:
+                for tag_data in article_data["tags"]:
+                    tag = TagModel.query.filter_by(
+                        name=tag_data["name"]
+                    ).first()
+                    if not tag:
+                        tag = TagModel(name=tag_data["name"])
+                        db.session.add(tag)
+                        db.session.commit()
+                    tags_list.append(tag)
+            article_data["tags"] = tags_list
+            article_data["title"] = f"Article {ind}"
+            article = ArticleModel(**article_data)
+            db.session.add(article)
+            db.session.commit()
+        return response
