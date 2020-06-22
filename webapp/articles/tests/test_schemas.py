@@ -1,12 +1,7 @@
 from typing import Dict, Union
 
-from webapp.articles.models import ArticleModel, CategoryModel, TagModel
-from webapp.articles.schemas import (
-    ArticlePutPostSchema,
-    ArticleSchema,
-    CategorySchema,
-    TagSchema,
-)
+from webapp.articles.models import TagModel
+from webapp.articles.schemas import TagSchema
 
 
 def test_tag_shema(session):

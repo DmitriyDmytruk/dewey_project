@@ -1,14 +1,12 @@
-from typing import IO, Any, Dict, List, Optional, Tuple, Union
+from typing import Any, Dict, List
 
-from flask import Response, request
+from flask import request
 from flask.views import MethodView
 
-from webapp import db, es
+from webapp import db
 from webapp.utils.decorators import has_permissions, login_required
 
-from .helpers.export_to_xls import convert_to_xls
-from .helpers.xls_csv_to_dict import CSVReader, XLSReader
-from .models import ArticleModel, CategoryModel, TagModel
+from .models import ArticleModel
 from .schemas import ArticlePutPostSchema, ArticleSchema
 
 

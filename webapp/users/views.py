@@ -1,14 +1,9 @@
-from typing import Optional, Union
+from typing import Union
 
 from flask import request
 from flask.views import MethodView
-from marshmallow import ValidationError
 
-from webapp import db
-from webapp.utils.mailing import sengrid_send_mail
-
-from .models import RoleModel, UserModel
-from .schemas import UserSchema
+from .models import UserModel
 
 
 class LoginAPIView(MethodView):

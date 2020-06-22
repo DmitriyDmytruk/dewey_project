@@ -1,10 +1,7 @@
-from typing import Optional
-
-import flask_bcrypt
 import pytest
 from sqlalchemy.exc import IntegrityError
 
-from webapp.users.models import PermissionModel, RoleModel, UserModel
+from webapp.users.models import PermissionModel, RoleModel
 
 
 def test_create_new_role_permission(session):

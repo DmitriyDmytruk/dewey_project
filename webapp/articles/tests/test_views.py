@@ -1,11 +1,6 @@
-import json
-import os
+from flask import url_for
 
-from flask import Response, url_for
-from werkzeug.datastructures import FileStorage
-
-from webapp.articles.models import ArticleModel
-from webapp.users.models import PermissionModel, UserModel
+from webapp.users.models import UserModel
 
 
 def test_retrieve_articles(client, session):

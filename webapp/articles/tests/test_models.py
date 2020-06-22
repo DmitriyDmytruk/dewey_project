@@ -1,7 +1,7 @@
 import pytest
 from sqlalchemy.exc import IntegrityError
 
-from webapp.articles.models import ArticleModel, CategoryModel, TagModel
+from webapp.articles.models import TagModel
 
 
 def test_new_tag(session):
