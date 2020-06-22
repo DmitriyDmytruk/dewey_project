@@ -5,6 +5,7 @@ from connexion.resolver import MethodViewResolver
 from elasticsearch import Elasticsearch
 from flask import Blueprint, render_template
 from flask_bcrypt import Bcrypt
+
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from flask_session import Session
@@ -25,16 +26,6 @@ def add_api(app: connexion.FlaskApp) -> connexion.FlaskApp:
     """
     app.add_api(
         "swagger.yml",
-        resolver=MethodViewResolver("api"),
-        strict_validation=True,
-    )
-    app.add_api(
-        "swagger_articles.yml",
-        resolver=MethodViewResolver("api"),
-        strict_validation=True,
-    )
-    app.add_api(
-        "swagger_users.yml",
         resolver=MethodViewResolver("api"),
         strict_validation=True,
     )
@@ -88,16 +79,10 @@ def create_app(object_name: str):
     session.init_app(app)
 
     from webapp.articles.routes import articles_blueprint
-    from webapp.core.routes import base_blueprint
     from webapp.users.routes import users_blueprint
 
     app.register_blueprint(articles_blueprint)
-    app.register_blueprint(base_blueprint)
     app.register_blueprint(redoc_blueprint)
     app.register_blueprint(users_blueprint)
 
     return app
-
-
-# from webapp.articles import models
-# from webapp.users import models

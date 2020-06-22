@@ -6,8 +6,6 @@ from sqlalchemy_utils import ScalarListType
 
 from webapp import db
 
-from .mixins import SearchableMixin
-
 
 article_tags = db.Table(
     "article_tags",
@@ -70,7 +68,7 @@ class CategoryModel(db.Model):
         return "<Category {}>".format(self.name)
 
 
-class ArticleModel(db.Model, SearchableMixin):
+class ArticleModel(db.Model):
     """
     Article model
     """

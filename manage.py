@@ -73,47 +73,8 @@ class UserCreate(Command):
             sys.__stdout__.write("\033[31mNot created: " + str(error) + "\n")
 
 
-class ArticlesCreate(Command):
-    """
-    Creates default articles
-    """
-
-    def run(self):
-        try:
-            f = io.open(
-                "webapp/utils/fixtures/initial_articles.json", encoding="utf8"
-            )
-            data = json.loads(f.read())
-
-            categories_data = data["categories"]
-            for category in categories_data:
-                db.session.add(CategoryModel(name=category))
-            tags_data = data["tags"]
-            for tag in tags_data:
-                db.session.add(TagModel(name=tag))
-
-            articles_data = data["articles"]
-            for article in articles_data:
-                article_categories = db.session.query(CategoryModel).filter(
-                    CategoryModel.name.in_(article["categories"])
-                )
-                article_tags = db.session.query(TagModel).filter(
-                    TagModel.name.in_(article["tags"])
-                )
-                new_article = ArticleModel(**article)
-                new_article.categories = article_categories.all()
-                new_article.tags = article_tags.all()
-                db.session.add(new_article)
-                db.session.commit()
-
-            sys.__stdout__.write("\033[32mArticles created\n")
-        except Exception as error:
-            sys.__stdout__.write("\033[31mNot created: " + str(error) + "\n")
-
-
 manager.add_command("create_role_permission", RolePermissionCreate())
 manager.add_command("create_user", UserCreate())
-manager.add_command("create_articles", ArticlesCreate())
 
 
 if __name__ == "__main__":
