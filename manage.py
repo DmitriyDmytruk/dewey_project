@@ -1,3 +1,4 @@
+import io
 import json
 import os
 import sys
@@ -5,6 +6,7 @@ import sys
 from flask_script import Command, Manager
 
 from webapp import create_app, db
+from webapp.articles.models import ArticleModel, CategoryModel, TagModel
 from webapp.users.models import PermissionModel, RoleModel, UserModel
 
 
@@ -26,7 +28,6 @@ class RolePermissionCreate(Command):
             for permission_data in data["permissions"]:
                 permission = PermissionModel(title=permission_data)
                 db.session.add(permission)
-                db.session.commit()
 
             for role_data in data["roles"]:
                 role = RoleModel(title=role_data["title"])
@@ -38,6 +39,7 @@ class RolePermissionCreate(Command):
                     )
                     role.permissions = permissions.all()
                 db.session.add(role)
+
             db.session.commit()
             sys.__stdout__.write("\033[32mRole and permission created\n")
         except Exception as error:
@@ -62,17 +64,17 @@ class UserCreate(Command):
                 role_id = role.id
 
             user = UserModel(**user_data, **{"role_id": role_id})
+            user.password = user._hash_password(user.password)
 
             db.session.add(user)
             db.session.commit()
             sys.__stdout__.write("\033[32mUser created\n")
-
         except Exception as error:
             sys.__stdout__.write("\033[31mNot created: " + str(error) + "\n")
 
 
-manager.add_command("createrolepermission", RolePermissionCreate())
-manager.add_command("createuser", UserCreate())
+manager.add_command("create_role_permission", RolePermissionCreate())
+manager.add_command("create_user", UserCreate())
 
 
 if __name__ == "__main__":

@@ -1,10 +1,8 @@
 from typing import Dict
 
 import jwt
-from flask import Blueprint, current_app
+from flask import current_app
 
-
-auth_blueprint = Blueprint("auth", __name__)
 
 # class LoginAPI(MethodView):
 #     """
@@ -35,7 +33,7 @@ auth_blueprint = Blueprint("auth", __name__)
 #             return make_response(jsonify(responseObject)), 500
 
 
-def decode_auth_token(auth_token: str) -> Dict:
+def decode_auth_token(auth_token: str) -> Dict[str, str]:
     """
     Validates the auth token
     :param auth_token:

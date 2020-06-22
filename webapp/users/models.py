@@ -1,4 +1,5 @@
 import datetime
+from typing import Optional, Union
 
 import jwt
 from flask import current_app
@@ -80,21 +81,23 @@ class UserModel(db.Model):
     def __repr__(self):
         return "<User {}>".format(self.email)
 
-    def update(self, data):
+    def update(self, data: dict) -> None:
         """
-        :param data:
+        :param data: dict
         :return:
         """
         for key, item in data.items():
             setattr(self, key, item)
 
-    def encode_auth_token(self):
+    def encode_auth_token(self) -> Union[str, bytes]:
         """
         Generates the Auth Token
         :return: string
         """
         try:
-            api_user_role = RoleModel.query.filter_by(title="API User").one()
+            api_user_role: Optional[RoleModel] = RoleModel.query.filter_by(
+                title="API User"
+            ).one_or_none()
             payload = {
                 "exp": (
                     datetime.datetime.utcnow() + datetime.timedelta(minutes=30)
@@ -102,27 +105,26 @@ class UserModel(db.Model):
                 "iat": datetime.datetime.utcnow(),
                 "sub": self.email,
             }
-            if self.role_id and api_user_role == self.role:
+            if self.role_id and api_user_role and api_user_role == self.role:
                 del payload["exp"]
-
             return jwt.encode(
                 payload,
                 current_app.config.get("SECRET_KEY"),
                 algorithm="HS256",
             )
         except Exception as err:  # pylint: disable=broad-except
-            return err
+            return str(err)
 
     @staticmethod
-    def __hash_password(password):
+    def _hash_password(password: str):
         return bcrypt.generate_password_hash(password, rounds=10).decode(
             "utf-8"
         )
 
-    def check_password(self, password):
+    def check_password(self, password: str) -> Optional[bool]:
         """
         Check user password
-        :param password:
+        :param password: str
         :return: boolean | None
         """
         return bcrypt.check_password_hash(self.password, password)
