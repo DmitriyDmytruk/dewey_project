@@ -26,5 +26,6 @@ class UserSchema(Schema):
     email = fields.Email()
     first_name = fields.String(validate=validate.Length(min=2))
     last_name = fields.String(validate=validate.Length(min=2))
+    password = fields.String(validate=validate.Length(min=8), load_only=True)
     created_at = fields.DateTime()
     role = fields.Nested(RoleSchema(only=("id", "title")))

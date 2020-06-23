@@ -1,4 +1,3 @@
-import functools
 from typing import Dict, List, Union
 
 from flask import request, session
@@ -61,7 +60,6 @@ def login_required(func):
     Checking user authorization by JWT Token
     """
 
-    @functools.wraps(func)
     def decorated_function(*args, **kwargs):
         user_by_token = get_user_by_token()
         if session.get("user"):

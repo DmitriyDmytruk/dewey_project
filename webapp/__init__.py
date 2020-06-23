@@ -97,7 +97,3 @@ def create_app(object_name: str):
     app.register_blueprint(users_blueprint)
 
     return app
-
-
-# from webapp.articles import models
-# from webapp.users import models

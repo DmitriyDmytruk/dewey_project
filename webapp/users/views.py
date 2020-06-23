@@ -5,10 +5,12 @@ from flask.views import MethodView
 from marshmallow import ValidationError
 
 from webapp import db
-from webapp.utils.mailing import sengrid_send_mail
 
 from .models import RoleModel, UserModel
 from .schemas import UserSchema
+
+
+# from webapp.utils.mailing import sengrid_send_mail
 
 
 class LoginAPIView(MethodView):
@@ -58,21 +60,30 @@ class UserAPIView(MethodView):
             data = UserSchema(partial=True).load(json_data)
         except ValidationError as err:
             return {"messages": err.messages}, 422
-        email, role_title = data["email"], data["role"]["title"]
-        role: RoleModel = RoleModel.query.filter_by(title=role_title).one()
+        email, role_title, password = (
+            data["email"],
+            data["role"]["title"],
+            data["password"],
+        )
+        role: RoleModel = RoleModel.query.filter_by(
+            title=role_title
+        ).one_or_none()
         # TODO: If role not exists?
         user: Optional[UserModel] = UserModel.query.filter_by(
             email=email
         ).one_or_none()
         if user is None:
-            user: UserModel = UserModel(email=email, role_id=role.id)
+            user: UserModel = UserModel(email=email, password=password)
+            if role:
+                user.role = role
+            user.password = user._hash_password(user.password)
             db.session.add(user)
             db.session.commit()
 
-            content: str = "Hi there"
-            content_type: str = "text/plain"
-            subject: str = "Sending with SendGrid"
-            sengrid_send_mail(email, subject, content, content_type)
+            # content: str = "Hi there"
+            # content_type: str = "text/plain"
+            # subject: str = "Sending with SendGrid"
+            # sengrid_send_mail(email, subject, content, content_type)
 
             result = UserSchema().dump(user)
             return {"message": "User created", "user": result}, 201
