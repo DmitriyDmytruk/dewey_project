@@ -28,8 +28,7 @@ def test_non_registered_user_login(session, client):
         content_type="application/json",
     )
     data = json.loads(response.data.decode())
-    assert data["status"] == "fail"
-    assert data["message"] == "User does not exist."
+    assert data["message"] == "User not found."
     assert response.content_type == "application/json"
     assert response.status_code == 404
 
@@ -42,8 +41,7 @@ def test_non_registered_user_login(session, client):
         content_type="application/json",
     )
     data = json.loads(response.data.decode())
-    assert data["status"] == "fail"
-    assert data["message"] == "Try again"
+    assert data["message"] == "Error. Try again"
     assert response.content_type == "application/json"
     assert response.status_code == 500
 
@@ -56,7 +54,7 @@ def test_non_registered_user_login(session, client):
         content_type="application/json",
     )
     data = json.loads(response.data.decode())
-    assert data["status"] == "fail"
+    assert data["message"] == "User not found."
 
     # Successful login
     user.is_active = True
@@ -69,7 +67,6 @@ def test_non_registered_user_login(session, client):
         content_type="application/json",
     )
     data = json.loads(response.data.decode())
-    assert data["status"] == "success"
     assert "auth_token" in data
     assert data["message"] == "Successfully logged in."
     assert response.content_type == "application/json"
@@ -99,8 +96,7 @@ def test_user_create(session, client):
         content_type="application/json",
     )
     data = json.loads(response.data.decode())
-    assert data["status"] == "fail"
-    assert data["message"] == "User does not exist."
+    assert data["message"] == "User not found."
     assert response.content_type == "application/json"
     assert response.status_code == 404
 
@@ -113,8 +109,7 @@ def test_user_create(session, client):
         content_type="application/json",
     )
     data = json.loads(response.data.decode())
-    assert data["status"] == "fail"
-    assert data["message"] == "Try again"
+    assert data["message"] == "Error. Try again"
     assert response.content_type == "application/json"
     assert response.status_code == 500
 
@@ -127,7 +122,7 @@ def test_user_create(session, client):
         content_type="application/json",
     )
     data = json.loads(response.data.decode())
-    assert data["status"] == "fail"
+    assert data["message"] == "User not found."
 
     # Successful login
     user.is_active = True
@@ -140,7 +135,6 @@ def test_user_create(session, client):
         content_type="application/json",
     )
     data = json.loads(response.data.decode())
-    assert data["status"] == "success"
     assert "auth_token" in data
     assert data["message"] == "Successfully logged in."
     assert response.content_type == "application/json"

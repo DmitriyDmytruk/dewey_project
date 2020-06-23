@@ -16,7 +16,9 @@ def convert_to_xls(article: ArticleModel) -> bytes:
     article_dict = article.__dict__
     tags = ", ".join(article.get_relations("tags"))
     categories = ", ".join(article.get_relations("categories"))
-    reference_images = ", ".join(article.get_relations("reference_images"))
+    reference_images = ""
+    if article.reference_images:
+        reference_images = ", ".join(article.reference_images)
     keys = [
         "unique_id",
         "state",

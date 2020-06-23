@@ -1,10 +1,742 @@
-Unique ID,State,Regulation,Citation,40CFR 280 Part Federal Rule,Legal Regulation,Abstract,Reference Images,Categories,Tags,Updated Date,Effective Date,Abstract
-cfr280.abcd,USA (federal),"(b) Owners and operators must begin meeting these requirements as follows: (1) For UST systems in use on or before October 13, 2015, the initial spill prevention equipment test, containment sump test and overfill prevention equipment inspection must be conducted not later than October 13, 2018. (2) For UST systems brought into use after October 13, 2015, these requirements apply at installation.","280,35",n/a,-,Must test containment by x date or upon installation,hyperlink example,Spill and Overfill Prevention,"Overfill prevention, spill prevention, sumps, udcs, testing,",n/a,10.13.2018,Text value
-fl.abcd1,FL,"(1) For installations:
-(a) For the purposes of this subsection, installation shall mean the date that the storage tank system or system component placement or construction begins
-(b) For new facilities, which are facilities that began construction after January 11, 2017, a completed Form 62-761.900(2), Storage Tank Facility Registration Form (Registration Form), effective date, July 2019, hereby adopted and incorporated by reference, shall be submitted in electronic or paper format to the Department no later than 30 days prior to installation. For facilities with existing registered storage tank systems, a completed Registration Form shall be submitted in electronic or paper format to the Department no later than seven days prior to regulated substances being put into any new storage system. The Department encourages the electronic submittal of the Registration Form available online here: http://www.fldepportal.com/go/submit-registration/, or the form can be obtained at http://www.flrules.org/Gateway/reference.asp?No=Ref-10736, or the Department’s website at https://floridadep.gov/waste/permitting-compliance-assistance/content/storage-tank-system-rules-forms-and-reference.
-(c) A completed Form 62-761.900(5), Underground Storage System Installation and Removal Form for Certified Contractors (Certified Contractors Form), effective date, July 2019, hereby adopted and incorporated by reference, shall be submitted in paper or electronic format to the County no later than 21 days after installation of a storage tank system, storage tank, or integral piping. To obtain copies of this form see Rule 62-761.900, F.A.C., or http://www.flrules.org/Gateway/reference.asp?No=Ref-10738, or the Department’s website at https://floridadep.gov/waste/permitting-compliance-assistance/content/storage-tank-system-rules-forms-and-reference.",0590.12.5,this fl reg relates to 280.55,"Yes, miami has xxxx extra regulations",Fill out the provided forms during installation,hyperlink example,Applicability,"Permit, tank installation",n/a,10.12.2018,
-al.abcd2,AL,"Owners and operators of petroleum UST systems must provide release detection for underground storage tanks and underground piping as follows:
+,Unique ID,Regulation,,,,,,,,,Citation,40CFR Part 280 Federal Rule,Local Reg,Abstract (interpretation),Reference Images,Tags,Category 1,Category 2,Category 3,Category 4,Category 5,Category 6,Category 7,Category 8,Category 9,Category 10,Category 11,Category 12,Category 13,Category 14,Category 15,Category 16
+Alabama,,"(1) The requirements of this chapter apply to all owners and operators of an UST system as defined in rule 335-6-15-.02 except as otherwise provided for in paragraphs (2) and (3) of this rule.
+(a) Previously deferred UST systems. UST systems with field- constructed tanks, UST systems with airport hydrant fuel distribution systems, and UST systems that store fuel solely for use by emergency power generators must meet the requirements of this part as follows",,,,,,,,,335-6-15-.03,,,,,#Applicability,Applicability,Previously Deferred UST Systems,Exclusions,Partially Excluded UST Systems,,,,,,,,,,,,
+,,"(a) Previously deferred UST systems. UST systems with field- constructed tanks, UST systems with airport hydrant fuel distribution systems, and UST systems that store fuel solely for use by emergency power generators must meet the requirements of this part as follows:
+1. UST systems with field-constructed tanks and UST systems with airport hydrant fuel distribution systems must meet the requirements in rule 335-6-15-.48.
+2. UST systems that store fuel solely for use by emergency power generators installed before August 6, 2007 must meet rules 335-6-15-.14 through 335-6-15-.19 on or before December 8, 2020.
+3. UST systems that store fuel solely for use by emergency power generators installed on or after August 6, 2007 must meet all applicable requirements of rules 335-6-15-.14 through 335-6-15-.19 at installation.
+4. If UST systems installed before August 6, 2007 that store fuel solely for use by emergency power generators have new underground piping installed on or after August 6, 2007, the new underground piping is subject to all the rules in this chapter.",,,,,,,,,335-6-15-.03,,,,,#Previously deferred UST systems,,,,,,,,,,,,,,,,
+,,"(2) Exclusions. The following UST systems are excluded from the requirements of this chapter:
+15-16
+(a) Any UST system holding hazardous wastes listed or identified under division 14 of the ADEM Administrative Code, or a mixture of such hazardous wastes and other regulated substances.
+(b) Any wastewater treatment tank system that is part of a wastewater treatment facility regulated under chapter 335-6-5 or 335-6-6 of the ADEM Administrative Code.
+(c) Equipment or machinery that contains regulated substances for operational purposes such as hydraulic lift tanks and electrical equipment tanks.
+(d) Any UST system whose capacity is 110 gallons or less.
+(e) Any UST system that contains a de minimis concentration of
+regulated substances.
+(f) Any emergency spill or overflow containment UST system that is expeditiously emptied after use.
+(3) Partial Exclusions. The following UST systems are only subject to rules 335-6-15-.04, 335-6-15-.20 through 335-6-15-.32, and 335-6-15-.43:
+(a) Wastewater treatment tank systems not covered in subparagraph (2)(b) of this rule;
+(b) Aboveground storage tanks associated with:
+1. UST systems with airport hydrant fuel distribution systems regulated under rule 335-6-15-.48; and
+2. UST systems with field-constructed tanks regulated under rule 335-6-15-.48;
+(c) Any UST system containing radioactive materials that are regulated under the Atomic Energy Act of 1954 (42 USC 2011 and following); and
+(d) Any UST system that is part of an emergency generator system at nuclear power generation facilities licensed by the Nuclear Regulatory Commission and subject to Nuclear Regulatory Commission requirements regarding design and quality criteria, including but not limited to 10 CFR part 50.",,,,,,,,,335-6-15-.03,,,,,#Exclusions,,,,,,,,,,,,,,,,
+,,"Owners and operators must install an UST system listed in rule 335-
+335-6-15-.04
+335-6-15-.05
+6-15-.03(3)(a),(c), or (d) for the purpose of storing regulated substances (whether of single or double wall construction) that meets the following requirements:
+(a) Will prevent releases due to corrosion or structural failure for the operational life of the UST system;
+(b) Is protected by one of the following methods: cathodically protected against corrosion; constructed of nonmetallic material; steel clad with a nonmetallic material; or designed in a manner to prevent the release or threatened release of any stored substance; and
+(c) Is constructed or lined with material that is compatible with the stored substance.",,,,,,,,,335-6-15-.04,,,,,#Installation,,,,,,,,,,,,,,,,
+,,"Installation Requirements for Parially Excluded UST
+Systems. Owners and operators must install an UST system listed in rule 335- 6-15-.03(3)(a),(c), or (d) for the purpose of storing regulated substances (whether
+of single or double wall construction) that meets the following requirements:
+(a) Will prevent releases due to corrosion or structural failure for the
+operational life of the UST system;
+(b) Is protected by one of the following methods: cathodically protected
+against corrosion; constructed of nonmetallic material; steel clad with a
+nonmetallic material; or designed in a manner to prevent the release or
+threatened release of any stored substance; and
+(c) Is constructed or lined with material that is compatible with the stored substance.",,,,,,,,,335-6-15-.05,,,,,#Partially Excluded UST,"Design, Construction, and Installation Requirements: Installation Requirements for Partially Excluded UST Systems",Performance Standards: New UST Systems ,Plans and Specifications of Design and Construction of USTs,,,,,,,,,,,,,
+,,"Performance Standards for New UST Systems and
+Dispensers. In order to prevent releases due to structural failure, corrosion,
+leakage from submersible pumps and dispensers or spills and overfills for as long
+as the UST system is used to store regulated substances, all owners and
+operators of new USTs, underground piping, UST systems and/or dispensers must install this equipment in accordance with a code of practice developed by a
+nationally recognized association or independent testing laboratory and meet the
+following requirements:
+(a) USTs. USTs installed on August 6, 2007 and thereafter must be
+manufactured so that any portion of the underground storage tank that is
+underground and routinely contains product has an inner and outer wall, and
+interstitial space. The USTs must be designed to allow monitoring of the integrity
+of both the inner and outer wall, contain a leak into the interstitial space until it
+is detected and removed, and prevent a release to the environment at any time
+during its operational life. Each UST must be properly designed and constructed,
+and any portion in contact with the ground that routinely contains product, as
+well as the metal outer wall of double wall underground storage tank which is in
+contact with the ground, must be protected from corrosion in accordance with a
+code of practice developed by a nationally recognized association or independent
+testing laboratory as specified below:
+1. The UST is constructed of fiberglass-reinforced plastic; or
+2. The UST is constructed of steel and cathodically protected in the
+following manner:
+(i) The UST is coated with a suitable dielectric material;
+(ii) Field-installed cathodic protection systems are designed by a
+corrosion expert;
+(iii) Cathodic protection systems are designed to allow determination of
+current operating status according to the requirements of rule 335-6-15-.10; and
+(iv) Cathodic protection systems are operated and maintained in
+accordance with rule 335-6-15-.10.
+3. The UST is constructed of steel and clad or jacketed with a
+nonmetallic material; or
+4. The UST construction and corrosion protection are determined by
+the Department to be designed to prevent the release or threatened release of any
+stored regulated substance in a manner that is no less protective of human health
+and the environment than the requirements of subparagraphs (a)1. through 3. of
+this rule.
+(b) Underground Piping. All underground piping, other than suction
+underground piping that meets the requirements specified in rule 335-6-15-
+.15(b)2.(i), (ii), (iii), (iv), and (v), installed under the ground on August 6, 2007 and
+thereafter must be manufactured so that underground piping has an inner and
+outer wall and interstitial space. Such underground piping must be designed to
+allow monitoring of the integrity of both the inner and outer wall, contain a leak
+into the interstitial space until it is detected and removed, and prevent a release
+to the environment at any time during its operational life. All metal underground piping that routinely contains regulated substances and is in contact with the
+ground, as well as the metal outer wall of double wall underground piping which
+is in contact with the ground, must be properly designed, constructed, and
+protected from corrosion in accordance with a code of practice developed by a
+nationally recognized association or independent testing laboratory, as specified
+below:
+1. The underground piping is constructed of either a nonmetallic
+material such as fiberglass-reinforced plastic (rigid) or thermoplastic (flexible).
+Nonmetallic underground piping installed on January 10, 2006, and thereafter,
+must meet the requirements of the most current edition of Underwriters
+Laboratories Inc. Standard for Safety for Nonmetallic Underground Piping for
+Flammable Liquids, UL 971. Performance claims must be demonstrated by an
+evaluation properly conducted in accordance with UL 971; or
+2. The underground piping is constructed of steel and cathodically
+protected in the following manner:
+(i) The underground piping is coated with a suitable dielectric
+material;
+(ii) Field-installed cathodic protection systems are designed by a
+corrosion expert;
+(iii) Cathodic protection systems are designed to allow determination of
+current operating status according to the requirements of rule 335-6-15-.10; and
+(iv) Cathodic protection systems are operated and maintained in
+accordance with rule 335-6-15-.10.
+3. The underground piping construction and corrosion protection are
+determined by the Department to be designed to prevent the release or threatened
+release of any stored regulated substance in a manner that is no less protective
+of human health and the environment than the requirements in subparagraphs
+(b)1. and 2. of this rule.
+(c) Spill and Overfill Prevention Equipment. Except as provided for in
+subparagraphs (c)3. and 4. of this rule, to prevent spilling and overfilling
+associated with product transfer to the UST, owners and operators must use the
+following spill and overfill prevention equipment or preventive measures in
+subparagraphs (c)1. and 2. of this rule:
+1. Spill prevention equipment that will prevent release of product to
+the environment when the transfer hose is detached from the fill pipe (for
+example, a spill catchment basin) operated and maintained in accordance with
+rule 335-6-15-.09; and
+2. Overfill prevention equipment that will: (i) Automatically shut off flow into the underground storage tank when
+the underground storage tank is no more than 95 percent full; or
+(ii) Alert the transfer operator when the underground storage tank is
+no more than 90 percent full by restricting the flow into the underground storage
+tank or triggering a high-level alarm.
+3. Owner and operators are not required to use the spill and overfill
+prevention equipment specified in subparagraphs (c)1. and 2. of this rule if:
+(i) Alternative equipment is used that is determined by the Department
+to be no less protective of human health and the environment than the equipment
+specified in subparagraph (c)1. or 2. of this rule; or
+(ii) The UST system is filled by transfers of no more than 25 gallons at
+one time.
+4. Flow restrictors used in vent lines may not be used to comply with
+subparagraph (c)2. of this rule when overfill prevention is installed or replaced
+on or after December 8, 2017.
+5. Spill and overfill prevention equipment must be periodically tested
+or inspected in accordance with rule 335-6-15-.09(1)(a)1. and (b)1.
+(d) Submersible Pump, Under Dispenser, and Piping Transition
+Containment. USTs installed with submersible pumps on August 6, 2007 and
+thereafter must have submersible pump containment sumps; new dispenser
+systems installed on August 6, 2007 and thereafter must have under dispenser
+containment sumps; and piping transitions installed on or after December 8,
+2017 must have containment sumps.
+1. The sumps must be operated and maintained in accordance with
+rule 335-6-15-.09(1)(c). Containment sumps must be designed, constructed,
+installed, and maintained to:
+(i) Be liquid-tight on all sides, bottom and all penetrations to contain
+leakage and prevent release of regulated substances from equipment related to
+dispensers and submersible pumps until the regulated substance is detected and
+removed; and
+(ii) Be compatible with the substance conveyed by the underground
+piping to prevent the release of regulated substances to the environment at any
+time during the operational life of the UST system; and
+(iii) Be able to allow access to the components in the containment
+sumps, and be periodically visually inspected for evidence of a leakage into the
+sumps.
+(e) Installation. UST systems must be properly installed: 1. Under the supervisory control of an individual or individuals
+certified in accordance with the requirements in rule 335-6-15-.47;
+2. In accordance with codes of practice developed by nationally
+recognized associations or independent testing laboratories;
+3. In accordance with the manufacturer's instructions; and
+4. In accordance with plans and specifications required under rule
+335-6-15-.08 and reviewed by the Department to include any modifications
+required to be made by the Department.
+(f) The Department reserves the right to inspect an UST system within
+30 days of submission of plans or notification of installation prior to the UST
+system being fully backfilled and placed into operation. The Department may
+authorize a representative to make this inspection.",,,,,,,,,335-6-15-.06,,,,,#New UST #dispensers #performance standards,,,,,,,,,,,,,,,,
+,,"Plans and Specifications.
+(1) Submission of Plans. The Department may require the submission
+of plans, specifications, and other technical data pursuant to rule 335-6-15-.06,
+335-6-15-.07, or any other requirement by the Department relating to the
+construction of UST systems, upgrading of UST systems, installation of release detection equipment, corrosion protection measures, or engineering design
+related to the implementation of a corrective action plan.
+(a) Plans and specifications shall be submitted at least 30 days prior
+to the anticipated date of construction or installation.
+(b) Where plans and specifications are not required, a notification of
+installation shall be submitted 30 days prior to the anticipated date of
+installation.
+(c) Plan and specification submissions shall be in a form which is
+acceptable to the Department.
+(d) The Department may require modification of submitted plans and
+specifications, where necessary, to demonstrate compliance with applicable
+requirements.
+(2) Preparation of Plans, Specifications, and Technical Data. Plans,
+specifications, and technical data submitted to the Department for review shall
+bear the seal or number of a professional engineer, in accordance with Alabama
+law concerning engineering practices, who is competent to perform work in this
+field of engineering.
+(3) Plans and specifications submitted for construction and upgrading
+of UST systems shall, where applicable, adequately describe:
+(a) Site sketch with boundaries and structures approximately to scale.
+(b) Underground storage tank excavation dimensions and location.
+(c) Underground storage tank capacity, dimensions, materials of
+construction, and material to be stored, and whether of single or double wall
+construction.
+(d) Type and size of backfill material.
+(e) Depth of backfill to be placed under the underground storage tank.
+(f) Water table data for the site, including the annual high and low
+water table elevations as determined from nearby water supply wells,
+piezometers, or other available hydrogeologic data.
+(g) Supports and anchorage design if applicable.
+(h) Underground piping dimensions, materials of construction, layout,
+location of dispensers, and slope of underground piping for suction systems.
+(i) Release detection method to be used, to include: 1. Number, location and construction details for any monitoring wells,
+whether for groundwater monitoring, vapor monitoring or monitoring of an
+interstitial space.
+2. Description of and manufacturer's performance specifications for
+any continuous monitoring equipment to be used where required by the
+Department.
+3. For non-continuous monitoring, (other than manual sampling of
+groundwater monitoring wells), a description of and manufacturer's performance
+specifications for the type of equipment to be used where required by the
+Department.
+4. Manufacturer specifications for any secondary barrier to be used in
+interstitial monitoring.
+(j) Wiring and conduit associated with monitoring systems.
+(k) Information regarding the cathodic protection method to be used,
+to include:
+1. Design plans and specifications for field installed cathodic
+protection systems shall be submitted to the Department for approval at least 30
+days prior to the anticipated date of installation and must include, at a minimum:
+(i) Type of cathodic protection, galvanic or impressed current.
+(ii) Test or monitoring station for cathodic protection system.
+(iii) Location and weight of sacrificial anodes.
+(iv) The corrosion expert responsible for the design of a field installed
+cathodic protection system.
+(v) Calculations of the:
+(I) Surface area to be protected,
+(II) Current required,
+(III) Number of anodes required, and
+(IV) Rectifier rating.
+(vi) Material list including a description of the:
+(I) Rectifier,
+(II) Anodes,
+(III) Anode wiring, (IV) Negative ground wires,
+(V) Grounding mechanism,
+(VI) Shunt box, and
+(VII) Other materials to be used.
+(vii) Drawing providing the location of the:
+(I) Tanks,
+(II) Anodes,
+(III) Anode wiring,
+(IV) Ground wiring,
+(V) Rectifier box, and
+(VI) Shunt box.
+(l) Spill and overfill containment devices.
+(m) For groundwater monitoring well systems, the hydraulic
+conductivity of the soils in which the monitoring wells will be placed.
+(n) Type of secondary containment, where applicable.
+(o) Whether or not the UST system will be within 300 feet of a private
+domestic water supply or 1000 feet of a public water supply well.
+(p) Any other information that may be required by the Department.
+(4) Existing Systems. When plans and specifications are submitted for
+existing systems, all available information should be submitted regarding the
+above items.
+(5) Modifications or Alterations. Any proposed modification or
+alteration of plans, specifications, or technical data previously submitted to and
+reviewed by the Department which could affect the UST system's compliance with
+this chapter must also be forwarded to the Department for review.",,,,,,,,,335-6-15-.08,,,,,#specifications #notification of installation,,,,,,,,,,,,,,,,
+,,"(1) After April 5, 1989, an owner or operator of an underground storage tank system for which a notification has not been provided to the Department, must submit, in a form approved by the Department, a notice of the existence of such underground storage tank system to the Department within 30 days of bringing the underground storage tank system into use.
+(2) Notification required in paragraph (1) of this rule shall include the following information:
+(a) Owner and operator name, address, telephone number, and e-mail address.
+(b) Type of owner (e.g., sole proprietor, partnership, corporation).
+(c) Location of underground storage tank.
+1. Description of facility location;
+2. Mailing address of facility at which underground storage tank is
+located (where applicable);
+(d) Telephone number at the underground storage tank facility where the underground storage tank is located (where applicable).
+(e) Operational status of underground storage tank.
+(f) Estimated date the underground storage tank and underground
+piping were installed.
+15-18
+(g) Estimated total capacity in gallons.
+(h) Material of construction of underground storage tank and
+underground piping.
+(i)
+(j) protection, if
+(k) (l) (m) (n) (o) (p)
+systems.
+Whether or not the underground storage tank is internally lined.
+Type of underground storage tank system external corrosion applicable.
+Whether spill prevention is installed.
+Method of overfill prevention.
+Type of release detection method or methods.
+Substance currently stored.
+Type of product dispensing system; pressure or suction.
+Location of check valve and slope of underground piping for suction
+(q)
+and e-mail address.
+Regulated substance deliverer name, address, telephone number
+(r) Other such information determined to be necessary by the Department.
+(3) An owner of an UST system which has had a modification which has changed any of the information reported originally under paragraph (1) or (2) of this rule must submit an amended notification to the Department within 30 days of the completion of that modification.
+(4) Owners required to submit notices under paragraphs (1) and (2) of this rule must provide notices to the Department for each underground storage tank they own. Owners may provide notice for several underground storage tanks using one notification form, but owners who own underground storage tanks located at more than one place of operation must file a separate notification form for each separate place of operation.
+(5) A notification of installation or modification, containing information determined to be necessary by the Department, shall be submitted to the Department, in a form acceptable to the Department, 30 days prior to the anticipated date of installation or modification for each underground storage tank or underground storage tank system.
+(6) All owners and operators of new UST systems must certify in the notification that they are in compliance with the following requirements:
+15-19
+335-6-15-.05
+335-6-15-.06
+(a) Installation of underground storage tanks and underground piping under rules 335-6-15-.06(e) and 335-6-15-.47;
+(b) Cathodic protection of steel underground storage tanks and underground piping under rule 335-6-15-.06(a) and (b);
+(c) Financial responsibility under rules 335-6-15-.43 and 335-6-15-.44;
+(d) Release detection under rules 335-6-15-.15 and 335-6-15-.16.
+(7) All owners and operators of new UST systems must ensure that the installer certifies in the notification form that the installation was installed in accordance with the requirements in rules 335-6-15-.06(e) and 335-6-15-.47, and submit the notification form in accordance with paragraph (1) of this rule.
+(8) Any person who transfers ownership of an underground storage tank must notify the person assuming ownership within 30 days of the new owner's notification obligations under paragraphs (1) and (2) of this rule.
+(9) Any person who transfers ownership of an UST system that is already in service must provide the Department the following within 30 days:
+(a) Notification of such transfer:
+(b) Proof of transfer of ownership of the UST system; and
+(c) The name, address, telephone number, and e-mail address of the
+new UST system owner.
+(10) Within 30 days of acquisition, any person who assumes ownership of a regulated UST system must comply with the notification requirements of paragraphs (1), (2) and (3) of this rule.
+(11) Owners and operators must notify the Department at least 30 days prior to switching to a regulated substance containing greater than 10 percent ethanol, greater than 20 percent biodiesel, or any other regulated substance identified by the Department.
+",,,,,,,,,335-6-15-.06,,,,,#existence notification ,Notification and Reporting Requirements,Reporting of Suspected Releases,Reporting of Spills and Overfills,,,,,,,,,,,,,
+,,"""Owners and operators of UST systems must report suspected releases to the Department immediately upon discovery but in no case later than 24 hours following discovery, and follow the procedures in rule 335-6-15-.22 for any of the conditions identified in subparagraphs (a) through (c)of this rule.
+(a) The discovery by owners and operators or others of released regulated substances at the UST site or in the surrounding area including but not limited to the presence of free or dissolved product or vapors in soils, groundwater, basements, sewer and utility lines, nearby surface water or a well contaminated with a regulated substance.
+(b) Unusual operating conditions observed by owners and operators (including but not limited to the erratic behavior of product dispensing equipment, the sudden loss of product from the UST system, an unexplained presence of water in the underground storage tank, or liquid in the interstitial space of secondarily contained systems), unless:
+1. The UST system equipment or component is found not to be releasing regulated substances to the environment;
+2. Any defective UST system equipment or component is immediately repaired or replaced; and
+3. For secondarily contained UST systems, except as provided for in rule 335-6-15-.17(g)2.(iv), any liquid in the interstitial space not used as part of the interstitial monitoring method (for example, brine filled) is immediately removed.
+(c) Monitoring results, including investigation of an alarm, from a release detection method required under rules 335-6-15-.15 and 335-6-15-.16 that indicate a release may have occurred unless:
+335-6-15-.20
+15-53
+335-6-15-.22
+1. The monitoring device is found to be defective, and is immediately repaired, recalibrated or replaced, and additional monitoring does not confirm the initial results;
+2. The leak is contained in the secondary containment; and
+(i) Except as provided for in rule 335-6-15-.17(g)2.(iv), any liquid in the interstitial space not used as part of the interstitial monitoring method (for example, brine filled) is immediately removed, and
+(ii) Any defective system equipment or component is immediately repaired or replaced;
+3. In the case of inventory control described in rule 335-6-15-.17(a), where the amount of calculated loss or gain for the previous 30 day period is less than or equal to 1.0 percent of 30 day flow-through plus 130 gallons or the investigation determines no release has occurred; or
+4. The alarm was investigated and determined to be a non-release event (for example, from a power surge or caused by filling the underground storage tank during release detection testing).""",,,,,,,,,335-6-15-.20,,,,,#suspected releases #notification,,,,,,,,,,,,,,,,
+,,"Reporting and Cleanup of Spills and Overfills.
+(1) Owners and operators of UST systems must contain and
+immediately clean up a spill or overfill and report to the Department within 24
+hours, or another reasonable time period specified by the Department, and begin
+corrective action in accordance with rules 335-6-15-.24 through 335-6-15-.31 in
+the following cases:
+(a) Spill or overfill of petroleum that results in a release to the
+environment that exceeds 25 gallons or another reasonable amount specified by
+the Department, or that causes a sheen on nearby surface water; and
+(b) Spill or overfill of a hazardous substance that results in a release to
+the environment that equals or exceeds its reportable quantity under CERCLA
+(40 CFR 302).
+(2) Owners and operators of UST systems must contain and
+immediately clean up a spill or overfill of petroleum that is less than 25 gallons
+or another reasonable amount specified by the Department, and a spill or overfill
+of a hazardous substance that is less than the reportable quantity. If cleanup
+cannot be accomplished within 24 hours, or another reasonable time period
+established by the Department, owners and operators must immediately notify
+the Department.",,,,,,,,,335-6-15-.23,,,,,#spills #overfills #reporting,,,,,,,,,,,,,,,,
+,,"Upgrading of Existing UST Systems. Owners and operators
+must permanently close (in accordance with rules 335-6-15-.34 through 335-6-
+15-.39) any UST system that does not meet the new UST system performance
+standards in rule 335-6-15-.06 or has not been upgraded in accordance with
+subparagraphs (b) through (d) of this rule. This does not apply to previously
+deferred UST systems described in rule 335-6-15-.48 and where an upgrade is
+determined to be appropriate by the Department.
+(a) Alternatives Allowed. All existing UST systems must comply with
+one of the following requirements:
+1. New UST system performance standards under rule 335-6-15-.06;
+2. The upgrading requirements in subparagraphs (b) through (d) of
+this rule; or
+3. Closure requirements under rules 335-6-15-.34 through 335-6-15-
+.39, including applicable requirements for corrective action under rules 335-6-
+15-.25 through 335-6-15-.31.
+(b) Underground Storage Tanks Upgrading Requirements. Metal
+underground storage tanks must have been cathodically protected in accordance
+with a code of practice developed by a nationally recognized association or
+independent testing laboratory that meet the requirements of rule 335-6-15-.06(a)2.(ii), (iii) and (iv), and have the integrity of the underground
+storage tank ensured using one of the following methods:
+1. The underground storage tank was internally inspected and
+assessed to ensure that the tank was structurally sound and free of corrosion
+holes prior to installing the cathodic protection system; or
+2. The underground storage tank had been installed for less than 10
+years and is monitored for releases at least every 30 days in accordance with rule
+335-6-15-.17(d) through (i); or
+3. The underground storage tank had been installed for less than 10
+years and was assessed for corrosion holes by conducting two tightness tests that
+meet the requirements of rule 335-6-15-.17(c). The first tightness test must have
+been conducted prior to installing the cathodic protection system. The second
+tightness test must have been conducted between three and six months following
+the first operation of the cathodic protection system; or
+4. The underground storage tank was assessed for corrosion holes by
+a method that is determined by the Department to prevent releases in a manner
+that is no less protective of human health and the environment than the
+requirements of subparagraphs (b)1. through 3. of this rule.
+(c) Piping Upgrading Requirements. Metal underground piping that
+routinely contains regulated substances and is in contact with the ground, as
+well as the metal outer wall of double wall underground piping which is in contact
+with the ground, must be cathodically protected in accordance with a code of
+practice developed by a nationally recognized association or independent testing
+laboratory, and must meet the requirements of rule 335-6-15-.06(b)2.(ii), (iii), and
+(iv).
+(d) Spill and Overfill Prevention Equipment. To prevent spilling and
+overfilling associated with product transfer to the UST system, all existing UST
+systems must comply with new UST system spill and overfill prevention
+equipment requirements specified in rule 335-6-15-.06(c).",,,,,,,,,335-6-15-.07,,,,,#upgrades #requirements,Upgrades and Repairs: Upgrading of Existing UST Systems,,,,,,,,,,,,,,,
+,,"""Owners and operators of UST systems must ensure the repairs will prevent releases due to structural failure or corrosion as long as the UST system is used to store regulated substances. The repairs must meet the following requirements:
+(a) Repairs to UST systems must be properly conducted in accordance with a code of practice developed by a nationally recognized association or an independent testing laboratory and in accordance with the requirements in rule 335-6-15-.47.
+(b) Repairs to fiberglass-reinforced plastic underground storage tanks must be made by the manufacturer's authorized representatives or in accordance with a code of practice developed by a nationally recognized association or an independent testing laboratory.
+(c) Metal underground pipe sections and fittings that have released product as a result of corrosion or other damage must be permanently closed in accordance with rules 335-6-15-.34 through 335-6-15-.37 and new underground piping installed in accordance with rule 335-6-15-.06(b). Repairs to nonmetallic fiberglass-reinforced plastic (rigid) or nonmetallic thermoplastic (flexible) underground piping and fittings must be made in accordance with the manufacturer's specifications. Materials used to repair the underground piping must be in accordance with rule 335-6-15-.06(b)1.
+(d) Repairs may be made to existing underground piping only if one repair of less than 5 ft can be made to one run of underground piping within a 30 day period. Otherwise, for a given underground piping run, underground piping must be installed in accordance with rule 335-6-15-.06(b).
+(e) Repaired underground storage tanks and underground piping must be tightness tested in accordance with rules 335-6-15-.17(c) and 335-6-15-.18(b) prior to returning the underground storage tanks or underground piping to service or within 30 days following the date of the completion of the repair, whichever comes first.
+(f) Repairs to secondary containment areas of underground storage tanks and underground piping used for interstitial monitoring and to
+335-6-15-.12
+15-35
+335-6-15-.13
+containment sumps used for interstitial monitoring of underground piping must have the secondary containment tested for tightness in accordance with the manufacturer’s instructions or a code of practice developed by a nationally recognized association or independent testing laboratory within 30 days following the date of completion of the repair.
+(g) Within 30 days following the repair of any cathodically protected UST system, the cathodic protection system must be tested in accordance with rule 335-6-15-.10(b) and (c) to ensure that it is operating properly.
+(h) Within 30 days following any repair to spill or overfill prevention equipment, the repaired spill or overfill prevention equipment must be tested or inspected, as appropriate, in accordance with rule 335-6-15-.13(b)2. to ensure it is operating properly.
+(i) UST system owners and operators must maintain records in accordance with rule 335-6-15-.13(b)2. for each repair until the UST system is permanently closed or undergoes a change-in-service in accordance with rules 335-6-15-.34 through 335-6-15-.37.
+""",,,,,,,,,335-6-15-.12,,,,,#repairs,,,,,,,,,,,,,,,,
+,,"Operation, Maintenance, and Testing or Inspection of
+Spill and Overfill Prevention Equipment and Containment Systems; and
+Walkthrough Inspections.
+(1) Owners and operators of UST systems must comply with the
+following operation, maintenance, and testing or inspection requirements for spill
+prevention equipment, overfill prevention equipment, and containment sumps
+and sensors to ensure that releases due to leaking, spilling or overfilling do not
+occur; submit testing and inspection results in accordance with rule 335-6-15-
+.13(a)5.; and keep testing and inspection records in accordance with rule 335-6-
+15-.13(b)5.; unless a UST system is temporarily closed in accordance with rule
+335-6-15-.33.
+(a) Spill Prevention Equipment. Spill prevention equipment must be
+periodically checked in accordance with the walkthrough inspection
+requirements in paragraph (2) of this rule and meet the following requirements:
+1. Single walled spill prevention equipment shall be tested for leakage
+to ensure the equipment is liquid tight by using vacuum, pressure, or liquid
+testing at least once every three years, or upon repair or replacement, using one
+of the following options:
+(i) Testing requirements developed by the manufacturer (Note: Owners
+and operators may use this option only if the manufacturer has developed
+requirements);
+(ii) Test methods from a code of practice developed by a nationally
+recognized association or independent testing laboratory; or
+(iii) Testing requirements determined by the Department to be no less
+protective of human health and the environment than the testing requirements
+listed in subparagraphs (1)(a)1.(i) and (ii) of this rule.
+2. Double walled spill prevention equipment with an interstitial space
+shall have the integrity of both walls periodically checked in accordance with the
+walkthrough inspection requirements in paragraph (2) of this rule. If this periodic
+checking is discontinued, owners and operators must begin using one of the
+testing options provided for single walled spill catchment basins in subparagraph
+(1)(a)1. of this rule and conduct a test within 30 days.
+3. Spill prevention equipment must be emptied before the transfer of
+regulated substance to the underground storage tank so that all the volume is
+available to contain a spill. If a breach in the spill prevention equipment is visible or if a spill prevention equipment leak test fails, it must be repaired or replaced
+prior to receiving any further deliveries of a regulated substance.
+4. When a regulated substance is being released or is suspected to
+have been released from spill prevention equipment to the surrounding surface
+or subsurface, notify the Department of a suspected release in accordance with rule 335-6-15-.20",,,,,,,,,335-6-15-.09,,,,,#spill prevetion requirements #testing #,Testing and Inspection Requirements: Spill Prevention Equipment,Overfill Prevention Equipment,Containment Sumps,Walkthrough Inspections,,,,,,,,,,,,
+,,"(b) Overfill Prevention Equipment. Overfill prevention equipment in
+use before December 8, 2017, shall be inspected not later than December 8, 2020
+and at least once every three years thereafter; when brought into use on or after
+December 8, 2017, shall be inspected upon installation and at least once every
+three years thereafter; and must meet the following inspection requirements:
+1. At a minimum, the inspection must ensure that overfill prevention
+equipment is set to activate at the correct level specified in rule 335-6-15-.06(c)2.
+and will activate when regulated substance reaches that level. Inspections must
+be conducted using one of the following options:
+(i) Inspection requirements developed by the manufacturer (Note:
+Owners and operators may use this option only if the manufacturer has
+developed requirements);
+(ii) Inspection methods from a code of practice developed by a
+nationally recognized association or independent testing laboratory; or
+(iii) Inspection requirements determined by the Department to be no
+less protective of human health and the environment than the inspection
+requirements listed in subparagraphs (1)(b)1.(i) and (ii) of this rule.
+2. Owners and operators must ensure that the volume available in the
+underground storage tank is greater than the volume of product to be transferred
+to the underground storage tank before the transfer is made and that the transfer
+operation is monitored constantly to prevent overfilling and spilling.",,,,,,,,,335-6-15-.09,,,,,#overfill protection #requirements,,,,,,,,,,,,,,,,
+,,"(c) Under Dispenser, Submersible Pump, and Other UST System
+Containment Sumps. These containment sumps must be periodically checked
+in accordance with the walkthrough inspection requirements in paragraph (2) of
+this rule and meet the following requirements:
+1. When a regulated substance is discovered in a containment sump:
+(i) Remove the regulated substance within 24 hours; any regulated
+substance which is removed must be disposed of in accordance with all state of
+Alabama requirements; and
+(ii) Repair or replace any necessary equipment to prevent further
+leakage of regulated substance into the containment sump within a time period
+acceptable to the Department, and immediately after repair or replacement, test
+the sump for leakage to ensure it is liquid tight in accordance with one of the vacuum, pressure, or liquid testing options provided in subparagraphs
+(1)(a)1.(i),(ii), (iii) of this rule within a time period acceptable to the Department.
+2. When a regulated substance is being released or is suspected to
+have been released from a containment sump to the surrounding surface or
+subsurface:
+(i) Shut off the submersible pump; and
+(ii) Notify the Department of a suspected release in accordance with
+rule 335-6-15-.20.
+3. Containment sumps used for interstitial monitoring of underground
+piping must be maintained so that they continuously remain free of water,
+regulated substance and debris,
+4. The operation of any liquid sensors in a containment sump used for
+interstitial monitoring of underground piping must be tested annually to ensure
+that they are working properly. Beginning December 8, 2017, testing must be
+conducted in accordance with one of the testing options provided in
+subparagraphs (1)(a)1.(i),(ii), (iii) of this rule.
+5. Breaches discovered in a containment sumps used for interstitial
+monitoring of underground piping which may result in a release of a regulated
+substance must immediately be repaired or the containment sump replaced.
+After repair or replacement, the containment sump must be tested using a
+vacuum, pressure or liquid method in accordance with one of the options
+provided in subparagraphs (1)(a)1.(i), (ii), or (iii) of this rule to ensure the sump
+is liquid tight.
+6.
+Beginning December 8, 2020 for UST systems in use before December 8,
+2017 and beginning upon installation for UST systems brought into use on or
+after December 8, 2017, all containment sumps used for interstitial monitoring
+of underground piping must prevent releases to the environment by meeting one
+of the following:
+(i) To ensure single walled containment sumps used for interstitial
+monitoring of underground piping are liquid tight, those installed prior to
+December 8, 2017 must have an initial test not later than December 8, 2020 and
+must be tested at least once every three years thereafter, and those brought into
+use on or after the December 8, 2017 must be tested upon installation and be
+tested at least once every three years thereafter. Testing must be conducted
+using a vacuum, pressure, or liquid method in accordance with one of the options
+provided in subparagraphs (1)(a)1.(i), (ii), or (iii) of this rule; or (ii) When containment sumps used for interstitial monitoring of
+underground piping are double walled, the integrity of both walls must be
+periodically checked in accordance with the walkthrough inspection
+requirements in subparagraph (2) of this rule. If this periodic checking is
+discontinued, owners and operators must begin using one of the testing options
+provided for single walled containment sumps in subparagraph (1)(c)6.(i) of this
+rule and conduct a test within 30 days.",,,,,,,,,335-6-15-.09,,,,,#udc #containment sumps #submersible pump #walkthrough inspections,,,,,,,,,,,,,,,,
+,,"(2) Walkthrough Inspections. To properly operate and maintain UST
+systems, owners and operators of UST systems must conduct walkthrough
+inspections beginning not later than October 13, 2018 and thereafter. Conduct
+walkthrough inspections in accordance with either subparagraphs (2)(a), and
+(2)(b) or (c) of this rule and keep inspection records in accordance with rule 335-
+6-15-.13(b)11., unless a UST system is temporarily closed in accordance with
+rule 335-6-15-.33.
+(a) Conduct a walkthrough inspection that, at a minimum, checks the
+following equipment as specified in subparagraphs (2)(a)1. and 2. of this rule:
+1. Every 30 days (Exception: spill prevention equipment at UST
+systems receiving deliveries at intervals greater than every 30 days may be
+checked prior to each delivery):
+(i) Visually check spill prevention equipment for damage; remove
+liquid or debris; check for and remove obstructions in the fill pipe; check the fill
+cap to make sure it is securely on the fill pipe; and for double walled spill
+prevention equipment with interstitial monitoring, also check the integrity of both
+walls by checking for leakage in the interstitial space, and
+(ii) Check to make sure the release detection equipment is operating
+with no alarms or other unusual operating conditions present; and ensure
+records of release detection testing are reviewed, passing and current, and
+2. Annually:
+(i) Visually check all containment sumps for damage or leaks to the
+containment area, or releases to the environment, and remove liquid or debris;
+and for double walled sumps with interstitial monitoring, also check the integrity
+of both walls by checking for leakage in the interstitial space, and
+(ii) Check hand held release detection equipment devices such as tank
+gauge sticks or groundwater bailers for operability and serviceability;
+(b) Conduct operation and maintenance walkthrough inspections
+according to a standard code of practice developed by a nationally recognized
+association or independent testing laboratory that checks equipment comparable
+to that indicated in subparagraph (2)(a) of this rule; or (c) Conduct operation and maintenance walkthrough inspections
+developed by the Department that checks equipment comparable to that
+indicated in subparagraph (2)(a) of this rule.
+(3) The owner and operator must report, investigate, and clean up any
+leaks, spills and overfills in accordance with rule 335-6-15-.23.",,,,,,,,,335-6-15-.09,,,,,#walkthrough inspections #,,,,,,,,,,,,,,,,
+,,"Operation and Maintenance of Corrosion Protection. All
+owners and operators of metal UST systems with corrosion protection must
+comply with the following requirements to ensure that releases due to corrosion
+are prevented until the UST system is permanently closed or undergoes changein-service in accordance with rule 335-6-15-.34:
+(a) All corrosion protection systems must be operated, maintained,
+inspected and tested to continuously provide and demonstrate corrosion
+protection of the metal components of that portion of the underground storage
+tank and underground piping that routinely contain regulated substances and
+are in contact with the ground, as well as the metal outer wall of double wall
+underground storage tanks and underground piping which are in contact with
+the ground. Operating UST systems for which impressed current cathodic
+protection has not been adequately operated and maintained to provide corrosion
+protection for a continuous period of 12 months must be either:
+1. Internally inspected and found to be structurally sound in
+accordance with a code of practice developed by a nationally recognized
+association or an independent testing laboratory, or
+2. Permanently closed within 90 days from the end of this 12-month
+period in accordance with rules 335-6-15-.34 and 335-6-15-.35.
+(b) All UST systems equipped with cathodic protection systems must
+be inspected and tested for proper operation by a qualified cathodic protection
+tester who maintains current certification in accordance with the requirements
+in rule 335-6-15-.02(g), in accordance with the following requirements:
+1. Frequency. All cathodic protection systems must be inspected and
+tested within 30 days of installation and at least every three years thereafter; and
+2. Inspection and Testing Criteria. The criteria that are used to
+determine that cathodic protection is adequate as required by subparagraphs (a)
+and (b) of this rule must be in accordance with the most current version of codes of practice established by NACE International and STI/SPFA (Steel Tank
+Institute/Steel Plate Fabricators Association).
+(c) UST systems with impressed current cathodic protection systems
+must also be inspected every 60 days to ensure the equipment is operating
+properly.
+(d) For UST systems using cathodic protection, records of the operation
+of the cathodic protection must be maintained in accordance with rule 335-6-15-
+.13 to demonstrate compliance with the performance standards in this section.
+These records must provide the following:
+1. The results of the last three inspections or checks required in
+subparagraph (c) of this rule; and
+2. The results of testing from the last two tests required in
+subparagraph (b) of this rule.",,,,,,,,,335-6-15-.09,,,,,#corrosion protection,Operation and Maintenance: Corrosion Protection,Delivery Prohibition,,,,,,,,,,,,,,
+,,"""The Department will implement Delivery Prohibition in accordance with the following procedures:
+(a) Prior to placing an underground storage tank facility under delivery prohibition, the Department will:
+1. Make a reasonable effort to notify the owner and/or operator in writing that an underground storage tank facility is in """"significant noncompliance requiring delivery prohibition"""" as defined in rule 335-6-15-.02(uuu), or """"significant noncompliance subject to delivery prohibition"""" as defined in rule 335- 6-15-.02(vvv); and
+2. Give the owner or operator the opportunity to discuss, within a designated time period specified by the Department, the significant noncompliance.
+(b) If the above time period expires without resolution of the significant noncompliance, the underground storage tank facility will be placed on the Department web site """"Delivery Prohibition List"""" by 12:00 a.m. central time on Wednesday of the week that a delivery prohibition determination is made by the Department. The Department will physically affix a red tag on the fill pipes to underground storage tanks at the underground storage tank facility. The delivery prohibition becomes effective immediately to all UST systems at the facility upon placement of the red tag(s). Once the red tag is affixed on the fill pipe, it shall be unlawful to tamper with or remove it until authorized by the Department.
+(c) Upon implementation of delivery prohibition as described in subparagraph (b) above, it shall be unlawful for any regulated substance deliverer to deliver a regulated substance, and it shall be unlawful for owners and operators of UST systems to accept delivery of a regulated substance to an underground storage tank facility that is under delivery prohibition.
+(d) When the Department has received all documentation required by the Department to demonstrate that the underground storage tank facility has returned to compliance:
+1. The underground storage tank facility will become eligible to receive delivery of regulated substances following written notification by the Department. Written notification may be provided electronically or by facsimile; and
+2. The Department shall remove the underground storage tank facility from the Department web site """"Delivery Prohibition List” as soon as practicable after receipt of the necessary documentation.
+(e) Based on the best interest of the public, the Department may defer the implementation of delivery prohibition for up to 180 days for underground
+335-6-15-.45
+15-75
+335-6-15-.46
+storage tank facilities identified as being in significant noncompliance requiring delivery prohibition. Also, the Department retains the right to remove any delivery prohibition at any time during an emergency situation.""",,,,,,,,,335-6-15-.45,,,,,#delivery prohibition #notification #red tag,,,,,,,,,,,,,,,,
+,,"(1) Owners and operators must use an UST system made of or lined with materials that are compatible with the substance stored in the UST system.
+(2) Owners and operators must notify the Department in accordance with rule 335-6-15-.05(11). In addition, owners and operators with UST systems storing these regulated substances must meet one of the following:
+(a) Demonstrate compatibility of the UST system (including the underground storage tank, underground piping, containment sumps, pumping equipment, release detection equipment, spill equipment, and overfill equipment). Owners and operators may demonstrate compatibility of the UST system by using one of the following options:
+1. Certification or listing of UST system equipment or components by a nationally recognized independent testing laboratory for use with the regulated substance stored; or
+2. Equipment or component manufacturer approval. The manufacturer’s approval must be in writing, indicate an affirmative statement of compatibility, specify the range of biofuel blends the equipment or component is compatible with, and be from the equipment or component manufacturer; or
+15-34
+(b) Use another option determined by the Department to be no less protective of human health and the environment than the options listed in subparagraph (2)(a) of this rule.
+(3) Owners and operators must maintain records in accordance with rule 335-6-15-.13(b)10. documenting compliance with paragraph (2) of this rule for as long as the UST system is used to store the regulated substance.
+",,,,,,,,,335-6-15-.11,,,,,#compatability #owner,Compatibility,,,,,,,,,,,,,,,
+,,"Reporting and Recordkeeping. Owners and operators of UST
+systems, and contractors certified to install, repair or permanently close UST
+systems must cooperate fully with inspections, monitoring and testing conducted
+by the Department as well as requests for document submission, submission of
+engineering or technical data, operator training, and testing and monitoring
+performed by the owner or operator at the request of the Department.
+(a) Reporting. Owners and operators must submit the following
+information to the Department:
+1. Notification for all UST systems in accordance with rule
+335-6-15-.05, which includes certification of installation for new UST systems
+(rule 335-6-15-.05(7)) and notification when any person assumes ownership of
+an UST system (rule 335-6-15-.05(10));
+2. Reports of all releases including suspected releases (rule
+335-6-15-.20), spills and overfills (rule 335-6-15-.23(2)), and confirmed releases
+(rule 335-6-15-.24(2));
+3. Release investigation and confirmation report (rule 335-6-15-.22),
+corrective actions planned or taken including initial abatement measures (rule
+335-6-15-.25(2)), conducting a preliminary investigation (rule 335-6-15-.26(5)), free product removal (rule 335-6-15-.27(d)), conducting a secondary investigation
+(rule 335-6-15-.28(6)) and corrective action plan (rule 335-6-15-.29(1)); and
+4. A notification before permanent closure or change-in-service (rule
+335-6-15-.34(1)) and upon completion of final closure or change-in-service
+assessment report (rule 335-6-15-.35(1)).
+5. Results of all tightness testing (rules 335-6-15-.17(c) and 335-6-15-
+.18(b)), cathodic protection testing (rule 335-6-15-.10(b)), spill prevention
+equipment testing (rule 335-6-15-.09(1)(a)1.), containment sump testing (rule
+335-6-15-.09(1)(c)6.), liquid sensor and probe testing (rules 335-6-15-.09(1)(c)4.
+and 335-6-15-.14(1)(c)2.), leak detector testing (rule 335-6-15-.14(1)(c)3.), and
+overfill prevention equipment inspections (rule 335-6-15-.09(1)(b)) of a UST
+system within 30 days after completion or as directed by the Department.
+6. Annual summary of results no later than January 31st of each year
+or as directed by the Department for the statistical inventory reconciliation
+method of leak detection (rule 335-6-15-.17(h)).
+7. Notification prior to UST systems switching to regulated substances
+containing greater than 10 percent ethanol or greater than 20 percent biodiesel
+(rule 335-6-15-.05(11)).
+(b) Recordkeeping. Owners and operators of UST systems must
+maintain records as follows:
+1. Documentation of inspection or check of operation of corrosion
+protection equipment (rule 335-6-15-.10(d)1.);
+2. Documentation of UST system repairs (rule 335-6-15-.12(i));
+3. Documentation of compliance with release detection recordkeeping
+requirements (rule 335-6-15-.19);
+4. Documentation of all tightness testing (rules 335-6-15-.19(b)2.),
+cathodic protection testing (rule 335-6-15-.10(d)2.), and leak detector testing
+(rule 335-6-15-.19(b)1.) performed for an UST system;
+5. Documentation of spill prevention equipment testing (rule 335-6-
+15-.09(1)(a)), containment sump testing (rule 335-6-15-.09(1)(c)6.(i) and (ii)),
+liquid sensor and probe testing (rules 335-6-15-.09(1)(c)4. and 335-6-15-
+.14(1)(c)2.), and overfill prevention equipment inspections (rule 335-6-15-
+.09(1)(b)1.) performed for an UST system as follows;
+(i) All records of testing or inspection for this equipment must be
+maintained for three years, and
+(ii) For spill prevention equipment and containment sumps used for
+interstitial monitoring of underground piping not tested every three years,
+documentation showing that the prevention equipment is double walled and the integrity of both walls is periodically monitored must be maintained for as long
+as the equipment is periodically monitored.
+6. Results of the site investigation conducted at permanent closure
+(rule 335-6-15-.37).
+7. Documentation of release detection equipment maintenance and
+calibrations (rule 335-6-15-.19(c)).
+8. Documentation of compliance with notification requirements (rule
+335-6-15-.05).
+9. Documentation of operator training (rule 335-6-15-.46(2)).
+10. Documentation of compatibility for UST systems (rule
+335-6-15-.11(3));
+11. Documentation of periodic walkthrough operation and
+maintenance inspections (rule 335-6-15-.09(2)) must be maintained for one year
+as follows;
+(i) Records must include a list of each area checked, whether each area
+checked was acceptable or needed action taken, a description of actions taken to
+correct an issue, and delivery records if spill prevention equipment is checked
+less frequently than every 30 days due to infrequent deliveries.
+(c) Availability and Maintenance of Records. Owners and operators
+must keep the records required either:
+1. At the UST site and immediately available for inspection by the
+Department; or
+2. At a readily available alternative site and be provided for inspection
+to the Department upon request.
+3. In the case of permanent closure, records required under rule 335-
+6-15-.37 may be mailed to the Department if they cannot be kept at the site or
+an alternative site.
+(d) Current proof of underground storage tank registration shall be displayed at active retail petroleum facilities.",,,,,,,,,335-6-15-.13,,,,,#reporting #recordkeeping #documentation,Reporting and Recordkeeping,Release Detection Recordkeeping,Closure Records,,,,,,,,,,,,,
+,,"""All UST system owners and operators must maintain records in accordance with rule 335-6-15-.13 demonstrating compliance with all applicable requirements of this chapter. These records must include the following:
+(a) All written performance claims pertaining to any release detection system used, and the manner in which these claims have been justified or tested by the equipment manufacturer or installer in accordance with rule 335-6-15- .14(1)(d), must be maintained for five years from the date of installation. Not later than October 13, 2018, records of site assessments required under rule 335-6- 15-.17(e)14. and (f)19. must be maintained for as long as the release detection methods are used. Records of site assessments developed on or after October 2, 2003 must be signed by a professional engineer or professional geologist, or equivalent licensed professional with experience in environmental engineering, hydrogeology, or other relevant technical discipline acceptable to the Department;
+(b) The results of any sampling, testing, or monitoring must be maintained for at least one year except as follows:
+1. The results of annual release detection equipment operation testing conducted in accordance with rule 335-6-15-.14(1)(c) must be maintained for three years. At a minimum, the results must list each component tested, indicate whether each component tested meets criteria in rule 335-6-15-.14(1)(c) or needs to have action taken, and describe any action taken to correct an issue; and
+2. The results of tank tightness testing conducted in accordance with rule 335-6-15-.17(c) and line testing conducted in accordance with rule 335-6- 15-.15(b) must be retained until the next test is conducted; and
+3. The results of tank tightness testing, line tightness testing, and vapor monitoring using a tracer compound placed in the UST system conducted in accordance with rule 335-6-15-.48(2)(d) and (e) must be retained until the next test is conducted.
+15-52
+4. The results of statistical inventory reconciliation (SIR), conducted in accordance with rule 335-6-15-.17(h) must be retained until the next test is conducted.
+(c) Written documentation of all calibration and maintenance of release detection equipment in accordance with rule 335-6-15-.14(1)(b) and (c) must be maintained for at least one year after the calibration and maintenance work is completed. Any schedules of required calibration and maintenance provided by the release detection equipment manufacturer must be retained for as long as the equipment is used for detection of releases.""",,,,,,,,,335-6-15-.19,,,,,#records #recordkeping #testing #testing results,,,,,,,,,,,,,,,,
+,,"""Owners and operators must maintain records in accordance with rule 335-6-15-.13(b)6. that are capable of demonstrating
+15-72
+compliance with closure requirements under rules 335-6-15-.33 through 335-6-15-.36. The results of the excavation zone assessment required in rule 335-6-15-.35 must be submitted to the Department and be maintained for at least three years after completion of permanent closure or change-in-service in one of the following ways:
+(a) By the owners and operators who took the UST system out of service; and
+(b) By the current owners and operators of the UST system site.
+""",,,,,,,,,335-6-15-.37,,,,,#closure #closure records,,,,,,,,,,,,,,,,
+,,"(1) Owners and operators of UST systems must provide a method, or combination of methods, of release detection that:
+(a) Can detect a release from any portion of the underground storage tank and the connected underground piping that routinely contains product;
+(b) Is installed, calibrated, operated, and maintained in accordance with the manufacturer's instructions, including routine maintenance and service checks for operability or running condition;
+(c) Is operated and maintained, and electronic and mechanical components are tested for proper operation, in accordance with one of the following: manufacturer’s instructions; a code of practice developed by a nationally recognized association or independent testing laboratory; or requirements determined by the Department to be no less protective of human health and the environment than the two options listed above. A test of the proper operation must be performed at least annually and must cover the following components and criteria:
+1. Automatic Tank Gauge and Other Controllers. Beginning on October 13, 2018 and thereafter; test alarm, verify system configuration, test battery backup;
+2. Probes and Sensors. Beginning on October 13, 2018 and thereafter; inspect for residual buildup, ensure floats move freely, ensure shaft is not damaged, ensure cables are free of kinks and breaks, test alarm operability and communication with controller, ensure that they are positioned properly;
+3. Automatic Line Leak Detector. Test operation to meet criteria in rule 335-6-15-.18(a) by simulating a leak;
+4. Vacuum Pumps and Pressure Gauges. Beginning on October 13, 2018 and thereafter; ensure proper communication with sensors and controller; and
+5. Hand-held Electronic Sampling Equipment Associated with Groundwater and Vapor Monitoring. Beginning on October 13, 2018 and thereafter; ensure proper calibration and operation.
+(d) Meets the performance requirements in rules 335-6-15-.17, 335-6- 15-.18, or 335-6-15-.48, as applicable, with any performance claims and their manner of determination described in writing by the equipment manufacturer or installer. In addition, the methods must be capable of detecting the leak rate or quantity specified for that method in rules 335-6-15-.17(b), (c), (d), (h) and (i), 335-6-15-.18(a) and (b), and 335-6-.48 with a probability of detection of 0.95 and a probability of false alarm of 0.05.
+335-6-15-.14
+15-39
+335-6-15-.15
+(2) When a release detection method operated in accordance with the performance standards in rules 335-6-15-.17, 335-6-15-.18, or 335-6-15-.48 indicates a release may have occurred, owners and operators must notify the Department in accordance with rule 335-6-15-.20.
+(3) Any UST system that cannot apply a method of release detection that complies with the requirements of this chapter must temporarily close the UST system in accordance with rule 335-6-15-.33 and must permanently close the UST system in accordance with rules 335-6-15-.34 through 335-6-15-.37 except as follows:
+(a) For UST systems storing fuel solely for the use of emergency power generators installed before August 6, 2007, paragraph (3) of this rule applies beginning on December 8, 2020 and thereafter. For UST systems with field- constructed tanks, and UST systems with airport hydrant fuel distribution systems, paragraph (3) of this rule applies beginning on October 13, 2018 and thereafter.
+(4) Owners or operators of UST systems storing fuel solely for the use of emergency power generators installed before August 6, 2007, UST systems with airport hydrant fuel distribution systems, and UST systems with field- constructed tanks shall submit to the Department a description of the type of release detection method or methods which will be used at each site at which the UST system is located. This description and any required plans and specifications required by rule 335-6-15-.08 shall be submitted 30 days prior to the implementation of release detection requirements for these systems as described in rules 335-6-15-.03(1)(a)1. and 2.
+(5) Release detection on UST systems employing vapor monitoring, groundwater monitoring, or interstitial monitoring using a secondary barrier, shall be installed in accordance with the plans and specifications required by rule 335-6-15-.08.
+",,,,,,,,,335-6-15-.14,,,,,#release detection #release detection requirements #types of release detection #ATG #SIR #tank tightness test #probes #sensors #automatic line leak test #vaccuum pumps #pressure gauge #vapor monitoring,Release Detection Requirements: All UST Systems,Petroleum UST Systems,Hazardous Substance UST Systems,Methods of Release Detection for UST Systems: Inventory Control,Methods of Release Detection for Tanks: Manual Tank Gauging,Methods of Release Detection for Tanks: Automatic Tank Gauging,Methods of Release Detection for Tanks: Tank Tightness Testing,Methods of Release Detection for Tanks: Vapor Monitoring,Methods of Release Detection for Tanks: Groundwater Monitoring,Methods of Release Detection for Tanks: Interstitial Monitoring,Methods of Release Detection for Tanks: Statistical Inventory Reconciliation (SIR),Methods of Release Detection for Piping: Automatic Line Leak Detectors,Methods of Release Detection for Piping: Line Tightness Testing,,,
+,,"Owners and operators of petroleum UST systems must provide release detection for underground storage tanks and underground piping as follows:
 (a) USTs. USTs installed beginning on August 6, 2007 and thereafter, must perform interstitial monitoring at least every 30 days in accordance with rule 335-6-15-.17(g). USTs installed prior to August 6, 2007 must be monitored for releases at least every 30 days using one of the methods listed in rule 335-6- 15-.17(d) through (i), except that:
 15-40
 1. Underground storage tanks with nominal capacity of 550 gallons or less, and tanks with a nominal capacity of 551 to 1,000 gallons that meet the underground storage tank diameter criteria in rule 335-6-15-.17(b), may use weekly manual tank gauging conducted in accordance with rule 335-6-15-.17(b).
@@ -22,4 +754,769 @@ to the suction pump; and
 335-6-15-.15
 15-41
 335-6-15-.16
-(c) Any petroleum UST systems installed prior to August 6, 2007 which are: located within 1000 feet of a public water supply well; located within 300 feet of a private domestic water supply; or which are located in an area which the Department has determined to be exceptionally vulnerable to groundwater contamination, may be required to take additional measures to prevent contamination of groundwater. Such measures may include the installation of additional release detection methods in accordance with one of the methods in rule 335-6-15-.17(d) through (i) for underground storage tanks and (e) through (h) for underground piping and/or the implementation of more frequent monitoring of release detection systems.",335-6-15-.15,This AL reg matches with 280.5.15,no local regs in AL,obtain release detection like this: example example example,hyperlink example,Release Detection Requirments,"release detection, piping, sump, udc, sensor, safe suction, stp, double wall, csld, line leak, leak test,sir,",,,
+(c) Any petroleum UST systems installed prior to August 6, 2007 which are: located within 1000 feet of a public water supply well; located within 300 feet of a private domestic water supply; or which are located in an area which the Department has determined to be exceptionally vulnerable to groundwater contamination, may be required to take additional measures to prevent contamination of groundwater. Such measures may include the installation of additional release detection methods in accordance with one of the methods in rule 335-6-15-.17(d) through (i) for underground storage tanks and (e) through (h) for underground piping and/or the implementation of more frequent monitoring of release detection systems.",,,,,,,,,335-6-15-.15,,,,,#piping release detection #pressurized piping #interstitial monitoring #suction underground piping #line tightness #,,,,,,,,,,,,,,,,
+,,"Owners and operators of hazardous substance UST systems must provide containment that meets the following requirements and monitor these UST systems using rule 335-6-15-.17(g) at least every 30 days:
+(a) Secondary containment UST systems must be designed, constructed and installed to:
+1. Contain regulated substances leaked from the primary containment until they are detected and removed;
+2. Prevent the release of regulated substances to the environment at any time during the operational life of the UST system; and
+3. Be checked for evidence of a leak at least every 30 days.
+(b) Double walled underground storage tanks must be designed, constructed, and installed to:
+1. Contain a leak from any portion of the inner underground storage tank within the outer wall; and
+2. Detect the failure of the inner wall.
+(c) External underground storage tank liners (including vaults) must be designed, constructed, and installed to:
+1. Contain 100 percent of the capacity of the largest underground storage tank within its boundary;
+2. Prevent the interference of precipitation or groundwater intrusion with the ability to contain or detect a release of regulated substances; and
+15-42
+3. Surround the underground storage tank completely (i.e., it is capable of preventing lateral as well as vertical migration of regulated substances).
+(d) Underground piping must be equipped with secondary containment that satisfies the requirements of this rule (e.g., trench liners, double walled pipe). In addition, underground piping that conveys regulated substances under pressure must be equipped with an automatic line leak detector in accordance with rule 335-6-15-.18(a).
+(e) For hazardous substance UST systems installed before August 6, 2007, other methods of release detection may be used if owners and operators:
+1. Demonstrate to the Department that an alternate method can detect a release of the stored substance as effectively as any of the methods allowed in rule 335-6-15-.17(d) through (i) can detect a release of petroleum;
+2. Provide information to the Department on effective corrective action technologies, health risks, and chemical and physical properties of the stored substance, and the characteristics of the UST site; and,
+3. Obtain approval from the Department to use the alternate release detection method before the installation and operation of the new UST system.
+",,,,,,,,,335-6-15-.16,,,,,#containment #double walled #secondary containment,,,,,,,,,,,,,,,,
+,,"Each method of release detection for underground storage tanks used to meet the requirements of rule 335-6-15-.15 must be conducted in accordance with the applicable requirements (a) through (i) of this rule. The Department may make a determination as to the capability of release detection equipment to meet the requirements of this rule.
+(a) Inventory Control. Product inventory control (or another test of equivalent performance) must be conducted at least every 30 days to detect a loss or gain of at least 1.0 percent of flow-through plus 130 gallons on a 30 day basis in the following manner:
+1. Inventory volume measurements for regulated substance inputs, withdrawals, and the amount still remaining in the underground storage tank are recorded each operating day;
+2. The equipment used is capable of measuring the level of product over the full range of the underground storage tank's height to the nearest one- eighth of an inch;
+335-6-15-.17
+15-43
+335-6-15-.17
+3. The regulated substance inputs are reconciled with delivery receipts by measurement of the underground storage tank inventory volume before and after delivery;
+4. Deliveries are made through a drop tube that extends to within one foot of the underground storage tank bottom;
+5. Product dispensing is metered and recorded within the local standards for meter calibration or an accuracy of 6 cubic inches for every 5 gallons of product withdrawn; and
+6. The measurement of any water or phase separated entrained water level in the bottom of the underground storage tank is made to the nearest one- eighth of an inch at least once every 30 days.",,,,,,,,,335-6-15-.17,,,,,#release detction #inventory control #,,,,,,,,,,,,,,,,
+,,"(b) Manual Tank Gauging. Manual tank gauging must meet the following requirements:
+1. Underground storage tank liquid level measurements are taken at the beginning and ending of a period using the appropriate minimum duration of test value in the table shown in subparagraph (b)4. of this rule, during which no liquid is added to or removed from the underground storage tank;
+2. Level measurements are based on an average of two consecutive stick readings at both the beginning and ending of the period;
+3. The equipment used is capable of measuring the level of product over the full range of the underground storage tank's height to the nearest one- eighth of an inch;
+4. A release is suspected and subject to the requirements of rules 335-6-15-.20 through 335-6-15-.23 if the variation between beginning and ending measurements exceed the weekly or 30 day standards in the following table:
+
+Nominal Underground Storage Tank Capacity
+Minimum Duration of Test
+Weekly Standard (one test)
+30 day Standard (average of 4 tests)
+up to 550 gallons
+36 hours
+10 gallons
+5 gallons
+551-1,000 gallons (when underground storage tank diameter is 64"")
+44 hours
+9 gallons
+4 gallons
+
+551-1,000 gallons (when underground storage tank diameter is 48"")
+58 hours
+12 gallons
+6 gallons
+15-44
+5. Only underground storage tanks of 550 gallons or less nominal capacity, and underground storage tanks with a nominal capacity of 551 to 1,000 gallons that meet the underground storage tank diameter criteria in the table in above subparagraph (b)4. of this rule, may use this as a method of release detection.",,,,,,,,,335-6-15-.17,,,,,#release detection #manual tank guaging #,,,,,,,,,,,,,,,,
+,,"(c) Tank Tightness Testing. Tank tightness testing (or another test of equivalent performance) must be capable of detecting a 0.1 gallon per hour leak rate from any portion of the underground storage tank that routinely contains product while accounting for the effects of thermal expansion or contraction of the product, vapor pockets, underground storage tank deformation, evaporation or condensation, and the location of the water table.
+1. The test must be performed by an individual having current certification of training from the manufacturer of the test method.
+2. Unless waived by the Department the report of tightness testing of an underground storage tank must state whether or not the water table was above the base of the underground storage tank excavation pit at the time of testing and the method by which this determination was made. If it is above the base, the specific elevation of the water table shall be determined and recorded in the test report.
+",,,,,,,,,335-6-15-.17,,,,,#release dection #tank tightness test,,,,,,,,,,,,,,,,
+,,"(d) Automatic Tank Gauging. Equipment for automatic tank gauging that tests for the loss of product and conducts inventory control must meet the following requirements:
+1. The automatic product level monitor test can detect a 0.2 gallon per hour leak rate from any portion of the underground storage tank that routinely contains product;
+2. The automatic tank gauging equipment must meet the inventory control requirements of subparagraph (a)6. of this rule (or other test of equivalent performance); and
+3. The test must be performed with the equipment operating in one of the following modes:
+(i) In-tank static testing conducted at least once every 30 days; or
+(ii) Continuous in-tank leak detection operating on an uninterrupted
+basis or operating within a process that allows the equipment to gather incremental measurements to determine the leak status of the underground storage tank at least once every 30 days.",,,,,,,,,335-6-15-.17,,,,,#release detection #automatic tank guaging,,,,,,,,,,,,,,,,
+,,"(e) Vapor Monitoring. Testing or monitoring for vapors within the soil gas of the excavation zone must meet the following technical and procedural requirements:
+335-6-15-.17
+15-45
+335-6-15-.17
+1. A vapor monitoring plan with any required plans and specifications, must be submitted to the Department for review by the Department. The plan must be sufficient to demonstrate compliance with the requirements of subparagraphs (e)2. through 8. of this rule or modifications may be required by the Department.
+2. The materials used as backfill are sufficiently porous (e.g., gravel, sand, crushed rock) to readily allow diffusion of vapors from releases into the excavation area;
+3. The stored regulated substance, or a tracer compound placed in the UST system, is sufficiently volatile (e.g., gasoline) to result in a vapor level that is detectable by the monitoring devices located in the excavation zone in the event of a release from the underground storage tank. The Department may require testing of a vapor monitoring system with a tracer compound where a system's reliability is in question.
+4. The measurement of vapors by the monitoring device is not rendered inoperative by the groundwater, rainfall, or soil moisture or other known interferences so that a release could go undetected for more than 30 days;
+5. The level of background contamination in the excavation zone will not interfere with the method used to detect releases from the UST system based upon information, to include volatile hydrocarbon concentrations, collected throughout the excavation zone where this method is proposed for use.
+6. The vapor monitors and vapor monitoring wells are designed and operated in a manner sufficient to: detect any significant increase in concentration above background of the regulated substance stored in the UST system, a component or components of that substance, or a tracer compound placed in the UST system, and provide a vapor sample to the vapor monitor that is representative of the concentration in the excavation zone. Construction details shall comply with subparagraphs (e)7. through 13. of this rule.
+7. The well casing shall be constructed of a material which is compatible with the substance stored; and which has sufficient strength to prevent structural failure.
+8. The well casing shall be a minimum of 2 inches in diameter and shall be large enough for the chosen monitoring device to be installed or operated properly in the well. A low permeability backfill may require the use of larger diameter casing.
+9. The length and slot size of the slotted portion of the casing should be sufficient to obtain a representative vapor sample in accordance with the depth of excavation zone and site hydrogeology.
+10. The well screen should be surrounded by a clean filter pack which allows for passage of vapors while preventing passage of materials which could
+15-46
+clog the well screen. The filter pack should extend 1 to 2 feet above the well screen.
+11. An annular seal shall extend up from the top of the filter pack for 1 to 2 feet.
+12. The well annulus shall be grouted from the top of the bentonite to the ground surface.
+13. Monitoring wells shall have a watertight cap or enclosure at the ground surface.
+14. In the UST excavation zone, the site is assessed to ensure compliance with the requirements in subparagraphs (e)2. through 5. of this rule and to establish the number and positioning of monitoring wells that will detect releases within the excavation zone from any portion of the underground storage tank that routinely contains product;
+15. Vapor monitoring wells are clearly marked with the wording ""NOT FOR DELIVERIES"" or other sufficient language and locked to avoid unauthorized access and tampering. Monitoring wells which are located in an area subject to traffic must be equipped with enclosures which will not be damaged by normal traffic.
+16. In the event of permanent closure of the UST system, all monitoring wells shall be closed according to a method acceptable to the Department, unless otherwise directed by the Department.
+17. If a monitoring well is determined to be improperly constructed, closure may be required according to a method acceptable to the Department.
+",,,,,,,,,335-6-15-.17,,,,,#release detection #vapor monitoring,,,,,,,,,,,,,,,,
+,,"(f) Groundwater Monitoring. Testing or monitoring for liquids on the groundwater must meet the following technical and procedural requirements:
+1. A groundwater monitoring plan with any required plans and specifications must be submitted for review. The plan must be sufficient to demonstrate that the requirements of subparagraphs (f)2. through 20. of this rule will be complied with or modifications may be required by the Department.
+2. The regulated substance stored is immiscible in water and has a specific gravity of less than one;
+3. The level of background contamination in or near the excavation zone will not interfere with the method used to detect releases from the UST system based upon information collected throughout the excavation zone and in the proposed area of well placement if not in the excavation zone;
+4. Groundwater is never more than 20 feet from the ground surface and the hydraulic conductivity of the soil(s) between the UST system and the monitoring wells or devices is not less than 0.01 cm/sec (e.g., the soil should
+335-6-15-.17
+15-47
+335-6-15-.17
+consist of gravels, coarse to medium sands, coarse silts or other permeable materials);
+5. Monitoring wells used for the purpose of release detection by groundwater monitoring shall be constructed according to the requirements of subparagraphs (f)6. through 15. and 20. of this rule;
+6. The well casing shall be a minimum of 2 inches in diameter when used for release detection, but shall be 4 inches in diameter if installed for corrective action. All wells shall be constructed with only threaded connections between sections;
+7. The well casing shall be constructed of a material which is compatible with the substance stored; and which has sufficient strength to prevent structural failure;
+8. The well casing shall be slotted from the bottom to at least two feet above the normal annual high water table where the depth to water will allow, and shall be designed to prevent migration of natural soils or filter pack into the well and to allow entry of a regulated substance on the water table into the well under both high and low groundwater conditions;
+9. The well casing shall extend at least five feet below the water level at the time of drilling but no deeper than 25 feet;
+10. The well annulus shall be backfilled with an appropriate clean filter pack adjacent to the slotted casing;
+11. An annular seal shall extend from the top of the filter pack for 2 to 5 feet, where the depth to water will allow;
+12. The well annulus shall be grouted from the top of the bentonite seal to the ground surface;
+13. Monitoring wells shall have a watertight enclosure or cap with a grouted collar at the ground surface;
+14. Monitoring wells shall be developed upon drilling until the water is clear and relatively sand free by over pumping, bailing, or surging with compressed air;
+15. Monitoring wells shall be as close to the excavation zone as is technically feasible. If a monitoring well is located within the excavation zone, the base of the excavation zone shall not be penetrated;
+16. If a continuous monitoring device is not used, manual monitoring shall consist of removal of fluid from the well, using a bailer, or a sampler of similar design. The fluid shall be taken from the surface of the water table. The fluid shall:
+15-48
+(i) Be poured into a clean, clear glass container kept for the purpose, and examined for signs of an oily layer or odor of pollutant; or
+(ii) Be tested at the site; or
+(iii) Be sent to a laboratory and tested.
+17. A monitoring well must contain at least 6 inches of water or a sufficient depth to allow a sample to be obtained using a sampler selected in accordance with subparagraph (f)16. of this rule. If this requirement cannot be met for more than 30 days, the Department may require the monitoring well to be replaced, or another method of monitoring to be proposed to the Department for review;
+18. The continuous monitoring devices or manual methods used can detect the presence of at least one-eighth of an inch of free product on top of the groundwater in the monitoring wells;
+19. Within and immediately below the UST system excavation zone, the site is assessed to ensure compliance with the requirements in subparagraphs (f)2. through 15. of this rule and to establish the number and positioning of monitoring wells or devices that will detect releases from any portion of the UST system that routinely contains product. This is to include an evaluation of the direction of the groundwater gradient at a site;
+20. Monitoring wells are clearly marked with the wording ""NOT FOR DELIVERIES"" or other sufficient language and locked to avoid unauthorized access and tampering. Monitoring wells which are located in an area subject to traffic must be equipped with enclosures which will not be damaged by normal traffic;
+21. In the event of permanent closure of the UST system, all monitoring wells shall be closed according to a method acceptable to the Department; and
+22. If a monitoring well is determined by the Department to be improperly constructed, closure may be required according to a method acceptable to the Department.
+23. Existing groundwater monitoring wells which were completed prior to April 5, 1989 will be authorized for continued use if the Department determines that the minimum criteria of the federal UST regulations for monitoring wells are satisfied and the existing wells do not pose a threat of groundwater contamination due to poor construction.
+",,,,,,,,,335-6-15-.17,,,,,#release detection #groundwater monitoring #monitoring,,,,,,,,,,,,,,,,
+,,"(g) Interstitial Monitoring. Interstitial monitoring between the UST system and a secondary barrier immediately around or beneath it may be used, but only if the system is designed, constructed and installed to detect a leak from any portion of the underground storage tank that routinely contains product and also meets one of the following requirements:
+335-6-15-.17
+15-49
+335-6-15-.17
+1. For double walled UST systems, the sampling or testing method can detect a leak through the inner wall in any portion of the underground storage tank that routinely contains product;
+2. For UST systems with a secondary barrier within the excavation zone, the sampling or testing method used can in the determination of the Department, detect a leak between the UST system and the secondary barrier;
+(i) The secondary barrier around or beneath the UST system consists of artificially constructed material that is sufficiently thick and impermeable (at
+least 10-6 cm/sec for the regulated substance stored) to direct a leak to the monitoring point and permit its detection;
+(ii) The barrier is compatible with the regulated substance stored so that a leak from the UST system will not cause a deterioration of the barrier allowing a release to pass through undetected;
+(iii) For cathodically protected underground storage tanks, the secondary barrier must be installed so that it does not interfere with the proper operation of the cathodic protection system;
+(iv) The groundwater, soil moisture, or rainfall will not render the testing or sampling method used inoperative so that a release could go undetected for more than 30 days;
+(v) The site is assessed to ensure that the secondary barrier is always above the groundwater and not in a 25-year flood plain, unless the barrier and monitoring designs are for use under such conditions;
+(vi) Monitoring wells are clearly marked with the wording ""NOT FOR DELIVERIES"" or other sufficient language and locked to avoid unauthorized access and tampering; and when located in areas which are subject to traffic must be equipped with enclosures which will not be damaged by normal traffic; and
+(vii) Monitoring wells extend to within 6 inches of the secondary barrier but shall not contact the barrier.
+3. For underground storage tanks with an internally fitted liner, an automated device can detect a leak between the inner wall of the underground storage tank and the liner, and the liner is compatible with the substance stored.
+",,,,,,,,,335-6-15-.17,,,,,#release detection #interstitial monitoring,,,,,,,,,,,,,,,,
+,,"(h) Statistical inventory reconciliation. Release detection methods based on the application of statistical principles to inventory data similar to those described in paragraph (a) of this rule must meet the following requirements:
+1. Report a quantitative result with a calculated leak rate;
+2. Be capable of detecting a leak rate of 0.2 gallon per hour or a release
+of 150 gallons within 30 days;
+15-50
+3. Use a threshold that does not exceed one-half the minimum detectible leak rate; and
+4. Meet the inventory control requirements of subparagraphs (a)1. through 6. of this rule.
+(i) Other methods. Any other type of release detection method, or combination of methods may be approved by the Department if:
+1. It can detect a 0.2 gallon per hour leak rate or a release of 150 gallons within 30 days with a probability of detection of 0.95 and a probability of false alarm of 0.05; or
+2. The owner and operator can demonstrate that the method can detect a release as effectively as any of the methods allowed in subparagraphs (c) through (h) above. In comparing methods, the Department shall consider the size of release that the method can detect and the frequency and reliability with which it can be detected. If the method is approved, the owner and operator must comply with any conditions imposed by the Department on its use to ensure the protection of human health and the environment.
+",,,,,,,,,335-6-15-.17,,,,,#release detection #Statistical inventory reconciliation,,,,,,,,,,,,,,,,
+,,"Each method of release detection for underground piping used to meet the requirements of rule 335-6-15-.15 must be conducted in accordance with the following: (a) Automatic line leak detectors. Methods which alert the operator to the presence of a leak by restricting or shutting off the flow of regulated substances through underground piping may be used. Beginning August 6, 2008 and thereafter, methods which alert the operator to the presence of a leak by triggering an audible or visual alarm may be used only if they also restrict or shut off the flow of regulated substances through underground piping; except beginning December 8, 2017, emergency power generator UST systems may use audible or visual alarm methods without restricting or shutting off flow. All automatic line leak detector methods must detect leaks of 3 gallons per hour at 10 pounds per square inch line pressure within 1 hour. An annual test of the operation of the leak detector must be conducted in accordance with rule 335-6- 15-.14(1)(c).
+",,,,,,,,,335-6-15-.18,,,,,#release detection #Automatic line leak detectors,,,,,,,,,,,,,,,,
+,,"(b) Line tightness testing. A periodic test of underground piping may be conducted only if it can detect a 0.1 gallon per hour leak rate at one and one- half times the operating pressure. When a test method is required by the
+335-6-15-.18
+15-51
+335-6-15-.19
+manufacturer to be performed manually, the test must be performed by an individual having current certification of training from the manufacturer of the test method.",,,,,,,,,335-6-15-.18,,,,,#release detection #line tightness testing,,,,,,,,,,,,,,,,
+,,"(c) Underground storage tank methods applicable to piping. Except as described in rule 335-6-15-.15(a), any of the methods in rule 335-6-15-.17(e) through (i) may be used if they are designed to detect a release from any portion of the underground piping that routinely contains regulated substances.
+",,,,,,,,,335-6-15-.18,,,,,#release detection #piping,,,,,,,,,,,,,,,,
+,,"When required by the Department, owners and operators of UST systems must follow the procedures in rule 335-6-15-.22 to determine if the UST system is the source of environmental impacts, which include but are not limited to the discovery of regulated substances (such as the presence of free or dissolved product or vapors in soils, basements, sewer and utility lines, and nearby surface waters, or a well contaminated with a regulated substance) that has been observed by the Department or brought to its attention by another party.",,,,,,,,,335-6-15-.21,,,,,#releases #investigation #environmental impact,Release Response and Investigation: Investigation due to Environmental Impacts,Release Investigation and Confirmation Steps,Initial Release Response ,Initial Abatement Measures and Preliminary Investigation,Preliminary Investigation Requirements,Free Product Removal,Secondary Investigation Requirements,Corrective Action Plan,Public Participation,Analytical Requirements,,,,,,
+,,"Release Investigation and Confirmation Steps. Unless
+corrective action is initiated in accordance with rules 335-6-15-.24 through 335-
+6-15-.31, owners and operators must immediately investigate and confirm all
+suspected releases of regulated substances requiring reporting under rule 335-
+6-15-.20 within 7 days and submit the results to the Department within 10 days,
+or another reasonable time period specified by the Department, using either the
+following steps or another procedure approved by the Department: (a) System test. Owners and operators must conduct tests (according
+to the requirements for tightness testing in rules 335-6-15-.17(c) and
+335-6-15-.18(b) or as appropriate, secondary containment testing described in
+rule 335-6-15-.12(f)).
+1. The test must determine whether:
+(i) A leak exists in that portion of the underground storage tank, or the
+attached underground delivery piping; or
+(ii) A breach of either wall of the secondary containment has occurred.
+2. If the UST system test confirms a leak into the interstice or a
+release, owners and operators must immediately temporarily close the UST
+system in accordance with rule 335-6-15-.33(1)(c), repair the UST system in
+accordance with rule 335-6-15-.12, or permanently close the UST system in
+accordance with rules 335-6-15-.34 through 335-6-15-.37. In addition, owners
+and operators must begin corrective action if the test results for the system
+(underground storage tank, and/or underground delivery piping) indicate that a
+release exists.
+3. The Department may release an owner or operator from any further
+investigation requirements if the underground storage tank tests tight after minor
+repairs to that portion of the underground storage tank that does not routinely
+contain product.
+4. Further investigation is not required if the test results for the
+system (underground storage tank, and/or underground delivery piping) do not
+indicate that a release exists and if environmental contamination is not the basis
+for suspecting a release.
+5. Owners and operators must conduct a preliminary investigation as
+described in subparagraph (b) of this rule if the test results for the system
+(underground storage tank, and/or underground delivery piping) do not indicate
+that a release exists but environmental contamination is the basis for suspecting
+a release.
+(b) Preliminary investigation. Owners and operators must measure for
+the presence of a release where contamination is most likely to be present at the
+UST system site. In selecting sample types, sample locations, and measurement
+methods, owners and operators must consider the nature of the stored
+substance, the type of initial alarm or cause for suspicion, the type of backfill,
+the depth of groundwater, and other factors appropriate for identifying the
+presence and source of the release. Specific requirements for a preliminary
+investigation are included in rule 335-6-15-.26.
+1. If in the determination of the Department the results of the
+preliminary investigation indicate that a release has occurred, owners and
+operators must initiate corrective action in accordance with rules 335-6-15-.24 through 335-6-15-.31. The Department may require a secondary investigation
+to be performed.
+2. If in the determination of the Department the results of the
+preliminary investigation do not indicate that a release has occurred, further
+investigation is not required.",,,,,,,,,335-6-15-.22,,,,,#releases #investigation #environmental impact #tightness test #leak,,,,,,,,,,,,,,,,
+,,"(1) Owners and operators of petroleum or hazardous substance UST systems must, in response to a confirmed release from the UST system, comply with the requirements of rules 335-6-15-.24 through 335-6-15-.31 except for UST systems excluded under rule 335-6-15-.03(2) and UST systems subject to corrective action requirements under division 14 of the ADEM Administrative Code.
+15-56
+(2) Upon confirmation of a release in accordance with rule 335-6-15-.22 or after a release is identified in any other manner, owners and operators must perform the following initial response actions within 24 hours of a release or within another reasonable period of time determined by the Department:
+(a) Report the release to the Department (notification by telephone is acceptable);
+(b) Take immediate action to prevent any further release of the regulated substance into the environment; and
+(c) Identify and mitigate fire, explosion, and vapor hazards.
+",,,,,,,,,335-6-15-.24,,,,,#confirmed release #release response,,,,,,,,,,,,,,,,
+,,"(1) Upon confirmation of a release in accordance with rule
+335-6-15-.22 or after a release is identified in any other manner, unless directed
+to do otherwise by the Department, owners and operators must perform the
+following abatement measures:
+(a) Remove as much of the regulated substance from the UST system
+as is necessary to prevent further release to the environment;
+(b) Visually inspect any aboveground releases or exposed below ground
+releases and prevent further migration of the released substance into
+surrounding soils and groundwater;
+(c) Continue to monitor and mitigate any additional fire and safety
+hazards posed by vapors or free product that have migrated from the UST
+excavation zone and entered into subsurface structures (such as sewers or
+basements);
+(d) Remedy hazards posed by contaminated soils that are excavated or
+exposed as a result of release confirmation, site investigation, abatement, or
+corrective action activities. If these remedies include treatment or disposal of
+soils, the owner and operator must comply with applicable ADEM and local
+requirements;
+(e) Perform a preliminary investigation in accordance with rule
+335-6-15-.26;
+(f) Investigate to determine the possible presence of free product, and
+if found, begin free product removal as soon as practicable and in accordance
+with rule 335-6-15-.27. Where free product is present, investigative and 
+corrective actions must be initiated in accordance with rules 335-6-15-.24
+through 335-6-15-.31;
+(g) Where dissolved groundwater contamination is determined to
+occur, for example, the contamination of an on-site well with a regulated
+substance, investigative and corrective actions must be initiated in accordance
+with rules 335-6-15-.24 through 335-6-15-.31.
+(2) Within 20 days after release confirmation, or within another
+reasonable period of time determined by the Department, owners and operators
+must submit a report of initial response to the Department summarizing the
+initial abatement steps taken under paragraph (1) of this rule, the nature and
+estimated quantity of the regulated substance lost, information regarding the
+presence of free or dissolved product, tightness testing results where applicable,
+or any other resulting information or data.",,,,,,,,,335-6-15-.25,,,,,#release #corrective action #release response,,,,,,,,,,,,,,,,
+,,"(1) Unless directed to do otherwise by the Department, or under the conditions identified in paragraph (2) of this rule, owners and operators required to perform a preliminary investigation must obtain and provide information about the site and the nature of the release, including information gained while confirming the release or completing the initial abatement measures in rule 335- 6-15-.25. This information must include, but is not necessarily limited to the following:
+(a) Type of surrounding population, e.g., urban, rural, residential;
+(b) Results of a well inventory within 1000 feet of the site which
+includes the location, and where available, information on the depth and elevation and ownership of each well;
+(c) Location of any public water supply wells which are within one mile of the site;
+(d) A description of the hydrogeologic environment, including type and nature of geologic materials, location of surface waters, surrounding land and water users, and the location of all underground utilities, water lines, sewers or other conduits;
+(e) A determination of the uppermost aquifer and an initial evaluation of the potential for hydraulic interconnection with lower aquifers. This evaluation at this stage may be made based upon the results of site soil sampling and borings and available literature data;
+15-58
+(f) Results of soil sampling collected from the area which is most likely to have been affected by a release of a regulated substance:
+1. A sufficient number of soil samples shall be collected to accurately represent the area and depths affected by a release;
+2. Soil sampling shall be performed to a depth which adequately represents the zone most likely to have been contaminated by a release; and
+3. Soil sampling shall be sufficient to determine if free product is present on the water table.
+(g) Where soils are encountered which have a total petroleum hydrocarbon concentration of greater than 100 ppm and such soils extend to within 5 feet of the seasonal high water table, groundwater samples shall be collected and analyzed at a minimum of one up-gradient and three down-gradient locations unless directed to do otherwise by the Department.
+(2) Upon approval by the Department, the following procedures may be used in satisfying the requirement for a preliminary investigation or closure assessment when the underground storage tank excavation pit is completely open and available for representative sample collection. If the conditions identified in subparagraph (2)(d)1. and 2. of this rule cannot be met; however, the preliminary investigation requirements of paragraph (1) of this rule must be complied with, unless directed to do otherwise by the Department.
+(a) Soil samples shall be collected from the sides and base of the underground storage tank pit. At least one sample shall be collected from each side of the pit and at least one sample from the pit bottom for every underground storage tank that was present in the excavation. Side samples shall be collected from the lowest one-third of the underground storage tank wall. One sample per 10 lineal feet shall be collected from the base of underground piping trenches. Samples from the underground storage tank pit sides, base, and underground piping trenches shall be representative of the area being sampled.
+(b) Analyze soil samples for the presence of total petroleum hydrocarbons.
+(c) Determine the elevation of the groundwater table. Information on the elevation of the water table may be obtained from a boring located adjacent to the underground storage tank pit or from a nearby location. Water table elevation data may also be obtained when topographical features provide surface indications of the water table, and this data is substantiated by literature values.
+(d) If the conditions identified in 1. and 2. in the table below are met, the Department may consider the investigation to be complete and no further action will be required. If the conditions identified in 1. and 2. in the table below cannot be met, the Department may require additional investigative actions or a preliminary investigation, in accordance with paragraph (1) of this rule, to be conducted.
+15-59
+335-6-15-.26
+335-6-15-.26
+Total Petroleum Hydrocarbon Concentration
+Depth to Groundwater
+1. 100 ppm or less for each sample
+5 feet or more below base of underground storage tank excavation
+2. 10 ppm or less for every sample
+No restrictions
+(3) Monitoring wells must be constructed in a manner acceptable to the Department or the Department may require them to be properly closed. Except where cross-contamination of aquifers is of concern, general construction details for monitoring wells should conform to the requirements of rules 335-6-15- .17(f)6. through 8., 10. through 14. and 20., and where cross-contamination is of concern, monitoring well construction details must be reviewed in advance by the Department. The Department may require modification of proposed construction details.
+(4) All samples shall be analyzed for parameters which are appropriate to the nature of the stored substance and according to the methods specified in rule 335-6-15-.32.
+(5) Within 60 days of release confirmation, or notification by the Department that a Preliminary Investigation is required, under the conditions of paragraph (1) of this rule, the owners and operators must submit the information collected in compliance with this rule to the Department in a manner that demonstrates its applicability and technical adequacy, or in a format and according to a schedule required by the Department. If the procedures under paragraph (2) of this rule apply, the results of the investigation must be submitted within 45 days of release confirmation or notification by the Department that an investigation is required.
+(6) Preliminary investigation and closure site assessments must be performed in accordance with accepted geologic practices by a licensed professional geologist or registered professional engineer experienced in hydrogeologic investigations.
+(7) Upon review of the results of the Preliminary Investigation, the Department may require a Secondary investigation to be completed in accordance with rule 335-6-15-.28.
+(8) The Department may require additional sampling and analyses to be performed if it is determined that the number or location of samples, or methods used in the analysis of such samples are not sufficient to characterize the area and soil depths most likely to have been contaminated by a release.",,,,,,,,,335-6-15-.26,,,,,#release reporting #release #abatement measures,,,,,,,,,,,,,,,,
+,,"At sites where investigations indicate the presence of free product, owners and operators must remove free product to the maximum extent practicable as determined by the Department while continuing, as necessary, any actions initiated under rules 335-6-15-.24 through 335-6-15-.26 or preparing for actions required under rules 335-6-15-.28 and 335-6-15-.29. In meeting the requirements of this section, owners and operators must:
+(a) Conduct free product removal in a manner that minimizes the spread of contamination into previously uncontaminated zones by using recovery and disposal techniques appropriate to the hydrogeologic conditions at the site, and that properly treats, discharges or disposes of recovery byproducts in compliance with applicable local, state of Alabama and federal regulations;
+(b) Use abatement of free product migration and removal of free product in a reasonable period of time as a minimum objective for the design of the free product removal system;
+(c) Handle any flammable products in a safe and competent manner to prevent fires or explosions; and
+(d) Unless directed to do otherwise by the Department, prepare and submit to the Department, within 45 days after confirming a release, a free product removal report that provides at least the following information:
+1. The name of the person(s) responsible for implementing the free product removal measures;
+2. The estimated quantity, type, and thickness of free product observed or measured in wells, boreholes, and excavations;
+3. The type of free product recovery system used;
+4. Whether any discharge will take place on-site or off-site during the
+recovery operation and where this discharge will be located;
+5. The type of treatment applied to, and the effluent quality expected from, any discharge;
+6. The steps that have been or are being taken to obtain necessary permits for any discharge; and
+7. The disposition of the recovered free product.
+335-6-15-.27
+15-61
+335-6-15-.28
+(e) The Department may require additional measures to be taken to achieve free product recovery, if it is determined that the objectives of subparagraphs (a) through (c) of this rule are not being accomplished.
+",,,,,,,,,335-6-15-.27,,,,,#release #removal of product #disposal #clean up,,,,,,,,,,,,,,,,
+,,"(1) When required in order to determine the full lateral and vertical extent and location of: soils contaminated by the release; the presence of free product; and the presence and concentrations of dissolved product contamination in the groundwater, the Department may require owners and operators to conduct a secondary investigation of the release site. This investigation must include the surrounding area possibly affected by the release if any of the following conditions exist:
+(a) There is evidence that groundwater wells have been affected by the release (e.g., as found during release confirmation or previous corrective action measures);
+(b) Free product is found to need recovery in compliance with rule 335- 6-15-.27;
+(c) There is evidence that contaminated soils may be in contact with groundwater (e.g., as found during conduct of the initial response measures or investigations required under rules 335-6-15-.24 through 335-6-15-.26); and
+(d) The Department requests an investigation, based on the potential effects of contaminated soil or groundwater on nearby surface water and groundwater resources.
+(2) The investigations required by paragraph (1) of this rule shall:
+(a) Be sufficient to define the full lateral and vertical extent of soil and groundwater contamination;
+(b) Determine the rate and direction of pollutant and groundwater migration through the use of piezometers and/or monitoring wells;
+(c) Include results of groundwater sampling and analysis from monitoring wells at one background and a minimum of three down-gradient locations. The location of the down-gradient wells should take into consideration the direction of groundwater flow and should be placed so as to define the plume of contamination and the outer limits of the plume of contamination;
+(d) Include a determination of the uppermost aquifer and an initial evaluation of the potential for hydraulic interconnection with lower aquifers. This
+15-62
+evaluation may be made based upon the results of site soil sampling and borings and available literature data but may also require installation of wells into underlying aquifers. If this becomes necessary proper well construction techniques must be used to ensure that wells do not serve as conduits for contamination of underlying aquifers;
+(e) Include analytical results for soil and groundwater samples for parameters which are appropriate to the nature of the stored substance and according to methods specified in rule 335-6-15-.32; and
+(f) Provide sufficient information for the selection and design of appropriate corrective actions.
+(3) The Department may require additional sampling and analyses to be performed if it is determined that the number or location of samples, or methods used in the analysis of such samples, are not sufficient to define the full lateral and vertical extent of soil and groundwater contamination.
+(4) Owners and operators must submit a plan of study sufficient to accomplish the objective of paragraphs (1) and (2) of this rule together with a schedule of implementation. The owners and operators shall make any modifications to the plan of study deemed necessary by the Department.
+(5) The plan of study must contain construction details for monitoring wells. Monitoring wells must be constructed in a manner acceptable to the Department or the Department may require them to be properly closed. Except where cross-contamination of aquifers is of concern, general construction details for monitoring wells should conform to the requirements of rule 335-6-15-.17(f)6. through 8., 10. through 14. and 20. The Department may require modification of proposed construction details.
+(6) Owners and operators must submit the information collected under paragraphs (1) through (3) of this rule within the schedule submitted in paragraph (4) of this rule or in accordance with a schedule established by the Department.
+(7) The secondary site investigation must be performed in accordance with accepted geologic practices by a licensed professional geologist or registered professional engineer experienced in hydrogeologic investigations.",,,,,,,,,335-6-15-.28,,,,,#release #investigation #reporting,,,,,,,,,,,,,,,,
+,,"(1) At any point after reviewing the information submitted in compliance with rules 335-6-15-.24 through 335-6-15-.28, the Department may
+335-6-15-.29
+15-63
+335-6-15-.29
+require owners and operators to submit additional information or to develop and submit a corrective action plan for responding to contaminated soils and groundwater. If a plan is required, owners and operators must submit the plan according to a schedule and format established by the Department. Alternatively, owners and operators may, after fulfilling the requirements of rules 335-6-15-.24 through 335-6-15-.28, choose to submit a corrective action plan for responding to contaminated soil and groundwater. In either case, owners and operators are responsible for submitting a plan that provides for adequate protection of human health and the environment as determined by the Department, and must modify their plan as necessary to meet the requirements of the Department for achieving this standard.
+(2) The corrective action plan must:
+(a) Address the full lateral and vertical extent of soil and groundwater contamination;
+(b) Address mitigation of soil contamination either through soil removal, or treatment in place, or another method which is determined by the Department to be no less protective of health and the environment, to standards identified in rule 335-6-15-.30;
+(c) Provide for removal of free product in an effective and timely manner;
+(d) Provide for treatment of dissolved groundwater contamination in an effective and timely manner to standards identified in rule 335-6-15-.30;
+(e) Provide a rationale for selection of the proposed corrective actions and design criteria which address such items as equipment selection, flow rates and pumping rates;
+(f) Address measures necessary to meet local, state of Alabama or federal requirements for control of surface or air discharges or disposal of soil; and
+(g) Include a proposed schedule of implementation and monitoring plan.
+(3) The Department will approve the corrective action plan only when satisfied that implementation of the plan provides for measures considered adequate to protect human health, safety, and the environment. In making this determination, the Department should consider the following factors as appropriate:
+(a) The physical and chemical characteristics of the regulated substance, including its toxicity, persistence, and potential for migration;
+(b) The hydrogeologic characteristics of the site and the surrounding area;
+15-64
+(c) The findings of the preliminary and secondary investigations;
+(d) The proximity, quality, and current and future uses of nearby surface water and groundwater;
+(e) The potential effects of residual contamination on nearby surface water and groundwater;
+(f) An exposure assessment conducted in accordance with rule 335-6- 15-.30; and
+(g) Any information assembled in compliance with this subpart.
+(4) Upon approval of the corrective action plan or as directed by the Department, owners and operators must implement the plan, including modification to the plan made by or required to be made by the Department. They must monitor, evaluate, and report the results of implementing the plan in accordance with a schedule and in a format established by the Department.
+(5) If at any time, the Department determines that the implementation of corrective actions are not achieving adequate protection of human health and the environment, the Department may require additional measures to be taken.
+(6) Owners and operators shall continue implementation of the corrective action plan until released in writing from this responsibility by the Department.
+(7) Owners and operators may, in the interest of minimizing environmental contamination and promoting more effective cleanup, begin cleanup of soil and groundwater before the corrective action plan is approved provided that they:
+(a) Notify the Department of their intention to begin cleanup;
+(b) Comply with any conditions imposed by the Department, including
+halting cleanup or mitigating adverse consequences from cleanup activities; and
+(c) Incorporate these self-initiated cleanup measures in the corrective action plan that is submitted to the Department for approval.
+(8) Upon conclusion of investigative monitoring, or corrective actions at a site, the Department may require any or all monitoring wells to be properly closed. The following requirements shall apply when establishing risk based corrective action limits applicable to the cleanup of soil and groundwater contamination resulting from releases from underground storage tanks regulated under this chapter.
+(a) A risk based corrective action process will be used to establish site specific corrective action limits protective of human health and the environment. Corrective action limits, institutional controls, or a combination thereof, shall be adequate to support onsite and surrounding property use consistent with existing and reasonable future use and achieve and maintain compliance with all applicable environmental standards for air, soil and waters of the state of Alabama. The only exception to the use of a risk based corrective action process shall be that as described in rule 335-6-15-.30(f).
+(b) Free product shall be removed to the maximum extent practicable.
+(c) A risk based corrective action process requires the specification of
+a target risk level for carcinogenic effects. The estimated individual excess lifetime cancer risk (IELCR) will be:
+1. For constituents resulting from releases of petroleum or petroleum- based regulated substances, as regulated under this chapter, the estimated IELCR level used to establish site specific corrective action limits shall be 10-5, for all constituents of concern, for each exposure pathway. If corrective action to a 10-5 risk level is determined by the Department to be infeasible, and in the determination of the Department, appropriate institutional controls are implemented, the Department may approve a site-specific corrective action limit that represents a risk level equal to but not greater than 10-4; and
+2. For constituents resulting from releases of non-petroleum regulated substances, as regulated under this chapter, the estimated IELCR used to establish site specific corrective action limits shall be no less than 10-6 and no greater than 10-5. If corrective action to a 10-6 to 10-5 risk level is determined by the Department to be infeasible, and in the determination of the Department, appropriate institutional controls are implemented, the Department may approve a site specific corrective action limit that represents a risk level equal to but not greater than 10-4.
+(d) For non-carcinogenic substances, a hazard quotient of one will be used.
+(e) For the groundwater ingestion pathway, for constituents for which a Maximum Contaminant Level, MCL, has been established, the corrective action limit shall be set equal to the MCL. For carcinogenic constituents for which a
+15-66
+Maximum Contaminant Level has not been established, the estimated IELCR shall be 10-6.
+(f) For hydrogeologic settings, where the models used in the risk based evaluations are considered in the determination of the Department, not to be representative of, and thus not protective of, a given hydrogeologic setting, the Department may require implementation of a corrective action plan to continue until the concentration of dissolved contaminants has leveled off. Leveling off shall mean that the graph of the contaminant concentration versus time fits a curve generally defined by the equation C = Cf + Coe-kt, and the slope of the final portion of the curve approaches zero. Alternatively, the Department may approve the use of a statistical method for use in demonstrating that contaminant concentrations are no longer decreasing with continued corrective action. An indicator parameter satisfactory to the Department shall be selected for application to the curve. In the equation above, the symbols are defined as follows:
+1. C - contaminant concentration at time t;
+2. Cf - the final concentration which the curve approaches asymptotically;
+3. Co - the concentration difference between the final concentration and the concentration at time zero;
+4. e - 2.718, the base of natural logarithms;
+5. k - an exponential factor which indicates how fast the concentration
+approaches Cf; and
+6. t - time in days from some fixed starting point.
+(g) Corrective action limits, institutional controls, or a combination thereof, shall be developed and submitted for approval by the Department, using a format, procedures, and within a schedule acceptable to the Department.
+(h) Corrective action, institutional controls, or a combination thereof, shall be implemented, where necessary, to meet the objectives of this rule, within a schedule acceptable to the Department.",,,,,,,,,335-6-15-.29,,,,,#release #corrective action #release response,,,,,,,,,,,,,,,,
+,,"(1) For each confirmed release that requires a corrective action plan, the Department must provide a 15 day notice to the public by means designed to reach those members of the public directly affected by the release and the
+335-6-15-.31
+15-67
+335-6-15-.32
+planned corrective action. This notice may include, but is not limited to, public notice in local newspapers, block advertisements, public service announcements, publication in a state register, letters to individual households, or personal contacts by field staff.
+(2) The Department must ensure that site release information and decisions concerning the corrective action plan are made available to the public for inspection upon request.
+(3) Before approving a corrective action plan, the Department may hold a public meeting to consider comments on the proposed corrective action plan if there is sufficient public interest, or for any other reason.
+(4) The Department must give public notice that complies with paragraph (1) of this rule if implementation of an approved corrective action plan does not achieve the corrective action limits established in accordance with rule 335-6-15-.30 and termination of that plan is under consideration by the Department.",,,,,,,,,335-6-15-.31,,,,,,,,,,,,,,,,,,,,,
+,,"Soil and groundwater samples collected under the requirements of this chapter shall be analyzed according to the methods presented in this rule, as directed by the Department.
+(a) Analysis of soils. Analysis of soils for petroleum contaminants shall be performed for the following parameters according to the type of petroleum product causing the contamination:
+(b) Gasoline analytical group. Analysis of groundwater or surface waters required by this chapter for petroleum contaminants of this group shall be performed for the following parameters according to the type of petroleum product causing the contamination:
+
+1. Total petroleum hydrocarbons
+Standard Method 503 EPA Method 9071
+2. Benzene, ethyl benzene, toluene and total xylenes
+EPA Method 5030 or 3810, followed by EPA Method 8020 or 8240
+3. Lead
+EPA Method 239.2
+15-68
+335-6-15-.32
+1. Volatile organic halocarbons (including priority pollutant compounds)
+
+EPA Method 601
+2. Benzene, ethyl benzene, toluene and total xylenes
+EPA Method 602 or 624
+3. 1, 2-Dibromoethane
+EPA Method 504.1
+4. Lead
+EPA Method 239.2
+(c) Kerosene Analytical Group. Analysis of groundwater or surface waters required by this chapter for petroleum contaminants of this group shall be performed for the following parameters according to the type of petroleum product causing the contamination:
+Note: Kerosene,dieselandjetfuelsareincludedinthisgroup.
+
+1. Polynuclear aromatic hydrocarbons (PAH) (Including 15 priority pollutant PAH’s plus 2-Methylnaphthalene and 1-Methylnaphthalene)
+
+EPA Method 601 or 625
+2. Benzene, ethyl benzene, toluene and total xylenes
+EPA Method 602 or 624
+3. Volatile organic halocarbons (including priority pollutant compounds)
+EPA Method 601
+4. 1, 2-Dibromoethane
+EPA Method 504.1
+5. Lead
+EPA Method 239.2
+(d) Monitoring of soil or groundwater for other than petroleum related regulated substances shall be according to established EPA analytical methods, where applicable.
+(e) Where the results of initial analyses of soil or groundwater do not indicate the presence of a contaminant listed in subparagraphs (a) through (c) of this rule, or indicate that the presence of the contaminant is due to an ambient concentration, the Department may waive requirements for further testing for that contaminant.
+(f) The Department may approve additional methods for the monitoring or investigation of regulated substances which have been released to soils, groundwaters or surface waters of the state of Alabama.
+",,,,,,,,,335-6-15-.32,,,,,,,,,,,,,,,,,,,,,
+,,"(1) When an UST system is temporarily closed, owners and operators must:
+(a) Continue operation and maintenance of corrosion protection in accordance with rule 335-6-15-.10, and any release detection in accordance with rules 335-6-15-.14 through 335-6-15-.19 and 335-6-15-.48. However, release detection and release detection operation and maintenance testing and inspections in rules 335-6-15-.09, and 335-6-15-.12 through 335-6-15-.19 are not required as long as the UST system is empty. The UST system is empty when all materials have been removed using commonly employed practices so that no more than 2.5 centimeters (one inch) of residue, or 0.3 percent by weight of the total capacity of the UST system, remain in the system. In addition, spill and overfill operation and maintenance testing and inspections in rules 335-6-15-.09, 335-6-15-.12 and 335-6-15-.13 are not required;
+(b) Comply with rules 335-6-15-.20 through 335-6-15-.25 if a release is suspected or confirmed; and
+(c) Immediately empty and within 90 days either repair in accordance with rule 335-6-15-.12 or permanently close the UST system in accordance with rules 335-6-15-.34, 335-6-15-.35 and 335-6-15-.37 if the UST owner, operator, or Department is aware of the UST system being compromised in any way such that it may release regulated substance.
+(2) When an UST system is temporarily closed for three months or more, owners and operators must also comply with the following requirements:
+(a) Leave vent lines open and functioning; and
+(b) Cap and secure all other lines, pumps, manways, and ancillary
+equipment.
+(3) When an UST system is temporarily closed for more than 12 months, owners and operators must permanently close the UST system if it does not meet either performance standards in rule 335-6-15-.06 for new UST systems or the upgrading requirements in rule 335-6-15-.07, except that the spill and overfill equipment requirements do not have to be met. Owners and operators must permanently close the substandard UST systems within 90 days from the end of this 12-month period in accordance with rules 335-6-15-.34 through 335- 6-15-.37, unless the Department provides an extension of the 12-month temporary closure period. Owners and operators must complete a site assessment in accordance with rule 335-6-15-.26 before such an extension can be applied for.",,,,,,,,,335-6-15-.33,,,,,,"Out-of-Service, TOS, and Closed Systems: Temporary Closure ",Permanent Closure/Change-in-Service,Site Closure/Change-in-Service Assessment,Applicability to Previously Closed UST Systems,,,,,,,,,,,,
+,,"(1) At least 30 days before beginning either permanent closure or a change-in-service of an UST system under paragraphs (2) and (3) of this rule, or within another reasonable time period determined by the Department, owners and operators must notify the Department of their intent to permanently close or make the change-in-service, and the method of proposed closure, unless such action is in response to corrective action. The required assessment of the excavation zone under rule 335-6-15-.35 must be performed after notifying the Department but before completion of the permanent closure or change-in-service. Upon completion, a notice of final closure or change-in-service must be submitted to the Department.
+(2) To permanently close an UST system, owners and operators must:
+(a) Empty and clean underground storage tanks by removing all liquids and accumulated sludge and either remove from the ground, close in place and fill with an inert solid material, or close in place in a manner approved by the Department;
+(b) Empty underground piping by removing all liquids and either remove from the ground or cap and leave in place;
+(c) Cap or remove all lines, manways, and/or other connections;
+(d) Conduct a site assessment when an underground storage tank and/or underground piping is permanently closed in accordance with paragraph (1) of this rule; and
+(e) Properly close all UST systems:
+1. Under the supervisory control of an individual or individuals certified in accordance with the requirements in rule 335-6-15-.47; and
+2. In accordance with codes of practice developed by nationally recognized associations or independent testing laboratories.
+(3) Continued use of an UST system to store a non-regulated substance is considered a change-in-service. Before a change-in-service, owners and operators must empty and clean the UST system by removing all liquid and accumulated sludge and conduct a site assessment in accordance with paragraph (1) of this rule.",,,,,,,,,335-6-15-.34,,,,,,,,,,,,,,,,,,,,,
+,,"(1) Before permanent closure or change-in-service is completed, owners and operators must measure for the presence of a release where contamination is most likely to be present at the UST site according to procedures which are acceptable to the Department. In selecting sample types, sample locations, and measurement methods, owners and operators must consider the method of closure, the nature of the stored substance, the type of backfill, the depth to groundwater, and other factors appropriate for identifying the presence of a release. A report of the assessment findings shall be submitted to the Department within 45 days of initiating the closure or the change-in-service. The assessment requirements of this paragraph are satisfied if the requirements of rule 335-6-15-.26(1)(f) and (g) or (2) are satisfied or one of the external release detection methods allowed in rules 335-6-15-.17(e) and (f) and 335-6-15-.18 have been routinely used and operated in accordance with the requirements in rules 335-6-15-.17 and 335-6-15-.18 at the time of closure, and indicates no release has occurred.
+(2) If contaminated soils, contaminated groundwater, or free product as a liquid or vapor is discovered under paragraph (1) of this rule, or by any other manner, owners and operators must begin corrective action in accordance with rules 335-6-15-.24 through 335-6-15-.31.",,,,,,,,,335-6-15-.35,,,,,,,,,,,,,,,,,,,,,
+,,"When directed by the Department, the owner and operator of an UST system permanently closed before April 5, 1989 must assess the excavation zone and close the UST system in accordance with rules 335-6-15-.34 and 335-6-15-.35 if releases from the UST may, in the judgment of the Department, pose a current or potential threat to human health and the environment.",,,,,,,,,335-6-15-.36,,,,,,,,,,,,,,,,,,,,,
+,,"Where an owner or operator is responsible for polluting a drinking water source beyond applicable standards, or where no standard exists, such standard as the Director shall determine, the Department may require the owner or operator to provide an alternate or temporary drinking water source to any person deprived of drinking water.
+",,,,,,,,,335-6-15-.38,,,,,,Alternate/Temporary Drinking Water Source,,,,,,,,,,,,,,,
+,,"Any records, reports, or information obtained under this chapter shall be available to the public; except that upon a showing satisfactory to the Department by any person that records, reports or information, or a particular part thereof to which the Department has access under this chapter if made public, would divulge production or sales figures or methods, processes or production unique to such person or would otherwise tend to affect adversely the competitive position of such person by revealing trade secrets, the Department shall consider such record, report, or information or particular portion thereof, confidential. Nothing in this paragraph shall be construed to prevent disclosures of such report, record, or information to federal or state representatives as necessary for purposes of administration of any federal or state laws or when relevant to proceedings under this chapter. Information concerning the presence or concentration of substances in waters shall not be considered confidential by the Department (Acts 1988, No. 88-537, § 8.)",,,,,,,,,335-6-15-.39,,,,,,Availability of Records to the Public,,,,,,,,,,,,,,,
+,,"Any owner or operator of an underground storage tank shall upon request of a duly authorized representative of the Department, permit the representative, at all reasonable times, access to all records concerning the storage of regulated substances and permit the representative to copy said records.
+",,,,,,,,,335-6-15-.40,,,,,,Access to Records,,,,,,,,,,,,,,,
+,,"Any owner or operator of an underground storage tank shall upon request of a duly authorized representative of the Department, permit the representative to enter, at all reasonable times, property and buildings where an underground storage tank is located and allow the representative to inspect facilities and equipment and to conduct monitoring and sampling.",,,,,,,,,335-6-15-.41,,,,,,Entry and Inspection of Facilities,,,,,,,,,,,,,,,
+,,Any owner of an underground storage tank shall pay a yearly Underground Storage Tank Regulation Fee of not less than $15.00 and not more than $30.00 per regulated underground storage tank per year. The amount of the fee shall be determined annually by the Director. Payment of the fee shall be due within 30 days of notification to the owner by the Department of the amount of such fee.,,,,,,,,,335-6-15-.42,,,,,,UST Regulation Fee,,,,,,,,,,,,,,,
+,,40 CFR Part 280 §§ 280.90 through 280.115 is hereby adopted by reference. This rule sets forth the amounts of financial responsibility required of petroleum UST owners and operators and the mechanisms allowed for satisfying these requirements. Copies of this rule are available from ADEM. Charges for reproduction apply.,,,,,,,,,335-6-15-.43,,,,,,Financial Responsibility for Petroleum UST Owners and Operators,,,,,,,,,,,,,,,
+,,"Operator Training.
+(1) Owners and operators of underground storage tank systems
+shall designate a Class A, Class B, and Class C operator as defined in rule 335-
+6-15-.02(yy) through (aaa). All persons designated as a Class A, B, or C operator
+shall be trained in accordance with paragraphs (3), (4) and (5) of this rule.
+Different persons may be designated for each classification or a person may be
+designated to more than one classification. A person who is designated to more
+than one operator classification shall be trained in each classification for which
+the person is designated. Training programs that qualify a participant in more
+than one operator classification are allowed.
+(2) Owners and operators shall identify, for each underground
+storage tank system or group of underground storage tank systems at a facility,
+at least one person for each class of operator. Class A and Class B operator
+training records shall be maintained either at the underground storage tank
+facility or at an alternative site for all current operators. Documentation of
+training shall be provided to the Department upon request. Class C operator
+training records shall be maintained at the underground storage tank facility for
+all current operators, so that they are immediately available upon inspection by
+the Department.
+(3) Operator training shall satisfy the following minimum
+requirements for each operator classification. 
+",,,,,,,,,335-6-15-.46,,,,,,Operator Training: General,Operator Training Requirements: Class A,Operator Training Requirements: Class B,Operator Training Requirements: Class C,,,,,,,,,,,,
+,,"(a) Class A operator training shall provide a general knowledge of
+underground storage tank system requirements so the operator can make
+informed decisions regarding compliance and ensure responsible persons are
+fulfilling operation, maintenance, and recordkeeping requirements and
+standards in accordance with this chapter regarding underground storage tank:
+1. Spill prevention;
+2. Overfill prevention;
+3. Release detection;
+4. Corrosion protection;
+5. Emergency response; 6. Product compatibility;
+7. Documentation of financial responsibility;
+8. Notification and registration;
+9. Release and suspected release reporting;
+10. Temporary and permanent closure; and
+11. Operator training",,,,,,,,,335-6-15-.46,,,,,,,,,,,,,,,,,,,,,
+,,"(b) Class B operator training shall provide a more in-depth
+understanding of operation and maintenance aspects than Class A training, but
+may cover a more narrow breadth of regulatory requirements. Class B operators
+may obtain either site-specific operator training, which is focused only on
+equipment used at the underground storage tank facility, or training in broader
+regulatory requirements. At a minimum, Class B operator training shall
+encompass the following:
+1. Components of underground storage tank systems;
+2. Materials of underground storage tank system components;
+3. Methods of release detection and release prevention applied to
+underground storage tank components; and
+4. Underground storage tank operation and maintenance
+requirements including:
+(i) Spill prevention,
+(ii) Overfill prevention,
+(iii) Release detection,
+(iv) Corrosion protection,
+(v) Emergency response,
+(vi) Product compatibility,
+(vii) Reporting and recordkeeping, and
+(viii) Class C operator training.",,,,,,,,,335-6-15-.46,,,,,,,,,,,,,,,,,,,,,
+,,"(c) Class C operator training shall provide, at a minimum,
+instruction on: 1. Immediate actions required to be taken in response to
+emergencies, such as situations posing an immediate danger or threat to the
+public or to the environment; and
+2. Actions required to be taken in response to alarms caused by
+spills or releases from an underground storage tank system.
+(4) The training requirements of this rule may be satisfied by any
+one or combination of the following:
+(a) An operator training program conducted by the Department; or
+the owner, the operator or a third party, that has received prior Department
+approval. The program may include in-class, on-line, or hands-on training, and
+shall include an evaluation of operator knowledge. Examples of evaluation
+include testing, practical demonstration, or other tools acceptable to the
+Department.
+(b) An examination designed to measure operator knowledge and
+administered by the Department; or the owner, the operator, or a third party,
+acceptable to the Department. The examination shall reasonably determine that
+the person tested has the necessary knowledge and skills to be considered
+competent to operate underground storage tanks.
+(c) Class C operators may be trained by Class A and Class B
+operators that are employed by the same underground storage tank owner as the
+C operator.
+(d) Operator training received outside the state of Alabama that is
+verified by and acceptable to the Department.
+(5) All persons designated as Class A, Class B, or Class C operators
+shall satisfy the training requirements of this rule no later than August 8, 2012.
+After August 8, 2012, operators shall be trained as follows:
+(a) Class A and Class B operators shall be trained within 30 days
+after assuming operation and maintenance responsibilities for an underground
+storage tank system; and
+(b) Class C operators shall be trained before assuming
+responsibility for responding to emergencies.
+(6) In the event the Department determines that an underground
+storage tank system is not in compliance with the requirements of this chapter,
+the responsible operator(s) shall be retrained. The Department may determine
+that any one Class A, B, or C operator be retrained, or any combination of Class
+A, B, or C operators be retrained. Operators shall be retrained within a
+reasonable time established by the Department. At a minimum, retraining shall
+include training in the areas determined not in compliance with the requirements of this chapter.",,,,,,,,,335-6-15-.46,,,,,,,,,,,,,,,,,,,,,
+,,"(1) No later than July 16, 2012, individuals who exercise supervisory control with regard to performing installation, closure, and repair of UST systems must be certified by a Department approved certifying organization as described in paragraph (2) of this rule. Exceptions to this certification requirement are: adding or inspecting internal linings in accordance with rule 335-6-15-.12(a) and (b); repair of fiberglass-reinforced plastic underground storage tanks by the manufacturer’s authorized representative in accordance with rule 335-6-15-.12(b); installation of cathodic protection systems in accordance with rule 335-6-15-.06(a) and (b) or repair of cathodic protection systems in accordance with rule 335-6-15-.12(a); repair or installation of underground storage tank and/or underground piping leak detection equipment by technicians trained by the manufacturer of the equipment; and routine maintenance.
+(a) Minimum Requirements. To be recognized by the Department as certified to exercise supervisory control with regard to performing installation, closure, and repair of UST systems in Alabama, an individual must:
+1. Be at least 18 years of age and have a photo ID issued by the United States government, or a state or territory of the United States with date of birth, to allow the Department or a Department approved certifying organization to verify age and identity;
+2. Immediately prior to pursuing certification, have documentation of three jobs in the last three year period that can be verified by the Department or a Department approved certifying organization in which the individual was involved in installation, closure, or repair of UST systems; and for jobs after July 16, 2012, if applicable in the state or territory where the job experience was acquired, documentation of the name of the certified individual who supervised the installation, closure, or repair of UST systems;
+3. Have proof of individual financial responsibility or employer’s financial responsibility as follows:
+(i) Individual financial responsibility or employer’s financial responsibility in the amount of $1,000,000 of general liability insurance coverage and $1,000,000 of pollution financial responsibility that can be verified by the Department or a Department approved certifying organization;
+335-6-15-.47
+15-79
+335-6-15-.47
+(ii) For Owners installing, closing, or repairing their own UST systems containing motor fuels, using the definition of motor fuel in chapter 335- 6-16, the required financial responsibility shall be $1,000,000 of general liability insurance coverage and $1,000,000 of pollution financial responsibility coverage. The requirement for pollution financial responsibility may be satisfied by the Alabama Underground and Aboveground Storage Tank Trust Fund if the following conditions are met:
+(I) Prior to installation, closure or repair of a UST system, the Department has been notified of the proposed installation or existence of the UST system,
+(II) Prior to installation, closure or repair of a UST system, the UST Regulation Fee and any applicable Alabama Underground and Aboveground Storage Tank Trust Fund Fee has been paid,
+(III) The Owner has established substantial compliance as defined in chapter 335-6-16,
+(IV) The Owner or an Owner’s employee has received certification in accordance with rule 335-6-15-.47 prior to installation, closure and repair of a UST system and exercises supervisory control during installation, closure and repair critical junctures.
+4. Attend and complete a course with classroom instruction on installation, closure, and repair of UST systems from a Department approved certifying organization;
+5. Pass an exam or exams on installation, closure, and repair of UST systems administered by a Department approved certifying organization;
+6. Be issued an identification card by a Department approved certifying organization with the name and photo of the individual, and date of certification;
+7. Be identified by a Department approved certifying organization as an individual who is certified to exercise supervisory control with regard to performing installation, closure and repair of UST systems in the state of Alabama.
+(b) Grandfathering. Beginning January 16, 2012 through July 16, 2012 all those individuals who are currently certified as having successfully completed an UST system installation, closure, and repair certification program in the state of Alabama will be considered to have met the requirements for installation, closure and repair of UST systems under this rule upon demonstration of the following:
+1. Provide proof of successful completion of a UST system installation, closure, and repair certification program approved by the Department prior to January 16, 2012;
+15-80
+2. Meet the requirements of subparagraphs (1)(a)1. through 3., 6. through 7. of this rule; and
+3. Apply to a Department approved certifying organization for certification to exercise supervisory control with regard to performing installation, closure, and repair of UST systems under this rule no later than July 16, 2012. Those individuals that are not certified by this date, must meet all the requirements of subparagraph (1)(a) of this rule to become certified under this rule.
+(c) Reciprocity. Beginning January 16, 2012 all those individuals who have successfully been certified to exercise supervisory control with regard to performing installation, closure and repair of UST systems in a state or territory other than Alabama with a certification program approved by the other state or territory, may apply to become certified under this rule by a Department approved certifying organization as follows:
+1. Meet the requirements of subparagraphs (1)(a)1. through 3., and 5. through 7. of this rule.
+(d) Recertification. Certification to exercise supervisory control with regard to performing installation, closure, and repair of UST systems under this rule expires three years after issuance by the Department approved certifying organization. Therefore, an individual must be recertified every three years by a Department approved certifying organization to maintain certification as follows:
+1. Certified individuals must provide the following information to the Department approved certifying organization a minimum of one month prior to expiration;
+(i) Proof of certification from a Department approved certifying organization for the previous three year period,
+(ii) Verification of 16 hours of online or classroom continuing education related to installation, closure, or repair of UST systems that occurred within the three year recertification period prior to the certification expiration date, and
+(iii) Provide the information described in subparagraph (1)(a)3. of this rule to the Department approved certifying organization.
+2. If a certified individual is not recertified within 90 days or another time period approved by the Department after expiration of their certification, the individual can only become certified in accordance with the requirements in subparagraph (1)(a) of this rule. An individual whose certification has expired may not exercise supervisory control with regard to performing installation, closure, and repair of UST systems under this rule.
+(e) Responsibilities. A certified individual shall:
+335-6-15-.47
+15-81
+335-6-15-.47
+1. Exercise supervisory control during installation, closure and repair of UST systems in accordance with the requirements of this chapter;
+2. Be present at the job site during the following installation critical junctures;
+(i) Excavation immediately prior to underground storage tank and underground piping installation and during backfill and compaction,
+(ii) After excavation and prior to setting underground storage tank and underground piping,
+(iii) Setting of the UST and underground piping,
+(iv) Connection of underground piping and UST system
+components,
+(v) Installation of UST system restraining devices, and
+(vi) Tightness testing of the UST system during installation.
+3. Be present at the job site during the following closure critical junctures;
+(i) De-vaporization, inerting, and cleaning of the underground storage tank,
+(ii) Testing atmosphere in and around the underground storage tanks,
+(iii) Excavation of material around the underground storage tank
+and underground piping,
+(iv) Removal of the underground storage tank and underground piping from the excavation and job site,
+(v) Cutting or destroying the underground storage tank if done on site, and
+(vi) When closing in place, filling the underground storage tanks with an inert material.
+4. Be present at the job site during the following repair critical junctures;
+(i) Excavation of any material from around the area of the underground storage tanks, underground piping, sumps, under dispenser containment, or spill catchment basins necessary to make a repair,
+(ii) Repair or alteration of the UST system,
+15-82
+(iii) Repair, alteration or replacement of underground piping or sumps, and
+(iv) Cutting the top of an underground storage tank and welding manhole to an underground storage tank.
+5. Upon request by a Department representative, provide proof of installation, closure, and repair certification from a Department approved certifying organization.
+6. Report any suspected releases or unusual operating conditions observed by the certified individual or by someone under his supervisory control at a UST facility where work is being performed or in the immediate surrounding area in accordance with rule 335-6-15-.20.
+7. Prior to beginning an installation or upgrade, ensure that a notice of proposed installation modification, or upgrade has been submitted to the Department in accordance with rules 335-6-15-.08(1)(b) and 335-6-15-.05(5).
+8. Prior to beginning a closure, ensure that a notice of intent to permanently close has been submitted to the Department in accordance with rule 335-6-15-.34.
+(f) Revocation of Certification. An individual’s certification to exercise supervisory control with regard to performing installation, closure, and repair of UST systems under this rule may not be recognized by the Department or may be revoked by a Department approved certifying organization.
+1. Revocation can occur for the following reasons, and for any other reasons deemed appropriate by the Department;
+(i) Gross negligence,
+(ii) Fraud or deception,
+(iii) Failure to correct deficiencies in workmanship,
+(iv) Failure to comply with the certified individual’s responsibilities
+in subparagraph (1)(e) of this rule, and
+(v) Performing installation, closure, or repair activities without employer financial responsibility required by subparagraph (1)(a)3. of this rule.
+(vi) Failure to comply with the financial responsibility requirements in subparagraph (1)(a)3. of this rule.
+2. After revocation of certification by the certifying organization for the reasons indicated in subparagraph (1)(f)1.(i) through (v) of this rule, the Department may allow the individual to pursue certification to exercise
+335-6-15-.47
+15-83
+335-6-15-.47
+supervisory control with regard to performing installation, closure, and repair of UST systems under this rule in accordance with paragraph (1)(a) of this rule. Recertification of an individual after revocation by the certifying organization under subparagraph (1)(f)1.(vi) of this rule requires the individual to meet the requirements of subparagraphs (1)(a)3. and 7. of this rule.
+",,,,,,,,,335-6-15-.47,,,,,,"Certification Requirements for Those who Install, Repair, or Close UST Systems",Department Approved Certifying Org.,Audits of Dep. Approved Certifying Org.,,,,,,,,,,,,,
+,,"The Department may approve a person, as defined in rule 335-6-15-.02(ddd) who is not regulated under this chapter, as a certifying organization with the authority to certify and recertify individuals to exercise supervisory control with regard to performing installation, closure, and repair of UST systems under this rule in accordance with paragraph (1) of this rule. The Department approved certifying organization has the authority to revoke certifications issued by them in accordance with subparagraph (1)(f) of this rule.
+(a) Approval Process. To be approved by the Department as a certifying organization, the person must, as a minimum, be able to perform the following:
+1. Verify the identity, age, experience, and insurance of all individuals taking the certification course using the information required by subparagraphs (1)(a)1. through 3.of this rule.
+2. Provide a course with classroom instruction by a qualified instructor on the installation, closure, and repair of UST systems that cover, as a minimum, the following topics;
+(i) Installation, closure and repair requirements of this chapter.
+(ii) Installation preparation and underground storage tank
+handling,
+(iii) Pre-installation and post installation testing,
+(iv) Installation and closure excavation,
+(v) Anchoring,
+(vi) Backfilling,
+(vii) Spill and overfill prevention,
+(viii) Leak detection methods for underground storage tanks and
+underground piping,
+(ix) Corrosion protection,
+(x) Underground piping,
+(xi) Electrical,
+15-84
+(xii) Underground storage tank and/or underground piping removal,
+(xiii) Filling underground storage tanks with inert material,
+(xiv) Cleaning, purging and inerting underground storage tanks,
+(xv) Sampling,
+(xvi) Repairing of underground storage tanks, underground piping,
+and sumps,
+(xvii) Post repair tightness testing,
+(xviii) Applicable United States Department of Labor Occupational
+Safety and Health Administration (OSHA) requirements,
+(xix) Applicable National Fire Protection Association (NFPA) requirements,
+(xx) Information contained in the most current versions of Petroleum Equipment Institute (PEI) Recommended Practice RP100, and American Petroleum Institute (API) Recommended Practice 1604, 1615 and 2015.
+3. Provide a written or oral exam on installation, closure, and repair of UST systems, which is approved by the Department, that requires at least a grade of 75% to pass and keep documentation of the test results for all individuals taking the test for a period of six years.
+4. After the individual has successfully completed all of the requirements in either subparagraphs (1)(a), (b), (c), or (d) of this rule and, when applicable, passed the exams described in subparagraph (1)(a)5. of this rule, issue an identification card to the individual with the individual’s name and photo, date of certification, and certifying organization.
+5. Certify individuals to exercise supervisory control with regard to performing installation, closure, and repair of UST systems under this rule in accordance with subparagraphs (1)(a), (b), and (c), of this rule, and recertify individuals in accordance with subparagraph (1)(d) of this rule.
+6. Revoke certification of an individual to exercise supervisory control with regard to performing installation, closure, and repair of UST systems, in accordance with subparagraph (1)(f) of this rule.
+7. Identify individuals who are certified and recertified to exercise supervisory control with regard to performing installation, closure, and repair of UST systems under this rule and their date of certification or recertification on an active website, and keep the list up-to-date within a seven day time period.",,,,,,,,,335-6-15-.47,,,,,,,,,,,,,,,,,,,,,
+,,"Department approved certifying organizations will be subject to audits by the
+Department. The results of the audits will be to sustain, suspend, or revoke, approval.
+(a) Sustained Approval. The Department may sustain the authorization of a certifying organization to certify individuals under this rule if the audit does not uncover any of the problems indicated in subparagraphs (3)(c)1.(i) through (iv) of this rule, or any other problems deemed appropriate by the Department.
+(b) Suspended Approval. The Department may suspend the authorization of a certifying organization to certify individuals under this rule if the audit uncovers any of the problems indicated in subparagraphs (3)(c)1.(i) through (iv) of this rule, or any other problems deemed appropriate by the Department:
+1. When approval is suspended by the Department, the certifying organization will be notified of the problem(s) that need to be addressed. Once the certifying organization has resolved all the problems, the Department will reinstate approval of the certifying organization.
+(c) Revoked Approval. The Department may suspend or revoke the authorization of a certifying organization to certify individuals under this rule:
+1. Revocation may occur for the following reasons and for any other reasons deemed appropriate by the Department;
+(i) Fraud or deception,
+(ii) Incompetence or inability to perform responsibilities,
+(iii) Failure to update course information and exam questions in
+response to additions and revisions made to this chapter, and
+(iv) Failure to comply with any of the requirements under paragraph (2) of this rule.
+2. When approval is revoked by the Department, the principals of the certifying organization will no longer be eligible to obtain Department approval as a certifying organization for two years.",,,,,,,,,335-6-15-.47,,,,,,,,,,,,,,,,,,,,,
+,,"(1) Except as provided in paragraph (2) of this rule, owners and operators of UST systems with field-constructed tanks and UST systems with airport hydrant fuel distribution systems must comply with the requirements of this chapter.
+(a) For UST systems with field-constructed tanks and UST systems with airport hydrant fuel distribution systems installed before December 8, 2017, the requirements are effective according to the following schedule:
+335-6-15-.48
+
+Requirement
+Effective Date
+Notification (rule 335-6-15-.05)
+December 8, 2018
+Upgrading
+(rule 335-6-15-.07 and this rule)
+October 13, 2018
+General Operating Requirements (rules 335-6-15-.09 through 335-6-15-.13 and this rule)
+October 13, 2018
+Release Detection (rules 335-6-15-.14 through 335-6-15-.19 and this rule)
+October 13, 2018
+Release Reporting, Response, and Investigation
+(rules 335-6-15-.20 through 335-6-15-.32)
+December 8, 2017
+Closure
+(rules 335-6-15-.34 through 335-6-15-.37)
+December 8, 2017
+Financial Responsibility (rules 335-6-15-.43 through 335-6-15-.44 and this rule)
+October 13, 2018
+Operator Training (rule 335-6-15-.46)
+October 13, 2018
+(b) For UST systems with field-constructed tanks and UST systems with airport hydrant fuel distribution systems installed on or after December 8, 2017, all the requirements of this chapter apply at installation.
+(c) In addition to codes of practice developed by nationally recognized associations or independent testing laboratories allowed in rule 335-6-15-.06, owners and operators of UST systems with field-constructed tanks and UST systems with airport hydrant fuel distribution systems may also use military construction criteria when designing, constructing, and installing UST systems with field-constructed tanks and UST systems with airport hydrant fuel distribution systems.
+15-87
+335-6-15-.48
+(2) Owners and operators of UST systems with field-constructed tanks and UST systems with airport hydrant fuel distribution systems must comply with the following additions, exceptions, and alternatives.",,,,,,,,,335-6-15-.48,,,,,,UST Systems with Field-Constructed Tanks and Aiport Hydrant Fuel Distribution Systems,Exception to piping secondary containment requirements,Upgrade Requirements,Walkthrough Inspections,Methods of Release Detection (field-cibstructed UST Systems),Methods of release detection for underground piping,Recordkeeping,Applicability: Closure,,,,,,,,
+,,"Owners and operators may use single walled underground piping when installing underground piping associated with UST systems with field-constructed tanks with a nominal capacity greater than 50,000 gallons, and underground piping associated with UST systems with airport hydrant fuel distribution systems. Underground piping associated with UST systems with field-constructed tanks less than or equal to a nominal capacity of 50,000 gallons and not part of an UST system with airport hydrant fuel distribution system must meet the secondary containment requirements in rule 335-6-15-.06(b) at installation.",,,,,,,,,335-6-15-.48,,,,,,,,,,,,,,,,,,,,,
+,,"(b) Upgrade requirements for UST systems with field-constructed tanks and UST systems with airport hydrant fuel distribution systems where installation commenced before December 8, 2017. These UST systems must meet the following upgrade requirements no later than October 13, 2018, or be permanently closed in accordance with rules 335-6-15-.34 through 335-6-15- .37 of this chapter:
+1. Corrosion protection. UST system components in contact with the ground that routinely contain regulated substances must meet one of the following:
+(i) Except as provided in subparagraph (2)(a) of this rule, the UST system performance standards for new underground storage tanks in rule 335- 6-15-.06(a) and for new underground piping in rule 335-6-15-.06(b); or
+(ii) Be constructed of metal and cathodically protected according to a code of practice developed by a nationally recognized association or independent testing laboratory and meet the following:
+(I) The cathodic protection requirements in rule 335-6-15-.06(a)2.(ii), (iii), and (iv) for underground storage tanks, and rule 335-6-15-.06(b)2.(ii), (iii), and (iv) for underground piping,
+(II) Underground storage tanks greater than 10 years old without cathodic protection must be assessed to ensure the underground storage tank is structurally sound and free of corrosion holes prior to adding cathodic protection in accordance with a code of practice developed by a nationally recognized association or independent testing laboratory. The assessment must be by internal inspection or another method determined by the Department to adequately assess the underground storage tank for structural soundness and corrosion holes.
+2. Spill and overfill prevention. To prevent spilling and overfilling associated with product transfer to the UST system, all UST systems with field-constructed tanks and all UST systems with airport hydrant fuel
+distribution systems must comply with the spill and overfill prevention equipment requirements specified in rule 335-6-15-.06(c).
+",,,,,,,,,335-6-15-.48,,,,,,,,,,,,,,,,,,,,,
+,,"In addition to the walkthrough inspection requirements in rule 335-6-15-.09(2), owners and operators must inspect the following additional areas for UST systems with airport hydrant fuel distribution systems at least once every 30 days if confined space entry according to the Occupational Safety and Health Administration (see 29 CFR part 1910) is not required or at least annually if confined space entry is required, and keep documentation of the walkthrough inspection in accordance with rule 335-6-15- .13(b)11:
+1. Hydrant pits – visually check for any damage; remove any liquid or debris; and check for any leaks, and
+2. Hydrant piping vaults – check for any hydrant piping leaks.
+",,,,,,,,,335-6-15-.48,,,,,,,,,,,,,,,,,,,,,
+,,"Owners and operators of UST systems with field-constructed tanks with a capacity less than or equal to 50,000 gallons must meet the release detection requirements in rules 335-6-15-.14 through 335-6-15-.19. Owners and operators of UST systems with field-constructed tanks with a capacity greater than 50,000 gallons must meet either the requirements in rules 335-6-15-.14 through 335-6-15-.19 (except rule 335-6-15-.17(e) and (f) must be combined with inventory control as stated in subparagraph (2)(d)5. of this rule) or use one or a combination of the following alternative methods of release detection:
+1. Conduct an annual tank tightness test in accordance with rule 335- 6-15-.17(c) except that the test equipment must be able to detect a 0.5 gallon per hour leak rate;
+2. Use an automatic tank gauging system to perform release detection performed at least every 30 days in accordance with rule 335-6-15-.17(d) except that the test equipment must be able to detect a leak rate less than or equal to one gallon per hour. This method must be combined with a tank tightness test performed at least every three years in accordance with rule 335-6-15-.17(c) except that the test equipment must be able to detect a 0.2 gallon per hour leak rate;
+3. Use an automatic tank gauging system to perform release detection performed at least every 30 days in accordance with rule 335-6-15-.17(d) except that the test equipment must be able to detect a leak rate less than or equal to two gallons per hour. This method must be combined with a tank tightness test performed at least every two years in accordance with rule 335-6-15-.17(c) except that the test equipment must be able to detect a 0.2 gallon per hour leak rate;
+4. Perform vapor monitoring at least every two years in accordance with rule 335-6-15-.17(e) for a tracer compound placed in the underground storage tank system capable of detecting a 0.1 gallon per hour leak rate;
+
+5. Perform inventory control at least every 30 days conducted in accordance with Department of Defense Directive 4140.25; ATA Airport Fuel Facility Operations and Maintenance Guidance Manual; or equivalent procedures that can detect a leak equal to or less than 0.5 percent of flow-through; and
+(i) Perform a tank tightness test at least every two years in accordance with rule 335-6-15-.17(c) except that the test equipment must be able to detect a 0.5 gallon per hour leak rate; or
+(ii) Perform vapor monitoring or groundwater monitoring at least every 30 days conducted in accordance with rule 335-6-15-.17(e) or (f), respectively, for the stored regulated substance.
+6. Use another method approved by the Department if the owner and operator can demonstrate that the method can detect a release as effectively as any of the methods allowed in subparagraphs (2)(d)1. through 5. of this rule. In comparing methods, the Department shall consider the size of release that the method can detect and the frequency and reliability of detection",,,,,,,,,335-6-15-.48,,,,,,,,,,,,,,,,,,,,,
+,,"(e) Methods of release detection for underground piping. Owners and operators of underground piping associated with UST systems with field- constructed tanks less than or equal to 50,000 gallons must meet the release detection requirements in rules 335-6-15-.14 through 335-6-15-.19. Owners and operators of underground piping associated with UST systems with field- constructed tanks and UST systems with airport hydrant fuel distribution systems greater than 50,000 gallons must follow either the requirements in rules 335-6-15-.14 through 335-6-15-.19 (except rule 335-6-15-.17(e) and (f) must be combined with inventory control as stated in subparagraph (2)(e)3. of this rule) or use one or a combination of the following alternative methods of release detection:
+1. Perform a semiannual or annual line tightness test in accordance with rule 335-6-15-.18(b) except that the test equipment must be able to perform a test at or above the underground piping operating pressure in accordance with the table below:
+
+Maximum Leak Detection Rate Per Test Section Volume
+Test Section Volume (Gallons)
+Semiannual Test - Leak Detection Rate Not To Exceed (Gallons Per Hour)
+Annual Test -
+Leak Detection Rate Not To Exceed (Gallons Per Hour)
+< 50,000
+1.0
+0.5
+≥ 50,000 to < 75,000
+1.5
+0.75
+≥ 75,000 to < 100,000
+2.0
+1.0
+≥ 100,000
+3.0
+1.5
+And underground piping segment volumes greater than or equal to 100,000 gallons not capable of meeting the maximum 3.0 gallon per hour leak rate for the semiannual test may be tested at a leak rate up to 6.0 gallons per hour according to the following schedule:Phase In For Underground Piping Segments ≥ 100,000 Gallons In Volume
+First test
+Not later than October 12, 2018 (may use up to 6.0 gph leak rate)
+Second test
+Between October 12, 2018 and October 12, 2021 (may use up to 6.0 gph leak rate)
+Third test
+Between October 12, 2021 and October 12, 2022 (must use 3.0 gph for leak rate)
+Subsequent tests
+After October 12, 2022
+(begin using semiannual or annual line testing according to the Maximum Leak Detection Rate Per Test Section Volume table above)
+15-90
+2. Perform vapor monitoring at least every two years in accordance with rule 335-6-15-.17(e) for a tracer compound placed in the underground storage tank system capable of detecting a 0.1 gallon per hour leak rate;
+3. Perform inventory control at least every 30 days conducted in accordance with Department of Defense Directive 4140.25; ATA Airport Fuel Facility Operations and Maintenance Guidance Manual; or equivalent procedures that can detect a leak equal to or less than 0.5 percent of flow-through; and
+(i) Perform a line tightness test at least every two years conducted in accordance with rule 335-6-15-.18(b) and subparagraph (2)(e)1. of this rule using the leak rates for the semiannual test; or
+(ii) Perform vapor monitoring or groundwater monitoring at least every 30 days conducted in accordance with rule 335-6-15-.17(e) and (f), respectively, for the stored regulated substance;
+4. Use another method approved by the Department if the owner and operator can demonstrate that the method can detect a release as effectively as any of the methods allowed in subparagraphs (2)(e)1. through 3. of this rule. In comparing methods, the Department shall consider the size of release that the method can detect and the frequency and reliability of detection.
+",,,,,,,,,335-6-15-.48,,,,,,,,,,,,,,,,,,,,,
+,,Owners and operators of UST systems with field-constructed tanks and UST systems with airport hydrant fuel distribution systems must maintain release detection records according to the recordkeeping requirements in rule 335-6-15-.19(b)3.,,,,,,,,,335-6-15-.48,,,,,,,,,,,,,,,,,,,,,
+,,"When directed by the Department, the owner and operator of an UST system with field-constructed tanks or UST systems with airport hydrant fuel distribution system permanently closed before December 8, 2017 must assess the excavation zone and permanently close the UST system in accordance with rules 335-6-15-.34 through 335-6-15-.37 if releases from the UST system may, in the judgment of the Department, pose a current or potential threat to human health and the environment",,,,,,,,,335-6-15-.48,,,,,,,,,,,,,,,,,,,,,

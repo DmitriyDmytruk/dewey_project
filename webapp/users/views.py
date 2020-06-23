@@ -7,7 +7,7 @@ from marshmallow import ValidationError
 from webapp import db
 
 from .models import RoleModel, UserModel
-from .schemas import UserSchema
+from .schemas import user_schema
 
 
 # from webapp.utils.mailing import sengrid_send_mail
@@ -57,7 +57,8 @@ class UserAPIView(MethodView):
         if not json_data:
             return {"message": "No input data provided"}, 400
         try:
-            data = UserSchema(partial=True).load(json_data)
+            user_schema.partial = True
+            data = user_schema.load(json_data)
         except ValidationError as err:
             return {"messages": err.messages}, 422
         email, role_title, password = (
@@ -85,6 +86,6 @@ class UserAPIView(MethodView):
             # subject: str = "Sending with SendGrid"
             # sengrid_send_mail(email, subject, content, content_type)
 
-            result = UserSchema().dump(user)
+            result = user_schema.dump(user)
             return {"message": "User created", "user": result}, 201
         return {"message": "User with this email address already exists"}, 422

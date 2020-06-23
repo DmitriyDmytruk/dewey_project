@@ -9,7 +9,7 @@ from webapp.utils.decorators import has_permissions, login_required
 from .helpers.export_to_xls import convert_to_xls
 from .helpers.xls_csv_to_dict import CSVReader, XLSReader
 from .models import ArticleModel, CategoryModel, TagModel
-from .schemas import ArticlePutPostSchema, ArticleSchema
+from .schemas import article_put_post_schema, articles_list_schema
 
 
 class ArticleAPIView(MethodView):
@@ -24,9 +24,8 @@ class ArticleAPIView(MethodView):
         Retrieve articles
         """
         if article_id is None:
-            articles_schema = ArticleSchema(many=True)
             articles: List[ArticleModel] = ArticleModel.query.all()
-            result = articles_schema.dump(articles)
+            result = articles_list_schema.dump(articles)
             return {"articles": result, "message": "Articles retrieved"}
         return {}
 
@@ -45,7 +44,7 @@ class ArticleAPIView(MethodView):
         if not article:
             return {"message": "Article not found."}, 404
         try:
-            ArticlePutPostSchema().load(
+            article_put_post_schema.load(
                 data=json_data,
                 instance=article,
                 partial=True,
@@ -64,7 +63,7 @@ class ArticleAPIView(MethodView):
         if not json_data:
             return {"message": "No input data provided"}, 400
         try:
-            article: ArticleModel = ArticlePutPostSchema().load(
+            article: ArticleModel = article_put_post_schema.load(
                 data=json_data, partial=True, session=db.session
             )
             db.session.add(article)

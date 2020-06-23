@@ -108,7 +108,7 @@ def test_create_article(client, session):
         "/articles", data={}, headers={"Authorization": f"Token {jwt_token}"}
     )
     assert response.status_code == 400
-    assert response.json.get("message") == "Invalid request"
+    assert response.json.get("message") == "No input data provided"
 
     response = client.post(
         "/articles",
@@ -124,7 +124,7 @@ def test_create_article(client, session):
         content_type="application/json",
         headers={"Authorization": f"Token {jwt_token}"},
     )
-    assert response.status_code == 200
+    assert response.status_code == 201
     assert response.json.get("message") == "Article created"
 
     response = client.post(
@@ -206,7 +206,7 @@ def test_update_article(client, session):
         headers={"Authorization": f"Token {jwt_token}"},
     )
     assert response.status_code == 400
-    assert response.json.get("message") == "Invalid request"
+    assert response.json.get("message") == "No input data provided"
 
     response = client.put(
         "/articles/999999999",
@@ -223,7 +223,7 @@ def test_update_article(client, session):
         headers={"Authorization": f"Token {jwt_token}"},
     )
     assert response.status_code == 404
-    assert response.json.get("message") == "Article does not exist."
+    assert response.json.get("message") == "Article not found."
 
     response = client.put(
         f"/articles/{article_id}",
@@ -388,7 +388,7 @@ def test_download_articles(client, session):
         headers={"Authorization": f"Token {jwt_token}"},
     )
     assert response.status_code == 404
-    assert response.json.get("message") == "Article does not exist."
+    assert response.json.get("message") == "Article not found."
 
     response = client.get(
         f"/articles/{article_id}/download",
@@ -461,7 +461,7 @@ def test_articles_search(client, session):
         headers={"Authorization": f"Token {jwt_token}"},
     )
     assert response.status_code == 200
-    assert len(response.json["response"]) == 1
+    assert response.json["response"]
     assert response.json["response"][0]["state"] == "Arizona"
 
     response = client.get(
@@ -470,7 +470,7 @@ def test_articles_search(client, session):
         headers={"Authorization": f"Token {jwt_token}"},
     )
     assert response.status_code == 200
-    assert len(response.json["response"]) == 5
+    assert response.json["response"]
     assert "Applicability" in response.json["response"][0]["categories"]
 
     response = client.get(
@@ -479,7 +479,7 @@ def test_articles_search(client, session):
         headers={"Authorization": f"Token {jwt_token}"},
     )
     assert response.status_code == 200
-    assert len(response.json["response"]) == 1
+    assert response.json["response"]
     assert "Applicability" in response.json["response"][0]["categories"]
     assert "Alaska" in response.json["response"][0]["state"]
 

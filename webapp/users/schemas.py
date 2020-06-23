@@ -29,3 +29,8 @@ class UserSchema(Schema):
     password = fields.String(validate=validate.Length(min=8), load_only=True)
     created_at = fields.DateTime()
     role = fields.Nested(RoleSchema(only=("id", "title")))
+
+
+role_schema = RoleSchema()
+role_schema_only_title = RoleSchema(only=("title",))
+user_schema = UserSchema()

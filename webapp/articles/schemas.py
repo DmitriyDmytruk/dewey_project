@@ -1,4 +1,4 @@
-from marshmallow import Schema, fields
+from marshmallow import fields
 from marshmallow_sqlalchemy import ModelSchema, fields as sqlalchemy_fields
 
 from .models import ArticleModel, CategoryModel, TagModel
@@ -58,12 +58,9 @@ class ArticlePutPostSchema(ArticleSchema):
     )
 
 
-class ArticleFirstRequestSchema(Schema):
-    """
-    Schema for first request for Article Search
-    """
-
-    response = fields.Nested(ArticleSchema, many=True)
-    categories = fields.List(fields.String())
-    tags = fields.List(fields.String())
-    states = fields.List(fields.String())
+article_schema = ArticleSchema()
+articles_list_schema = ArticleSchema(many=True)
+article_put_post_schema = ArticlePutPostSchema()
+tag_schema = TagSchema()
+tag_schema_only_id = TagSchema(only=("id",))
+category_schema = CategorySchema()
