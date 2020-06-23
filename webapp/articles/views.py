@@ -1,6 +1,6 @@
 from typing import IO, Any, Dict, List, Optional, Tuple, Union
 
-from flask import Response, request
+from flask import Response, current_app, request
 from flask.views import MethodView
 
 from webapp import db, es
@@ -52,6 +52,7 @@ class ArticleAPIView(MethodView):
             )
             db.session.commit()
         except Exception as error:
+            current_app.logger.error(error, exc_info=True)
             return {"message": str(error)}, 500
         return {"message": "Article updated"}
 
@@ -69,6 +70,7 @@ class ArticleAPIView(MethodView):
             db.session.add(article)
             db.session.commit()
         except Exception as error:
+            current_app.logger.error(error, exc_info=True)
             return {"message": str(error)}, 500
         return {"message": "Article created", "id": article.id}, 201
 

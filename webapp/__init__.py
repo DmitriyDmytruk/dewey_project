@@ -1,12 +1,16 @@
+import logging
 import os
+from logging.config import dictConfig
 
 import connexion
+import yaml
 from connexion.resolver import MethodViewResolver
 from elasticsearch import Elasticsearch
 from flask import Blueprint, render_template
 from flask_bcrypt import Bcrypt
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
+
 from flask_session import Session
 
 
@@ -69,6 +73,10 @@ def create_app(object_name: str):
         object_name: the python path of the config object,
                      e.g. project.config.ProdConfig
     """
+    dictConfig(yaml.load(open("logging.conf")))
+    logfile = logging.getLogger("file")
+    logfile.debug("Debug FILE")
+
     connexion_app = connexion.FlaskApp(__name__, specification_dir="openapi/")
     add_api(connexion_app)
     redoc_blueprint = redoc_initial(connexion_app)

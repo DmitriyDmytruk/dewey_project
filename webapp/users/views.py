@@ -1,6 +1,6 @@
 from typing import Optional, Union
 
-from flask import request
+from flask import current_app, request
 from flask.views import MethodView
 from marshmallow import ValidationError
 
@@ -38,9 +38,10 @@ class LoginAPIView(MethodView):
                         "message": "Successfully logged in.",
                         "auth_token": auth_token.decode(),
                     }
-                return {"message": "Token not found",}, 401
+                return {"message": "Token not found"}, 401
             return {"message": "User not found."}, 404
-        except Exception:
+        except Exception as error:
+            current_app.logger.error(error, exc_info=True)
             return {"message": "Error. Try again"}, 500
 
 
@@ -59,8 +60,9 @@ class UserAPIView(MethodView):
         try:
             user_schema.partial = True
             data = user_schema.load(json_data)
-        except ValidationError as err:
-            return {"messages": err.messages}, 422
+        except ValidationError as error:
+            current_app.logger.error(error, exc_info=True)
+            return {"messages": error.messages}, 422
         email, role_title, password = (
             data["email"],
             data["role"]["title"],
