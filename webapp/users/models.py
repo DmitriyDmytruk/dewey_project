@@ -8,9 +8,7 @@ from webapp import bcrypt, db
 
 
 class PermissionModel(db.Model):
-    """
-    User Permission Model
-    """
+    """User Permission Model"""
 
     __tablename__ = "permissions"
 
@@ -21,10 +19,7 @@ class PermissionModel(db.Model):
         self.title = title
 
     def save(self):
-        """
-        Save permission
-        :return:
-        """
+        """Save permission"""
         db.session.add(self)
         db.session.commit()
 
@@ -44,9 +39,7 @@ role_permissions = db.Table(
 
 
 class RoleModel(db.Model):
-    """
-    User Role Model
-    """
+    """User Role Model"""
 
     __tablename__ = "roles"
 
@@ -56,9 +49,7 @@ class RoleModel(db.Model):
 
 
 class UserModel(db.Model):
-    """
-    User Model
-    """
+    """User Model"""
 
     __tablename__ = "users"
 

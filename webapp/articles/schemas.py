@@ -5,52 +5,38 @@ from .models import ArticleModel, CategoryModel, TagModel
 
 
 class TagSchema(ModelSchema):
-    """
-    Tag schema
-    """
+    """Tag schema"""
 
     class Meta:
-        """
-        MetaClass for Tag Schema
-        """
+        """MetaClass for Tag Schema"""
 
         model: TagModel = TagModel
 
 
 class CategorySchema(ModelSchema):
-    """
-    Category schema
-    """
+    """Category schema"""
 
     class Meta:
-        """
-        MetaClass for Category Schema
-        """
+        """MetaClass for Category Schema"""
 
         model: CategoryModel = CategoryModel
 
 
 class ArticleSchema(ModelSchema):
-    """
-    ArticleModel BaseSchema
-    """
+    """ArticleModel BaseSchema"""
 
     id = fields.Int(dump_only=True)
     tags = sqlalchemy_fields.Nested(TagSchema, many=True)
     categories = sqlalchemy_fields.Nested(CategorySchema, many=True)
 
     class Meta:
-        """
-        MetaClass for Article Schema
-        """
+        """MetaClass for Article Schema"""
 
         model = ArticleModel
 
 
 class ArticlePutPostSchema(ArticleSchema):
-    """
-    Schema for put/post methods for Article Model
-    """
+    """Schema for put/post methods for Article Model"""
 
     tags = sqlalchemy_fields.Nested(TagSchema, many=True, only=["id"])
     categories = sqlalchemy_fields.Nested(

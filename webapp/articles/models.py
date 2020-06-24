@@ -24,9 +24,7 @@ article_tags = db.Table(
 
 
 class TagModel(db.Model):
-    """
-    Tag model
-    """
+    """Tag model"""
 
     __tablename__ = "tags"
     __indexable__ = "name"
@@ -56,9 +54,7 @@ article_categories = db.Table(
 
 
 class CategoryModel(db.Model):
-    """
-    Category model
-    """
+    """Category model"""
 
     __tablename__ = "categories"
     __indexable__ = "name"
@@ -71,9 +67,7 @@ class CategoryModel(db.Model):
 
 
 class ArticleModel(db.Model, SearchableMixin):
-    """
-    Article model
-    """
+    """Article model"""
 
     __tablename__ = "articles"
     __table_args__ = (UniqueConstraint("title", "state"),)
@@ -113,7 +107,5 @@ class ArticleModel(db.Model, SearchableMixin):
         return "<Article {}>".format(self.title)
 
     def get_relations(self, attribute: str) -> List[str]:
-        """
-        Converts query [<Model Name>, ...] to list ['Name', ...]
-        """
+        """Converts query [<Model Name>, ...] to list ['Name', ...]"""
         return [item.name for item in getattr(self, attribute)]

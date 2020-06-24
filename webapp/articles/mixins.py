@@ -4,15 +4,11 @@ from .search import add_to_index, remove_from_index
 
 
 class SearchableMixin:
-    """
-    Updates indexes
-    """
+    """Updates indexes"""
 
     @classmethod
     def before_commit(cls, session) -> None:
-        """
-        Adds ``_changes`` dict to session object
-        """
+        """Adds ``_changes`` dict to session object"""
         session._changes = {  # pylint: disable=protected-access
             "add": list(session.new),
             "update": list(session.dirty),
@@ -21,9 +17,7 @@ class SearchableMixin:
 
     @classmethod
     def after_commit(cls, session) -> None:
-        """
-        Updates indexes
-        """
+        """Updates indexes"""
         # fmt: off
         for obj in session._changes["add"]:  # pylint: disable=protected-access
             if isinstance(obj, SearchableMixin):
@@ -39,9 +33,7 @@ class SearchableMixin:
 
     @classmethod
     def reindex(cls) -> None:
-        """
-        Reindex
-        """
+        """Reindex"""
         for obj in cls.query:
             add_to_index(cls.__tablename__, obj)
 

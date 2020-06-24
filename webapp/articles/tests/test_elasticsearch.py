@@ -10,9 +10,7 @@ ARTICLE_INDEX = ArticleModel.__tablename__
 
 @pytest.mark.xfail
 def test_new_tag(app):
-    """
-    Test for Article index create
-    """
+    """Test for Article index create"""
     with app.app_context():
         db.create_all()
     article_title: str = "ES title"
@@ -38,9 +36,7 @@ def test_new_tag(app):
 
 @pytest.mark.xfail
 def test_update_article_index(app):
-    """
-    Test for update Article index
-    """
+    """Test for update Article index"""
     with app.app_context():
         db.create_all()
     new_article = ArticleModel(
@@ -66,9 +62,7 @@ def test_update_article_index(app):
 
 @pytest.mark.xfail
 def test_delete_article_index(app):
-    """
-    Test for delete Article index
-    """
+    """Test for delete Article index"""
     with app.app_context():
         db.create_all()
     new_article = ArticleModel(

@@ -7,9 +7,7 @@ from webapp.articles.models import ArticleModel
 
 
 def convert_to_xls(article: ArticleModel) -> bytes:
-    """
-    Converts Article model to xls book
-    """
+    """Converts Article model to xls book"""
     book: Workbook = Workbook()
     sheet = book.active
 

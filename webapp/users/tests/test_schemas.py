@@ -24,9 +24,7 @@ def test_role_shema(session):
 
 
 def test_user_shema(session):
-    """
-    Testing [de]serialization with UserSchema
-    """
+    """Testing [de]serialization with UserSchema"""
     role: RoleModel = session.query(RoleModel).filter_by(
         title="API User"
     ).one()

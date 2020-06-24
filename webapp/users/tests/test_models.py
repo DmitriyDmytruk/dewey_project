@@ -8,9 +8,7 @@ from webapp.users.models import PermissionModel, RoleModel, UserModel
 
 
 def test_create_new_role_permission(session):
-    """
-    Test for Role create
-    """
+    """Test for Role create"""
     permission_title: str = "can_view_articles"
     role_title: str = "API User"
     permission: PermissionModel = PermissionModel(permission_title)
@@ -29,9 +27,7 @@ def test_create_new_role_permission(session):
 
 
 def test_new_user(session):
-    """
-    Test for User create
-    """
+    """Test for User create"""
     role: RoleModel = session.query(RoleModel).filter_by(
         title="API User"
     ).one()

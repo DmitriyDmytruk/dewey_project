@@ -3,9 +3,7 @@ from sqlalchemy.orm.collections import InstrumentedList
 
 
 def add_to_index(index, model) -> None:
-    """
-    Add data to index
-    """
+    """Add data to index"""
     if not current_app.elasticsearch:
         return
     payload = {}
@@ -22,9 +20,7 @@ def add_to_index(index, model) -> None:
 
 
 def remove_from_index(index, model) -> None:
-    """
-    Remove data from index
-    """
+    """Remove data from index"""
     if not current_app.elasticsearch:
         return
     current_app.elasticsearch.delete(index=index, id=model.id)

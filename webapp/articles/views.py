@@ -13,16 +13,12 @@ from .schemas import article_put_post_schema, articles_list_schema
 
 
 class ArticleAPIView(MethodView):
-    """
-    Articles endpoints
-    """
+    """Articles endpoints"""
 
     @login_required
     @has_permissions(["can_view_articles"])
     def get(self, article_id: str = None) -> Dict[str, Any]:
-        """
-        Retrieve articles
-        """
+        """Retrieve articles"""
         if article_id is None:
             articles: List[ArticleModel] = ArticleModel.query.all()
             result = articles_list_schema.dump(articles)
@@ -32,9 +28,7 @@ class ArticleAPIView(MethodView):
     @login_required
     @has_permissions(["can_change_articles"])
     def put(self, article_id: int):
-        """
-        Article update
-        """
+        """Article update"""
         json_data: dict = request.get_json()
         if not json_data:
             return {"message": "No input data provided"}, 400
@@ -76,9 +70,7 @@ class ArticleAPIView(MethodView):
 
 
 class ArticleSearchAPIView(MethodView):
-    """
-    Search articles using ElasticSearch
-    """
+    """Search articles using ElasticSearch"""
 
     @staticmethod
     def _usable_items(found: list, items: str) -> List[str]:
@@ -190,16 +182,12 @@ class ArticleSearchAPIView(MethodView):
 
 
 class DownloadArticleXLSView(MethodView):
-    """
-    Download article from database
-    """
+    """Download article from database"""
 
     @login_required
     @has_permissions(["can_view_articles"])
     def get(self, article_id: int) -> Union[Tuple[Dict[str, str], int], IO]:
-        """
-        Converts exist article to .xls file
-        """
+        """Converts exist article to .xls file"""
         article: Optional[ArticleModel] = ArticleModel.query.filter_by(
             id=article_id
         ).one_or_none()
@@ -216,18 +204,14 @@ class DownloadArticleXLSView(MethodView):
 
 
 class UploadFileAPIView(MethodView):
-    """
-    Read xls/csv file
-    """
+    """Read xls/csv file"""
 
     ALLOWED_EXTENSIONS = ["xls", "csv"]
 
     @login_required
     @has_permissions(["can_view_articles"])
     def post(self):
-        """
-        xls/csv file upload for article create
-        """
+        """xls/csv file upload for article create"""
         file = request.files["file"]
         # request.form.get("data")
         file_extension = file.filename.split(".")[-1]
