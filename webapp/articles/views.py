@@ -73,22 +73,23 @@ class ArticleSearchAPIView(MethodView):
     """Search articles using ElasticSearch"""
 
     @staticmethod
-    def _usable_items(found: list, items: str) -> List[str]:
+    def _usable_items(found: list, items: str) -> List[Dict[str, str]]:
         """
         Generates list of usable items
         @param found: list
         @param items: str
         @return: list
         """
-        return sorted(
-            list(
+        return [
+            {"label": item, "value": item}
+            for item in sorted(
                 set(
                     item
                     for article in found
                     for item in article["_source"][items]
                 )
             )
-        )
+        ]
 
     @staticmethod
     def _forming_query(
@@ -163,14 +164,15 @@ class ArticleSearchAPIView(MethodView):
                     "response": result,
                     "categories": usable_categories,
                     "tags": usable_tags,
-                    "states": sorted(
-                        list(
+                    "states": [
+                        {"label": state, "value": state}
+                        for state in sorted(
                             set(
                                 article["_source"]["state"]
                                 for article in found
                             )
                         )
-                    ),
+                    ],
                 }
             return {"response": result}, 404
 

@@ -407,15 +407,30 @@ components:
         states:
           type: array
           items:
-            type: string
+            type: object
+            properties:
+              label:
+                type: string
+              value:
+                type: string
         categories:
           type: array
           items:
-            type: string
+            type: object
+            properties:
+              label:
+                type: string
+              value:
+                type: string
         tags:
           type: array
           items:
-            type: string
+            type: object
+            properties:
+              label:
+                type: string
+              value:
+                type: string
         response:
           type: array
           items:
