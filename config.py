@@ -17,9 +17,10 @@ class ProdConfig(Config):
 
 class DevConfig(Config):
     ELASTICSEARCH_URL = os.environ.get("ELASTICSEARCH_URL")
+    SECRET_KEY = os.environ.get("SECRET_KEY")
     DEBUG = True
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    PG_HOST = "db"
+    PG_HOST = os.environ.get("PG_HOST", "db")
     PG_PORT = 5432
     SQLALCHEMY_DATABASE_URI = (
         f"postgresql://dewey_user:dditeam@{PG_HOST}:{PG_PORT}/dewey_db"
