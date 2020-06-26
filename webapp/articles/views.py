@@ -134,8 +134,8 @@ class ArticleSearchAPIView(MethodView):
 
         return found
 
-    # @login_required
-    # @has_permissions(["can_view_articles"])
+    @login_required
+    @has_permissions(["can_view_articles"])
     def get(
         self,
     ) -> Union[
