@@ -128,13 +128,14 @@ class ArticleSearchAPIView(MethodView):
         if match_all:
             query = {"match_all": {}}
         found = es.search(
-            index=ArticleModel.__tablename__, body={"query": query},
+            index=ArticleModel.__tablename__,
+            body={"query": query, "size": 10000},
         )["hits"].get("hits")
 
         return found
 
-    @login_required
-    @has_permissions(["can_view_articles"])
+    # @login_required
+    # @has_permissions(["can_view_articles"])
     def get(
         self,
     ) -> Union[
