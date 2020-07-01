@@ -1,7 +1,6 @@
 import datetime
 from typing import List
 
-from sqlalchemy.schema import UniqueConstraint
 from sqlalchemy_utils import ScalarListType
 
 from webapp import db
@@ -70,7 +69,6 @@ class ArticleModel(db.Model, SearchableMixin):
     """Article model"""
 
     __tablename__ = "articles"
-    __table_args__ = (UniqueConstraint("title", "state"),)
     __searchable__ = [
         "id",
         "title",
@@ -101,7 +99,7 @@ class ArticleModel(db.Model, SearchableMixin):
     updated_date = db.Column(db.Date)
     updated_at = db.Column(db.DateTime, onupdate=datetime.datetime.now)
     tags = db.relationship(TagModel, secondary=article_tags)
-    state = db.Column(db.String(128))
+    state = db.Column(db.String(128), nullable=False)
 
     def __repr__(self):
         return "<Article {}>".format(self.title)
