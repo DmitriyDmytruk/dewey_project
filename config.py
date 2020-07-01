@@ -25,6 +25,7 @@ class DevConfig(Config):
     SQLALCHEMY_DATABASE_URI = (
         f"postgresql://dewey_user:dditeam@{PG_HOST}:{PG_PORT}/dewey_db"
     )
+    LOG_TO_STDOUT = os.environ.get('LOG_TO_STDOUT')
 
 
 class TestConfig(Config):
