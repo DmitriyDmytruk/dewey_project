@@ -1,0 +1,15 @@
+{
+  "abc": "avs",
+  "data": {
+    "type": "service_account",
+    "project_id": "dewey-288511",
+    "private_key_id": "2292ad6f1d9f2722d8076b44ae0b37dee0290c90",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDP13IxTQV5d+UH\nBLtu3u9yVDIiy1DaaaE7Zp2GUbxlizoXFj5as2liPhWVJt4s09jhdofaZyvPizEM\n4007A+3uYYkrI/ZrmPuA+g3Hui/Lugk44Hh6+h6p/YDrsCzcyHOizqYaJcQHqAKX\nJxn5AxfF/nN3/Kc4oMb7SO8BlQ3RQj2c4YfM+OfjOu7ZyrvEoD5ATAFCKMs8+nSK\naAWCamOoRgDxOWFuZ0u9alV9OdWkY/OppnL71nKYIPyKf1laeOW8Cx9fObVBt3bw\nQP3ALYyG/MoMwsIAln5REiDTonbf6zFzZOkLAvxdB316QB/IKIEBLlkIMSZR7F2H\n8s3YXnoBAgMBAAECggEAGDL3Bjt4BDUL8v2/jwCg83hPIBL5Fn0O+zoO5Dk3DMGh\noVeDKg9SmVAuNiAA5UpDKbkhxzGU/cSwkNYUQ2dJOCSeEmpNAikdO16h5RvN/dPq\nx/cGwBbIJDWyYX6xMoGaSR3zY/76rIOIza2NThtolLJ0IkfF9odts4tB3LbMlY0B\nZdSSGFDQpkBks+REfE5h5FcYl7vtTCeq2SIEVZmBdjUBapIU2dHjK42Gv1TlDBbL\nOPxAGeaSayun0a7WQNp1O+6hrcG8nMyhUtRV5zXKtaHjdGDJCl20y+WJx0i7YLeq\nUYhTbE2FPdkl0372JT0V75rBtoafcj0gWSHj6HzVgwKBgQD9+4sjQ43p/cedZuAq\n6AcMPjJl+Bw8YWiEjM/WrcTbWuCPVNXq5u7OXVWj7rXNQ5wGay5gVsv+yK6TJ1rW\n5yhYVpsRPi52eQT1QtXf6OTGqNuHuhUmBBWuNipNEwox4SGlzWWcmSFUGd5l/GAl\nH/YhWeSev7UGT1MjoCiKuKFMGwKBgQDRfhPzRvndIgXUptXRz6tjq75rzjeIsteR\nykSlRgQW/4/2t1zKDdy8d6BEOTHF81BlW+BKqtsabRgHi51sowgmQHQtleZg76x6\n87uk/m4ZecvwiXThNfceuZ4LuA5byzynIrrPA/VMjxqKy/f6pnpde68R/TA4VpZj\nahJkdaa8EwKBgAtg0YLq69inveGXUkOZ0XcC8k8PJnSuCHintkfv0PniwFyreEnl\nvp0QIV4Ou6ZOeRbwhktamBj59JgzEya9hFkwyBGlr38vPMGgFOTLEjS0K+GQvJHP\nbQk48/wv9iz14QQEh6DUW2HhJs162PPQ0r37wPo7rGhz9U2LR0Wvr8oxAoGBAJjd\nlRU6P217PCH2M6RME1ZBpkvoSGG5js/Vds3bD3Twu05ecpkGEIJ+EDZ4PbeiWpH7\nvuj9T7Ay1wv6dr8lH/c5pQz2iwtFGOkHHW/CMPjqBUTaKK2FwXNsIsWOYvvci7+x\n+frBeqeI7OdG+watoDDC5fcMd7lEhay5Y/5mU2p9AoGBAMV/bfUpSZnX6bLf0n9n\n2BJedCmede36QOnuL6Hr72W+y2PLRN5EV56g2/8eDYjo83QPEKYKsgtgQUJwUGcE\nkTkbWLyWxTlQN76HCOFwcRwWL5ZjK9yi0OvI0QXysD2vt1n0swx2Am5MeFwG1qWa\nBAXEEwnHOnP9jqfneWXdK/rp\n-----END PRIVATE KEY-----\n",
+    "client_email": "dewey-872@dewey-288511.iam.gserviceaccount.com",
+    "client_id": "109050657292366607350",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/dewey-872%40dewey-288511.iam.gserviceaccount.com"
+  }
+}
